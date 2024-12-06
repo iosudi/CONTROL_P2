@@ -36,6 +36,11 @@
 
     .btn {
       color: var(--white-text);
+      font-size: 1.1rem !important;
+      img {
+        width: 25px;
+        height: auto;
+      }
     }
   }
 }

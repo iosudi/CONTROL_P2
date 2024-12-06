@@ -35,13 +35,13 @@
       >
         {{ "Navbar.portfolio" | translate }}
       </li>
-      <!-- <li
+      <li
         class="pt-3 pb-1 fs-5 border-bottom"
         routerLink="/shop"
         routerLinkActive="active-link"
       >
-        Shop
-      </li> -->
+        {{ "Navbar.shop" | translate }}
+      </li>
       <li
         class="pt-3 pb-1 fs-5 border-bottom"
         routerLink="/partners"
@@ -63,17 +63,22 @@
       >
         {{ "Navbar.services" | translate }}
       </li>
-      <!-- <button class="btn px-0 d-flex align-items-center gap-2 fs-5">
+      <button
+        class="btn px-0 d-flex align-items-center gap-2 mt-4"
+        routerLink="/profile/wishlist"
+      >
         <img src="./assets/images/icons/nav-heart.svg" alt="icon" />
         {{ "Navbar.wishlist" | translate }}
-      </button> -->
-      <!-- <button
-        class="btn px-0 d-flex align-items-center gap-2 fs-5"
+      </button>
+
+      <button
+        class="btn px-0 d-flex align-items-center gap-2"
         routerLink="/profile"
       >
         <img src="./assets/images/icons/nav-user.svg" alt="icon" />
         {{ "Navbar.my_account" | translate }}
-      </button> -->
+      </button>
+
       <button
         class="btn p-0 d-flex align-items-center gap-3 language-btn"
         (click)="changeLanguage()"

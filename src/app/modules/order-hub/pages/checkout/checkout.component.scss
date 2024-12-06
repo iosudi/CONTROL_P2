@@ -1,6 +1,7 @@
 .checkout {
   p-breadcrumb ::ng-deep {
     .p-breadcrumb {
+      padding: 0 !important;
       ol {
         li {
           a {
@@ -71,9 +72,11 @@
         background: #ffffff0d;
 
         .product {
-          .product-image {
-            width: 100px;
-            height: 100px;
+          .product-details {
+            img {
+              width: 100px;
+              height: 100px;
+            }
           }
         }
       }
@@ -171,6 +174,253 @@
 
             &:hover {
               border-color: var(--main-color);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1199px) {
+  .checkout {
+    .row {
+      .order-summary {
+        padding-left: 0.8rem !important;
+        padding-right: 0.8rem !important;
+        .order-details {
+          background: #ffffff0d;
+
+          h4 {
+            font-size: 1rem;
+          }
+          p {
+            font-size: 1rem !important;
+          }
+          .product {
+            .product-details {
+              img {
+                width: 70px;
+                min-width: 70px;
+                height: 70px;
+              }
+              .details {
+                p {
+                  font-size: 0.7rem !important;
+                }
+              }
+            }
+            .product-total-price {
+              font-size: 0.8rem !important;
+            }
+          }
+        }
+
+        .payment-method {
+          .method {
+            p-radioButton ::ng-deep .p-radiobutton {
+              width: 18px;
+              height: 18px;
+              .p-radiobutton-box {
+                width: 18px;
+                height: 18px;
+                border: 1px solid var(--white-text);
+                background-color: transparent;
+
+                .p-radiobutton-icon {
+                  width: 10px;
+                  height: 10px;
+                  background: var(--main-color);
+                }
+                &.p-highlight {
+                  border: 1px solid var(--white-text);
+                  background: transparent;
+                }
+                &:hover {
+                  border-color: var(--main-color);
+                }
+                &.p-focus {
+                  box-shadow: unset;
+                }
+              }
+            }
+
+            label {
+              font-size: 1.2rem;
+              span {
+                color: var(--paragraph-text-color);
+                font-size: 0.8rem;
+              }
+            }
+          }
+        }
+
+        .terms {
+          p-checkbox ::ng-deep {
+            width: 20px;
+            height: 20px;
+            .p-checkbox {
+              width: 20px;
+              height: 20px;
+              .p-checkbox-box {
+                width: 20px;
+                height: 20px;
+              }
+            }
+          }
+
+          label {
+            color: var(--paragraph-text-color);
+          }
+        }
+
+        .main-btn {
+          font-size: 0.9rem;
+        }
+      }
+
+      .different-address,
+      .terms {
+        p-checkbox ::ng-deep {
+          width: 30px;
+          height: 30px;
+          .p-checkbox {
+            width: 30px;
+            height: 30px;
+            .p-checkbox-box {
+              width: 30px;
+              height: 30px;
+              background: #656565;
+              border-color: var(--white-text);
+              .p-icon {
+                width: 12px;
+                height: 12px;
+              }
+
+              &.p-focus {
+                box-shadow: unset;
+                border-color: var(--main-color);
+              }
+
+              &.p-highlight {
+                border-color: var(--main-color);
+                background: var(--main-color);
+              }
+
+              &:hover {
+                border-color: var(--main-color);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .checkout {
+    .bread-crumb {
+      display: none !important;
+    }
+
+    .row {
+      .order-summary {
+        padding-left: 0.8rem !important;
+        padding-right: 0.8rem !important;
+
+        .payment-method {
+          .method {
+            p-radioButton ::ng-deep .p-radiobutton {
+              width: 18px;
+              height: 18px;
+              .p-radiobutton-box {
+                width: 18px;
+                height: 18px;
+                border: 1px solid var(--white-text);
+                background-color: transparent;
+
+                .p-radiobutton-icon {
+                  width: 10px;
+                  height: 10px;
+                  background: var(--main-color);
+                }
+                &.p-highlight {
+                  border: 1px solid var(--white-text);
+                  background: transparent;
+                }
+                &:hover {
+                  border-color: var(--main-color);
+                }
+                &.p-focus {
+                  box-shadow: unset;
+                }
+              }
+            }
+
+            label {
+              font-size: 1rem;
+              span {
+                color: var(--paragraph-text-color);
+                font-size: 0.8rem;
+              }
+            }
+          }
+        }
+
+        .terms {
+          p-checkbox ::ng-deep {
+            width: 18px;
+            height: 18px;
+            .p-checkbox {
+              width: 18px;
+              height: 18px;
+              .p-checkbox-box {
+                width: 18px;
+                height: 18px;
+              }
+            }
+          }
+
+          label {
+            font-size: 0.8rem;
+          }
+        }
+
+        .main-btn {
+          font-size: 0.8rem;
+        }
+      }
+
+      .different-address,
+      .terms {
+        p-checkbox ::ng-deep {
+          width: 20px;
+          height: 20px;
+          .p-checkbox {
+            width: 20px;
+            height: 20px;
+            .p-checkbox-box {
+              width: 20px;
+              height: 20px;
+              .p-icon {
+                width: 12px;
+                height: 12px;
+              }
+
+              &.p-focus {
+                box-shadow: unset;
+                border-color: var(--main-color);
+              }
+
+              &.p-highlight {
+                border-color: var(--main-color);
+                background: var(--main-color);
+              }
+
+              &:hover {
+                border-color: var(--main-color);
+              }
             }
           }
         }

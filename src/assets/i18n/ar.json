@@ -5,6 +5,7 @@
     "about": "عن الشركة",
     "portfolio": "أعمالنا",
     "services": "الخدمات",
+    "shop": "المتجر",
     "partners": "الشركاء",
     "contactUs": "اتصل بنا",
     "languageButton": "الإنجليزية",
@@ -366,6 +367,81 @@
         "orderDetails": "تفاصيل الطلب"
       }
     }
+  },
+
+  "OrderDetails": {
+    "Ticket": {
+      "content": "شكراً لك. تم استلام طلبك."
+    },
+    "Overview": {
+      "title": "نظرة عامة على الطلب",
+      "details": {
+        "orderNumber": {
+          "title": "رقم الطلب:"
+        },
+        "date": {
+          "title": "التاريخ:"
+        },
+        "email": {
+          "title": "البريد الإلكتروني:"
+        },
+        "total": {
+          "title": "الإجمالي:"
+        },
+        "paymentMethod": {
+          "title": "طريقة الدفع:"
+        }
+      }
+    },
+    "OrderStatus": {
+      "title": "حالة الطلب",
+      "cancelOrder": "إلغاء الطلب",
+      "steps": {
+        "created": "تم الإنشاء",
+        "packed": "تم التغليف",
+        "shipped": "تم الشحن",
+        "delivered": "تم التسليم"
+      }
+    },
+    "Addresses": {
+      "billingAddress": {
+        "title": "عنوان الفواتير"
+      },
+      "shippingAddress": {
+        "title": "عنوان الشحن"
+      }
+    },
+    "OrderDetails": {
+      "title": "تفاصيل الطلب",
+      "header": {
+        "product": "المنتج",
+        "subtotal": "الإجمالي الفرعي"
+      },
+      "subtotal": {
+        "title": "الإجمالي الفرعي"
+      },
+      "shipping": {
+        "title": "الشحن",
+        "value": "شحن مجاني"
+      },
+      "total": {
+        "title": "الإجمالي"
+      },
+      "buttons": {
+        "viewReceipt": {
+          "label": "عرض الإيصال"
+        },
+        "viewInvoice": {
+          "label": "عرض الفاتورة"
+        }
+      }
+    }
+  },
+
+  "NotFoundPage": {
+    "title": "لم يتم العثور علي الصفحة",
+    "subTitle": "عذراً، لكن الصفحة التي تبحث عنها غير موجودة",
+    "btn": "ارجع إلى الصفحة الرئيسية"
   },
 
   "Footer": {

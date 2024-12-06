@@ -2,14 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-order-details',
-  templateUrl: './order-details.component.html',
-  styleUrls: ['./order-details.component.scss'],
+  selector: 'app-not-found',
+  templateUrl: './not-found.component.html',
+  styleUrls: ['./not-found.component.scss'],
 })
-export class OrderDetailsComponent implements OnInit {
+export class NotFoundComponent implements OnInit {
   constructor(public translate: TranslateService) {}
-
-  isShownTicket: boolean = true;
   direction: string = 'ltr';
 
   ngOnInit(): void {
@@ -20,9 +18,5 @@ export class OrderDetailsComponent implements OnInit {
     this.translate.onLangChange.subscribe((event) => {
       this.direction = event.lang === 'ar' ? 'rtl' : 'ltr';
     });
-  }
-
-  hideTicket(): void {
-    this.isShownTicket = false;
   }
 }

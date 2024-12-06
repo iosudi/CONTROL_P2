@@ -1,0 +1,44 @@
+table {
+  th {
+    color: var(--paragraph-text-color);
+  }
+
+  .product-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  .product-details {
+    p {
+      font-size: 0.75rem;
+    }
+  }
+
+  .price {
+    color: var(--paragraph-text-color);
+  }
+
+  .quantity-input {
+    border: 1px solid var(--white-text);
+
+    input {
+      width: 40px;
+      background: transparent;
+      outline: none;
+      border: 0;
+      color: var(--white-text);
+      font-size: 1.2rem;
+    }
+    .btn {
+      color: var(--white-text);
+      font-size: 1.1rem;
+      font-weight: bold;
+      height: fit-content;
+      border: 0 !important;
+    }
+  }
+
+  .Subtotal {
+    font-size: 1.4rem;
+  }
+}

@@ -1,69 +1,19 @@
 <app-home-navbar></app-home-navbar>
 
-<section class="cart p-5">
+<section class="cart my-lg-5 my-3">
   <div class="container">
     <div
-      class="bread-crumb d-flex justify-content-start align-items-center mt-4 mb-5"
+      class="bread-crumb d-flex justify-content-start align-items-center mb-4"
     >
-      <p-breadcrumb class="max-w-full" [model]="items" [home]="home" />
+      <p-breadcrumb [model]="items" [home]="home" />
     </div>
 
     <div class="shopping-cart">
-      <div class="row g-5">
+      <div class="row gx-4 gy-3">
         <div class="col-lg-8">
           <div class="cart-details">
-            <table class="w-100">
-              <tr class="border-bottom">
-                <th class="px-4 py-3 text-center fw-medium"></th>
-                <th class="px-4 py-3 text-center fw-medium"></th>
-                <th class="px-4 py-3 text-center fw-medium">Product</th>
-                <th class="px-4 py-3 text-center fw-medium">Price</th>
-                <th class="px-4 py-3 text-center fw-medium">Quantity</th>
-                <th class="px-4 py-3 text-center fw-medium">Subtotal</th>
-              </tr>
-
-              <tr class="border-bottom" *ngFor="let item of [1, 2, 3, 4]">
-                <td class="pt-5 pb-4 px-3">
-                  <i class="fa-solid fa-xmark fs-2 pointer"></i>
-                </td>
-                <td class="pt-5 pb-4 px-3">
-                  <div class="product-image rounded-3 overflow-hidden">
-                    <img
-                      src="./assets/images/home/events/4.jpg"
-                      alt="product image"
-                    />
-                  </div>
-                </td>
-                <td class="pt-5 pb-4 px-3">
-                  <div class="product-details text-center">
-                    <p
-                      class="mb-1 fs-6 product-id heading-color text-decoration-underline"
-                    >
-                      B2003
-                    </p>
-                    <p class="mb-1">size: 60x80</p>
-                    <p class="mb-1">material: قماش كانفس</p>
-                    <p class="mb-0">Frame: + frame</p>
-                  </div>
-                </td>
-                <td class="pt-5 pb-4 px-3">
-                  <p class="mb-0 price">{{ 825 | currency : "RSA " }}</p>
-                </td>
-                <td class="pt-5 pb-4 px-3">
-                  <div
-                    class="quantity-input d-flex gap-2 align-items-center justify-content-between rounded-5 px-3 py-1"
-                  >
-                    <button class="btn p-0">-</button>
-                    <input type="text" class="text-center" value="1" />
-                    <button class="btn p-0">+</button>
-                  </div>
-                </td>
-
-                <td class="pt-5 pb-4 px-3">
-                  <p class="mb-0 Subtotal">{{ 825 | currency : "RSA " }}</p>
-                </td>
-              </tr>
-            </table>
+            <app-desktop-cart-table></app-desktop-cart-table>
+            <app-mobile-cart-table></app-mobile-cart-table>
           </div>
         </div>
 
@@ -109,6 +59,42 @@
       </div>
     </div>
   </div>
+</section>
+
+<section class="partners-slider overflow-hidden my-5 py-5">
+  <ul
+    class="list m-0 p-0 d-flex mb-4"
+    [ngStyle]="{
+      '--quantity': partners.length,
+      '--width': '180px',
+      '--height': '80px'
+    }"
+  >
+    <li
+      *ngFor="let partner of partners; let i = index"
+      class="partner-link pointer d-flex align-items-center justify-content-center rounded-3 py-3"
+      [ngStyle]="{ '--position': i + 1 }"
+    >
+      <img [src]="partner.image" alt="partner logo" />
+    </li>
+  </ul>
+
+  <ul
+    class="list m-0 p-0 d-flex"
+    [ngStyle]="{
+      '--quantity': partners.length,
+      '--width': '180px',
+      '--height': '80px'
+    }"
+  >
+    <li
+      *ngFor="let partner of partners; let i = index"
+      class="partner-link reversed pointer d-flex align-items-center justify-content-center rounded-3 py-3"
+      [ngStyle]="{ '--position': i + 1 }"
+    >
+      <img [src]="partner.image" alt="partner logo" />
+    </li>
+  </ul>
 </section>
 
 <app-footer></app-footer>

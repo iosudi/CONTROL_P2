@@ -31,6 +31,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/account/account.module').then((m) => m.AccountModule),
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./modules/not-found/not-found.module').then(
+        (m) => m.NotFoundModule
+      ),
+  },
 ];
 
 @NgModule({

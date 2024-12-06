@@ -1,0 +1,33 @@
+.item {
+  background-color: #ffffff0d;
+  .product-image {
+    max-width: 85px;
+    min-width: 85px;
+    height: 110px;
+  }
+  p {
+    color: #afafaf;
+    span.white {
+      color: #ffffff;
+    }
+  }
+  .quantity-input {
+    border: 1px solid var(--white-text);
+
+    input {
+      width: 40px;
+      background: transparent;
+      outline: none;
+      border: 0;
+      color: var(--white-text);
+      font-size: 1rem;
+    }
+    .btn {
+      color: var(--white-text);
+      font-size: 1rem;
+      font-weight: bold;
+      height: fit-content;
+      border: 0 !important;
+    }
+  }
+}

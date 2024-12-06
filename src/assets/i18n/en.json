@@ -5,6 +5,7 @@
     "about": "About",
     "portfolio": "Portfolio",
     "services": "Services",
+    "shop": "Shop",
     "partners": "Partners",
     "contactUs": "Contact Us",
     "languageButton": "English",
@@ -369,6 +370,82 @@
     }
   },
 
+  "OrderDetails": {
+    "Ticket": {
+      "content": "Thank you. Your order has been received."
+    },
+    "Overview": {
+      "title": "Order Overview",
+      "details": {
+        "orderNumber": {
+          "title": "Order number:"
+        },
+        "date": {
+          "title": "Date:"
+        },
+        "email": {
+          "title": "Email:"
+        },
+        "total": {
+          "title": "Total:"
+        },
+        "paymentMethod": {
+          "title": "Payment method:"
+        }
+      }
+    },
+    "OrderStatus": {
+      "title": "Order status",
+      "cancelOrder": "Cancel order",
+      "steps": {
+        "created": "Created",
+        "packed": "Packed",
+        "shipped": "Shipped",
+        "delivered": "Delivered"
+      }
+    },
+    "Addresses": {
+      "billingAddress": {
+        "title": "Billing address"
+      },
+      "shippingAddress": {
+        "title": "Shipping address"
+      }
+    },
+    "OrderDetails": {
+      "title": "Order details",
+      "header": {
+        "product": "product",
+        "subtotal": "subtotal"
+      },
+
+      "subtotal": {
+        "title": "Subtotal"
+      },
+      "shipping": {
+        "title": "Shipping",
+        "value": "Free shipping"
+      },
+      "total": {
+        "title": "Total"
+      },
+      "buttons": {
+        "viewReceipt": {
+          "label": "View receipt"
+        },
+        "viewInvoice": {
+          "label": "View invoice"
+        }
+      }
+    }
+  },
+
+  "NotFoundPage": {
+    "title": "Page Not Found",
+    "subTitle": "Sorry but page you are looking for doesn't exist",
+    "btn": "Go back home"
+  },
+
   "Footer": {
     "company": {
       "description": "Providing top-notch printing solutions, we focus on delivering high-quality, reliable services tailored to meet the unique needs of every client"
@@ -391,6 +468,7 @@
       "description": "Control P is a limited liability company of Saudi origin, established in 1430 AH based on the principles of the kingdom and the development in the field of advertising."
     }
   },
+
   "Validation": {
     "required": "This field is required",
     "email_invalid": "email is invalid",

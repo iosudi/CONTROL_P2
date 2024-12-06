@@ -1,14 +1,14 @@
 <app-home-navbar></app-home-navbar>
 
-<section class="checkout p-5">
+<section class="checkout my-lg-5 mt-3 mb-4">
   <div class="container">
     <div
-      class="bread-crumb d-flex justify-content-start align-items-center mt-4 mb-5"
+      class="bread-crumb d-flex justify-content-start align-items-center mb-5"
     >
-      <p-breadcrumb class="max-w-full" [model]="items" [home]="home" />
+      <p-breadcrumb [model]="items" [home]="home" />
     </div>
 
-    <div class="row g-5">
+    <div class="row gx-3 gy-4">
       <div class="col-lg-8">
         <div class="billing-details">
           <h3 class="mb-4 fs-4 fw-bold">Billing details</h3>
@@ -186,21 +186,21 @@
             <div
               class="product border-bottom d-flex justify-content-between align-items-center py-2 mb-4"
             >
-              <div class="product-image rounded-2 overflow-hidden">
+              <div class="product-details d-flex align-items-center gap-1">
                 <img
                   src="./assets/images/home/events/4.jpg"
                   alt="product image"
+                  class="rounded-2"
                 />
-              </div>
-
-              <div class="product-details text-center">
-                <p
-                  class="mb-1 fs-6 product-id heading-color text-decoration-underline"
-                >
-                  B2003
-                </p>
-                <p class="mb-1">60x80</p>
-                <p class="mb-0">+ frame</p>
+                <div class="details text-center">
+                  <p
+                    class="mb-1 fs-6 product-id heading-color text-decoration-underline"
+                  >
+                    B2003
+                  </p>
+                  <p class="mb-1">60x80</p>
+                  <p class="mb-0">+ frame</p>
+                </div>
               </div>
 
               <p class="product-total-price fs-5">
@@ -221,9 +221,7 @@
               class="shipping border-bottom d-flex justify-content-between align-items-center py-2"
             >
               <h4 class="mb-0">Shipping</h4>
-              <div>
-                <p class="text-end fs-5">Free shipping</p>
-              </div>
+              <p class="text-end fs-5 mb-0">Free shipping</p>
             </div>
 
             <div
@@ -289,6 +287,7 @@
 
           <button
             class="main-btn py-3 px-4 rounded-5 w-100 text-uppercase fw-bold"
+            routerLink="/order-details"
           >
             PROCEED TO CHECKOUT
           </button>
