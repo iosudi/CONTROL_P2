@@ -9,9 +9,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { OrderHubRoutingModule } from './order-hub-routing.module';
 import { CartComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { OrderDetailsComponent } from './pages/order-details/order-details.component';
 
 @NgModule({
-  declarations: [CartComponent, CheckoutComponent],
+  declarations: [CartComponent, CheckoutComponent, OrderDetailsComponent],
   imports: [
     CommonModule,
     OrderHubRoutingModule,

@@ -30,7 +30,7 @@
           "Navbar.services" | translate
         }}</a>
       </li>
-      <!-- <li><a routerLink="/shop" routerLinkActive="active-link">Shop</a></li> -->
+      <li><a routerLink="/shop" routerLinkActive="active-link">Shop</a></li>
       <li>
         <a routerLink="/partners" routerLinkActive="active-link">{{
           "Navbar.partners" | translate
@@ -51,9 +51,9 @@
           'ps-3': direction === 'rtl'
         }"
       >
-        <!-- <button class="btn p-0 d-flex align-items-center gap-3">
+        <button class="btn p-0 d-flex align-items-center gap-3">
           <img src="./assets/images/icons/search.svg" alt="icon" />
-        </button> -->
+        </button>
         <button
           class="btn p-0 d-flex align-items-center gap-3 language-btn"
           (click)="changeLanguage()"
@@ -64,7 +64,7 @@
         </button>
       </div>
 
-      <!-- <div
+      <div
         class="d-flex align-items-center gap-lg-3 gap-2"
         [class.border-end]="direction == 'rtl'"
         [ngClass]="{
@@ -78,7 +78,10 @@
         >
           <img src="./assets/images/icons/user.svg" alt="icon" />
         </button>
-        <button class="btn p-0 d-flex align-items-center gap-1">
+        <button
+          class="btn p-0 d-flex align-items-center gap-1"
+          routerLink="/profile/wishlist"
+        >
           <img src="./assets/images/icons/heart.svg" alt="icon" />
           1
         </button>
@@ -92,7 +95,7 @@
             <span class="cart-price"> 0</span>
           </span>
         </button>
-      </div> -->
+      </div>
     </div>
   </div>
 </nav>
