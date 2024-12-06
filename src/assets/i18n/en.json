@@ -1,0 +1,402 @@
+{
+  "dir": "ltr",
+  "Navbar": {
+    "home": "Home",
+    "about": "About",
+    "portfolio": "Portfolio",
+    "services": "Services",
+    "partners": "Partners",
+    "contactUs": "Contact Us",
+    "languageButton": "English",
+    "wishlist": "wishlist",
+    "cart": "Cart",
+    "my_account": "My account",
+    "menu": "Menu",
+    "close_btn": "close",
+    "search_label": "Search for"
+  },
+
+  "HomePage": {
+    "Hero": {
+      "title": "Innovative<span class='d-block fw-medium heading-color'>Printing Solutions</span>",
+      "paragraph": "Leading the way in printing and digital marketing for the Saudi market."
+    },
+    "our_work": {
+      "title": "  Our <span class='fw-bold heading-color'>Works</span>"
+    },
+    "about_us": {
+      "title": " About <br /> <span class='heading-color fw-bold'>CTRL + P</span>",
+      "paragraph": "  Ctrl+P is a local Advertising 6 Marketing agency established in 2000, based in we are Riyadh, Saudi Arabia. We have a huge business that has been accomplished with senior partners in Saudi Arabia. We have a great experience and technical expertise to qualify for mega projects."
+    },
+    "why_us": {
+      "title": "  Why Choose <span class='heading-color fw-bold'>Ctrl+P</span>",
+      "cards": {
+        "experience": {
+          "title": "Experience",
+          "description": "With 13+ years of expertise, we know the industry inside out, ensuring flawless execution of your event."
+        },
+        "talent": {
+          "title": "Talent",
+          "description": " Our team of specialists in every field collaborates to develop and implement your event seamlessly."
+        },
+        "broadness": {
+          "title": "Broadness",
+          "description": "We offer comprehensive event services, from planning and design to execution, activation, and closure."
+        },
+        "assets": {
+          "title": "Assets",
+          "description": "Equipped with carpentry, printing, and souvenir manufacturing workshops, we manage your event with complete professionalism."
+        }
+      }
+    },
+    "services": {
+      "title": " Ctrl + P <br /> <span class='heading-color fw-bold'>Popular service</span>"
+    },
+    "mini_shop": {
+      "title": " Shop Our <span class='fw-bold'>Painting</span>"
+    },
+    "testimonials": {
+      "title": " What Our <br /> <span class='heading-color fw-bold'>Clients Say</span>",
+      "paragraph": "We deliver high-quality printing solutions tailored to each client's needs, ensuring every project meets the highest standards of precision and care."
+    },
+    "events": {
+      "title": "  Event success, <br /> just one step away",
+      "paragraph": " Whether it's a large-scale event or a custom project, our expert team is here to deliver exceptional results. Contact us today and let's turn your ideas into reality."
+    },
+    "contact_banner": {
+      "title": "Call Us Now for <br />  Expert Solutions!",
+      "paragraph": "Ready to make your event unforgettable or bring your project to life? Our team is here to provide the expertise and support you need. Whether it’s planning, design, or execution, we’ve got you covered.",
+      "btn_call": "Call Now",
+      "btn_whatsapp": "What's app"
+    },
+
+    "btn_discover": "Discover More",
+    "btn_shop": "Shop More"
+  },
+
+  "AboutPage": {
+    "hero": {
+      "title": "<span class='heading-color'> About </span> Us",
+      "paragraph": "Ctrl + p specializes in high-quality printing solutions, focusing on precision, reliability, and client satisfaction."
+    },
+    "staff_crew": {
+      "title": "We make sure your idea & creation<span class='heading-color'> delivered properly",
+      "paragraph": " The control p Company is a limited liability company of Saudi origin, established in the year 1430 AH Based on The principles of the kingdom and the development in the field of advertising, advertising and digital marketing of what the local market needs, finding innovative solutions and highlighting everything new in the field"
+    },
+    "about_us": {
+      "vision": {
+        "title": "Vision",
+        "paragraph": " Control Printing drives innovation for dynamic, sustainable growth, benefiting employees, society, and supporting Saudi Arabia's expanding economy."
+      },
+      "mission": {
+        "title": "Mission",
+        "paragraph": "Excellence through sustainable growth driven by innovation, talent and responsible care..."
+      },
+      "team": {
+        "title": "Team",
+        "paragraph": "  Our team members are our greatest asset, our ability to provide the best results to our clients begins with our special team of technical experts and professional designers."
+      }
+    },
+    "our_team": {
+      "title": "Our <span class='heading-color fw-bold'>Team</span>",
+      "paragraph": " Convallis ullamcorper aliquet ultrices orci cum vestibulum lobortis erat"
+    },
+    "features": {
+      "title": "  Buyers <span class='heading-color fw-bold'> trust us </span>",
+      "paragraph1": "Our Strategy Is To Provide Our Customers With Quality Products",
+      "paragraph2": "If the copy becomes distracting in the design then you are doing something wrong or they are discussing copy changes. It might be a bit annoying but you could tell them that that discussion would be best suited. You begin with a text, you sculpt information, you chisel away what’s not needed, you come.",
+      "cards": {
+        "delivery": {
+          "title": "Fast Delivery",
+          "paragraph": "  Chances are there wasn’t collaboration and checkpoints, there wasn’t a process."
+        },
+        "quality": {
+          "title": "Best Quality",
+          "paragraph": "  It's content strategy gone awry right from the start. Forswearing the use of Lorem Ipsum."
+        },
+        "return": {
+          "title": "Free Return",
+          "paragraph": "True enough, but that's not all that it takes to get things back on track out there for a text."
+        }
+      }
+    },
+    "how_we_work": {
+      "work": {
+        "title": "How we work",
+        "paragraph": " At <span class='fw-bold'>Ctrl+P</span>, our process is built on a  foundation of creativity, collaboration, and attention to detail.  Here's how we work:",
+        "list": {
+          "item1": {
+            "title": "Consultation",
+            "paragraph": "We start with understanding your goals and vision."
+          },
+          "item2": {
+            "title": "Design",
+            "paragraph": "  Our team crafts unique designs tailored to your needs."
+          },
+          "item3": {
+            "title": "Execution",
+            "paragraph": "  We handle everything from setup to final delivery."
+          },
+          "item4": {
+            "title": "Quality Check",
+            "paragraph": "Every detail is checked for flawless results"
+          },
+          "item5": {
+            "title": "Support",
+            "paragraph": "Post-project support to ensure long-term success."
+          }
+        }
+      },
+      "do": {
+        "title": "How we do",
+        "paragraph": " At <span class='fw-bold'>Ctrl+P</span>, we offer a comprehensive suite of services designed to meet all your advertising, event management, and printing needs. From concept to execution, we bring your vision to life with creativity, precision, and professionalism. Here’s what we do:",
+        "list": {
+          "item1": {
+            "title": "Event Management",
+            "paragraph": "Full-service event planning, from concept to execution."
+          },
+          "item2": {
+            "title": "Signage & Murals",
+            "paragraph": "Custom signage and murals for impactful branding."
+          },
+          "item3": {
+            "title": "Vehicle Branding",
+            "paragraph": "Eye-catching vehicle graphics to expand your reach."
+          },
+          "item4": {
+            "title": "Exhibitions & Conferences",
+            "paragraph": "Seamless management of booths and events."
+          },
+          "item5": {
+            "title": "3D Letters & Facades",
+            "paragraph": "Custom 3D letters and facades for enhanced visibility."
+          },
+          "item6": {
+            "title": "Printing & Leather works",
+            "paragraph": "High-quality printing and custom leather products."
+          }
+        }
+      }
+    },
+    "faqs": {
+      "title": "Some of your questions answered here",
+      "paragraph": "We often receive questions about our services, and we’re here to help.You can get any answers.",
+      "btn_contact": "Contact us"
+    }
+  },
+
+  "Portfolio": {
+    "hero": {
+      "title": "<span class='heading-color'> Our </span> Work",
+      "paragraph": "Explore our projects and see how we’ve brought ideas to life."
+    },
+    "events_work": {
+      "images_counter": "images",
+      "search_placeholder": "Search for project.....",
+      "trend": "Trending",
+      "latest": "Latest",
+      "milestone": " Milestone Projects",
+      "most_viewed": "Most view"
+    },
+    "project_overlay": {
+      "view": "View Project"
+    },
+    "project_details": {
+      "about_title": "<span class='fw-bold h3'>Have a project in mind?</span> Let us make your vision come true!",
+      "about_btn": "Contact us"
+    },
+    "load_btn": "load More images"
+  },
+
+  "Services": {
+    "hero": {
+      "title": "Our <span class='heading-color'>Services</span>",
+      "paragraph": "Explore our range of innovative solutions designed to elevate your brand and deliver outstanding results."
+    },
+    "our_solutions": {
+      "title": "Our <span class='heading-color fw-bold'>Solutions</span>",
+      "subtitle": "Comprehensive Solutions for Your Printing and Design Needs",
+      "paragraph": "At Ctrl+P, we offer a wide range of services tailored to meet all your printing and design requirements. Our expert team is dedicated to delivering high-quality results that enhance your brand's visibility and impact."
+    },
+    "solutions_cards": {
+      "card_extra": {
+        "title": "Bring Your Vision to Life",
+        "btn_get_in_touch": "Get in Touch"
+      }
+    },
+    "contact_banner": {
+      "title": "Enjoy 20% Off Your <br /> First Order!",
+      "paragraph": "This exclusive offer is valid until 27/9/2024.",
+      "btn_call": "Contact Us",
+      "btn_whatsapp": "What's app"
+    },
+    "btn_read_more": "Read More"
+  },
+
+  "PartnersPage": {
+    "Hero": {
+      "title": "Our <span class='heading-color'>Partners</span>",
+      "paragraph": "Proudly collaborating with leading brands and businesses."
+    },
+    "TrustedBrands": {
+      "title": "Trusted by <span class='heading-color'>Leading Brands</span>",
+      "paragraph": "We take pride in working with some of the most prestigious brands and organizations across various industries. From creative design projects to large-scale events, our partnerships have helped us deliver top-quality results and exceed expectations. Below are some of the valued clients/partners who trust us with their business."
+    },
+    "PartnersSection": {
+      "title": "Our Valued <span class='fs-1'>Partners</span>",
+      "paragraph": "We proudly collaborate with a diverse range of esteemed clients and partners, delivering exceptional projects across various industries. Explore the brands that trust us with their most important work."
+    },
+    "WhyUs": {
+      "title": "<span class='heading-color fw-bold'>Why Partner</span> With Us?",
+      "features": {
+        "experience": {
+          "title": "Experience",
+          "description": "With 13+ years of expertise, we know the industry inside out, ensuring flawless execution of your event."
+        },
+        "talent": {
+          "title": "Talent",
+          "description": "Our team of specialists in every field collaborates to develop and implement your event seamlessly."
+        },
+        "broadness": {
+          "title": "Broadness",
+          "description": "We offer comprehensive event services, from planning and design to execution, activation, and closure."
+        },
+        "assets": {
+          "title": "Assets",
+          "description": "Equipped with carpentry, printing, and souvenir manufacturing workshops, we manage your event with complete professionalism."
+        }
+      }
+    },
+    "JoinUs": {
+      "title": "Interested in <span class='heading-color'>partnering with us</span>?",
+      "paragraph": "Let’s discuss how we can help bring your vision to life.",
+      "button": "Be a partner"
+    }
+  },
+
+  "ContactPage": {
+    "Hero": {
+      "title": "<span class='heading-color'>Contact</span> Us",
+      "paragraph": "Got a question or need help with your project? Reach out to us, and we’ll get back to you promptly."
+    },
+    "ContactMethods": {
+      "CallUs": {
+        "title": "Call Us",
+        "description": "Speak to our team directly",
+        "button": "Call Us Now"
+      },
+      "EmailUs": {
+        "title": "Email Us",
+        "description": "Reach out anytime",
+        "button": "Email Us Now"
+      },
+      "VisitUs": {
+        "title": "Visit Us",
+        "description": "Let's meet in person",
+        "address": "Al-Malaz District, Riyadh, Saudi Arabia",
+        "button": "Visit Us Now"
+      }
+    },
+    "ContactMessage": {
+      "Form": {
+        "title": "Prefer to leave us <span class='heading-color'>a message</span>?",
+        "paragraph": "Have a question or request? Feel free to send us a message, and we'll get back to you promptly.",
+        "fields": {
+          "fullName": {
+            "label": "Full Name",
+            "placeholder": "Enter your full name"
+          },
+          "email": {
+            "label": "Email",
+            "placeholder": "example@gmail.com"
+          },
+          "phone": {
+            "label": "Phone",
+            "placeholder": "(123) 456 - 789"
+          },
+          "subject": {
+            "label": "Subject",
+            "placeholder": "ex. Support"
+          },
+          "message": {
+            "label": "Message",
+            "placeholder": "Please type your message here..."
+          }
+        },
+        "button": "Send Message"
+      },
+      "Social": {
+        "title": "Follow Us On",
+        "links": {
+          "whatsapp": "WhatsApp",
+          "facebook": "Facebook",
+          "instagram": "Instagram"
+        }
+      }
+    }
+  },
+
+  "ServiceDetailsPage": {
+    "Hero": {
+      "title": "<span class='heading-color'>Service</span> Details",
+      "breadcrumb": {
+        "home": "Home",
+        "separator": ">",
+        "services": "Services"
+      }
+    },
+    "ServiceInformation": {
+      "whatsIncluded": {
+        "title": "What's Included:"
+      },
+      "workingProcess": {
+        "title": "Working Process:"
+      }
+    },
+    "Sidebar": {
+      "servicesListTitle": "Our Services"
+    },
+    "ServiceRequest": {
+      "title": "Book Your Design Service Today!",
+      "description": "Lorem ipsum dolor sit amet consectetur. Varius quis lorem viverra lectus id ac enim.",
+      "form": {
+        "firstName": "First Name",
+        "email": "Email",
+        "phone": "Phone Number",
+        "subject": "Subject",
+        "orderDetails": "Order Details"
+      }
+    }
+  },
+
+  "Footer": {
+    "company": {
+      "description": "Providing top-notch printing solutions, we focus on delivering high-quality, reliable services tailored to meet the unique needs of every client"
+    },
+    "contactUs": {
+      "title": "Contact Us",
+      "address": "Al-Malaz District, Riyadh, Saudi Arabia",
+      "phone": "+966 54 722 3203",
+      "email": "info@ctrlplusp.com"
+    },
+    "links": {
+      "title": "Pages",
+      "home": "Home",
+      "aboutUs": "About Us",
+      "services": "Services",
+      "contactUs": "Contact Us"
+    },
+    "info": {
+      "title": "Info",
+      "description": "Control P is a limited liability company of Saudi origin, established in 1430 AH based on the principles of the kingdom and the development in the field of advertising."
+    }
+  },
+  "Validation": {
+    "required": "This field is required",
+    "email_invalid": "email is invalid",
+    "phone_length": "Phone number must not be more than 15 number"
+  },
+
+  "noProjects": "No Projects Found for this Event yet",
+  "noImages": "No Images Found for this Event yet"
+}

@@ -1,0 +1,48 @@
+<div class="px-xl-5 px-2">
+  <div class="header d-flex align-items-center justify-content-between mb-4">
+    <p class="mb-0 fs-5">{{ categoryName }}</p>
+    <p-dropdown
+      [options]="cities"
+      [(ngModel)]="selectedCity"
+      optionLabel="name"
+      placeholder="Sort by"
+    />
+  </div>
+
+  <div class="row g-3">
+    <div class="col-lg-4 col-6" *ngFor="let product of products">
+      <div class="card pointer">
+        <div class="card-image position-relative">
+          <div
+            class="dimensions position-absolute rounded-5 d-flex gap-2 align-items-center px-2 py-1 fw-semibold"
+          >
+            <img src="./assets/images/icons/dimension.png" alt="icon" />
+            80x50 cm
+          </div>
+          <img [src]="product.images[0].image" alt="painting" />
+        </div>
+
+        <div class="card-body" [dir]="'dir' | translate">
+          <div>
+            <div
+              class="card-title d-flex justify-content-between align-items-center"
+            >
+              <h4 class="h5 mb-0 fw-normal">{{ product.title }}</h4>
+              <p class="mb-0">
+                4.1
+                <i class="fa-solid fa-star star-color"></i>
+              </p>
+            </div>
+          </div>
+
+          <div class="price heading-color">
+            <span class="discount me-1">
+              {{ product.price_before_discount | currency : " " }}
+            </span>
+            {{ product.price | currency : "SAR " }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

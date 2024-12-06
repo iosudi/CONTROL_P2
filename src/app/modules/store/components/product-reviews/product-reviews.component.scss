@@ -1,0 +1,58 @@
+.row {
+  .reviews {
+    .review {
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+      }
+
+      p {
+        color: var(--paragraph-text-color);
+        font-size: 0.9rem;
+        span {
+          color: #cecece80;
+          font-size: 0.7rem;
+        }
+      }
+
+      .stars {
+        i {
+          font-size: 0.7rem;
+        }
+      }
+    }
+  }
+
+  .review-form {
+    p {
+      color: var(--paragraph-text-color);
+    }
+    .rating {
+      .star {
+        color: #d3d3d3;
+        font-size: 0.7rem;
+        position: relative;
+        display: inline-block;
+        &.full {
+          color: #fdc820;
+        }
+      }
+    }
+
+    .review-field {
+      input,
+      textarea {
+        background-color: transparent;
+        color: var(--white-text);
+        border: 1px solid var(--white-text);
+        border-radius: 2px;
+        outline: none;
+      }
+
+      textarea {
+        resize: none;
+      }
+    }
+  }
+}

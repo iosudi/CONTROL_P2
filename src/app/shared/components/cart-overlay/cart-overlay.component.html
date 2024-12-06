@@ -1,0 +1,86 @@
+<div class="overlay">
+  <div class="cart-overlay py-5 overflow-y-auto overflow-x-hidden">
+    <div
+      class="overlay-heading d-flex align-items-center justify-content-between border-bottom pb-2 px-3 mb-4"
+    >
+      <h5 class="mb-0">Shopping cart</h5>
+      <button
+        class="close-menu-btn d-flex align-items-center gap-1"
+        (click)="closeCartOverlay()"
+      >
+        <i class="fa-solid fa-xmark"></i>
+        close
+      </button>
+    </div>
+
+    <div class="products">
+      <div class="row gy-3 px-2">
+        <div
+          class="col-12"
+          *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]"
+        >
+          <div
+            class="product d-flex justify-content-between align-items-center gap-2 p-3 rounded-3"
+          >
+            <div class="product-image rounded-2 overflow-hidden">
+              <img src="./assets/images/shop/1.png" alt="product image" />
+            </div>
+            <div class="product-description">
+              <button
+                class="remove-product-btn d-flex align-items-center justify-content-center"
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+              <h3>Product title</h3>
+              <p class="mb-2">Lorem ipsum dolor sit amet consectetur.</p>
+              <p class="product-dimensions mb-0">size : 70X140</p>
+              <div
+                class="product-quantity d-flex align-items-center justify-content-between mt-2 gap-1"
+              >
+                <div
+                  class="quantity-control d-flex align-items-center justify-content-center gap-1"
+                >
+                  <button
+                    class="d-flex align-items-center justify-content-center btn p-0"
+                  >
+                    <i class="fa-solid fa-minus"></i>
+                  </button>
+                  <input type="number" class="text-center" value="2" />
+                  <button
+                    class="d-flex align-items-center justify-content-center btn p-0"
+                  >
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+
+                <p class="mb-0 fw-semibold">
+                  <span class="quantity fw-light">2X</span>
+                  {{ 435 | currency : "SAR" }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-controls px-3 mt-3">
+      <div
+        class="cart-price d-flex align-items-center justify-content-between py-3 border-top"
+      >
+        <h5 class="mb-0 fs-4">Subtotal:</h5>
+        <p class="mb-0 heading-color fw-semibold fs-4">
+          {{ 435 | currency : "SAR " }}
+        </p>
+      </div>
+
+      <button
+        class="main-btn white w-100 p-2 p-md-3 mb-2 mb-md-3 rounded-5"
+        routerLink="/cart"
+      >
+        View Cart
+      </button>
+      <button class="main-btn w-100 p-2 p-md-3 rounded-5">Check Out</button>
+    </div>
+  </div>
+</div>

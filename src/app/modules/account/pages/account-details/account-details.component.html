@@ -1,0 +1,124 @@
+<div class="account-details">
+  <form class="account-details-form">
+    <div
+      class="form-group d-flex align-items-center justify-content-center gap-3 mb-3"
+    >
+      <div class="input-container w-100">
+        <label for="fname" class="form-label fw-bold"
+          >First Name <span class="text-danger">*</span></label
+        >
+        <input
+          type="text"
+          class="form-control error"
+          placeholder="First"
+          id="fname"
+          required
+        />
+      </div>
+
+      <div class="input-container w-100">
+        <label for="lname" class="form-label fw-bold"
+          >Last Name <span class="text-danger">*</span></label
+        >
+        <input
+          type="text"
+          class="form-control error"
+          placeholder="Last"
+          id="lname"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="username" class="form-label fw-bold">Display name </label>
+      <input type="text" class="form-control mb-2" id="username" />
+      <p class="mb-0">
+        This will be how your name will be displayed in the account section and
+        in reviews
+      </p>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="email" class="form-label fw-bold">Email address </label>
+      <input
+        type="email"
+        class="form-control mb-3"
+        id="street"
+        value="saudi33gg@gmail.com"
+        disabled
+      />
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="password-change" class="form-label fw-bold"
+        >Password change
+      </label>
+      <div
+        class="input-container mb-3 d-flex align-items-center justify-content-between form-control"
+      >
+        <input
+          type="password"
+          [type]="currentPasswordVisibility ? 'text' : 'password'"
+          class="password-input w-100"
+          placeholder="Current password"
+        />
+
+        <img
+          (click)="togglePasswordVisibility('current_password')"
+          class="eye"
+          [src]="
+            currentPasswordVisibility
+              ? 'assets/images/icons/closed-eye.png'
+              : 'assets/images/icons/opened-eye.png'
+          "
+          alt="opened eye icon"
+        />
+      </div>
+      <div
+        class="input-container mb-3 d-flex align-items-center justify-content-between form-control"
+      >
+        <input
+          type="password"
+          [type]="newPasswordVisibility ? 'text' : 'password'"
+          class="password-input w-100"
+          placeholder="Confirm password"
+        />
+
+        <img
+          (click)="togglePasswordVisibility('new_password')"
+          class="eye"
+          [src]="
+            newPasswordVisibility
+              ? 'assets/images/icons/closed-eye.png'
+              : 'assets/images/icons/opened-eye.png'
+          "
+          alt="opened eye icon"
+        />
+      </div>
+      <div
+        class="input-container mb-3 d-flex align-items-center justify-content-between form-control"
+      >
+        <input
+          type="password"
+          [type]="confirmPasswordVisibility ? 'text' : 'password'"
+          class="password-input w-100"
+          placeholder="Confirm new password"
+        />
+
+        <img
+          (click)="togglePasswordVisibility('confirm_password')"
+          class="eye"
+          [src]="
+            confirmPasswordVisibility
+              ? 'assets/images/icons/closed-eye.png'
+              : 'assets/images/icons/opened-eye.png'
+          "
+          alt="opened eye icon"
+        />
+      </div>
+    </div>
+
+    <button class="main-btn px-5 py-2 fs-4 rounded-5">save changes</button>
+  </form>
+</div>

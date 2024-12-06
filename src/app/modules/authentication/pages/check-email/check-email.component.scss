@@ -1,0 +1,71 @@
+:host {
+  width: 100%;
+}
+.form-wrapper {
+  position: relative;
+  padding-top: 230px !important;
+  background-color: var(--background-secondary-color);
+  border-radius: 20px;
+
+  .image {
+    width: 350px;
+    height: auto;
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  h2 {
+    color: var(--white-text);
+  }
+
+  .checkMail {
+    font-size: 1.4rem;
+  }
+
+  p {
+    color: #c6c6c6;
+    font-size: 1rem;
+    span {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}
+app-mobile-navbar {
+  display: none;
+}
+
+@media (max-width: 775px) {
+  .form-wrapper {
+    padding: 30px !important;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .image {
+      width: 90%;
+      position: relative;
+      top: 0px;
+      left: 0;
+      transform: translateX(0);
+    }
+    h2 {
+      font-size: 30px;
+      margin-bottom: 0 !important;
+    }
+
+    .checkMail {
+      font-size: 18px;
+    }
+
+    p {
+      font-size: 14px;
+      margin-top: 10px !important;
+    }
+  }
+
+  app-mobile-navbar {
+    display: block;
+  }
+}

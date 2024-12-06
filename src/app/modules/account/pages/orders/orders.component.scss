@@ -1,0 +1,17 @@
+table {
+  .date {
+    color: var(--paragraph-text-color);
+  }
+
+  .order-status {
+    color: var(--main-color);
+    img {
+      width: 20px;
+      height: auto;
+    }
+  }
+
+  .main-btn {
+    color: var(--white-text);
+  }
+}

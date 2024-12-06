@@ -1,0 +1,165 @@
+<footer class="overflow-hidden py-5" [dir]="'dir' | translate">
+  <div class="blurred-balls"></div>
+  <div class="blurred-balls white"></div>
+  <div class="container footer-items">
+    <div class="row g-md-5 gy-4 gx-0">
+      <div class="col-lg-3 col-md-6 d-flex flex-column justify-content-center">
+        <div class="footer-item company">
+          <img
+            src="./assets/images/logo.png"
+            alt="logo"
+            class="logo mb-3 pointer"
+            routerLink="/"
+          />
+          <p>
+            {{ "Footer.company.description" | translate }}
+          </p>
+          <ul class="socials mb-0 p-0 d-flex align-items-center gap-2">
+            <li>
+              <a
+                class="d-flex align-items-center justify-content-center pointer"
+                href="https://www.facebook.com/share/1Efj6cUt5J/?mibextid=LQQJ4d"
+                target="_blank"
+              >
+                <i class="fa-brands fa-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a
+                class="d-flex align-items-center justify-content-center pointer"
+                href="https://x.com/ctrl_plusp"
+                target="_blank"
+              >
+                <i class="fa-brands fa-x-twitter"></i>
+              </a>
+            </li>
+            <!-- <li>
+              <a
+                class="d-flex align-items-center justify-content-center pointer"
+                href="https://www.youtube.com/channel/UCKeVef0fB3BCtm8hss_yReA"
+                target="_blank"
+              >
+                <i class="fa-brands fa-youtube"></i>
+              </a>
+            </li> -->
+            <li>
+              <a
+                class="d-flex align-items-center justify-content-center pointer"
+                href="https://www.instagram.com/controlpadv?igsh=MWo5MnNibTJ3dGt1ZQ%3D%3D&utm_source=qr"
+                target="_blank"
+              >
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+            </li>
+            <!-- <li>
+              <a
+                class="d-flex align-items-center justify-content-center pointer"
+                href="https://www.linkedin.com/in/controlp-adv-152176197/"
+                target="_blank"
+              >
+                <i class="fa-brands fa-linkedin"></i>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-item contacts">
+          <div class="title mb-4 text-uppercase">
+            <h4 class="mb-0">{{ "Footer.contactUs.title" | translate }}</h4>
+          </div>
+          <ul class="mb-0 p-0">
+            <li class="d-flex gap-2 align-items-center mb-4">
+              <img src="./assets/images/icons/home.svg" alt="icon" />
+              {{ "Footer.contactUs.address" | translate }}
+            </li>
+            <li>
+              <a
+                class="d-flex gap-2 align-items-center mb-4 pointer"
+                href="tel:+966547223203"
+              >
+                <img src="./assets/images/icons/phone.svg" alt="icon" />
+                <span dir="ltr">{{
+                  "Footer.contactUs.phone" | translate
+                }}</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="d-flex gap-2 align-items-center mb-4 pointer"
+                href="mailto:info@ctrlplusp.com"
+              >
+                <img src="./assets/images/icons/mail.svg" alt="icon" />
+                {{ "Footer.contactUs.email" | translate }}
+              </a>
+            </li>
+          </ul>
+
+          <!-- <div class="mobile-application d-flex align-items-center gap-3 px-3">
+            <a href="#">
+              <img
+                src="./assets/images/icons/on-google-play.svg"
+                alt="google-play"
+              />
+            </a>
+            <a href="#">
+              <img
+                src="./assets/images/icons/on-app-store.svg"
+                alt="app-store"
+              />
+            </a>
+          </div> -->
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-item links">
+          <div class="title mb-4 text-uppercase">
+            <h4 class="mb-0">{{ "Footer.links.title" | translate }}</h4>
+          </div>
+
+          <ul class="mb-0 p-0">
+            <li class="mb-2 pointer" routerLink="/home">
+              {{ "Footer.links.home" | translate }}
+            </li>
+            <li class="mb-2 pointer" routerLink="/about-us">
+              {{ "Footer.links.aboutUs" | translate }}
+            </li>
+            <li class="mb-2 pointer" routerLink="/services">
+              {{ "Footer.links.services" | translate }}
+            </li>
+            <!-- <li class="mb-2 pointer" routerLink="/">Privacy Policy</li>
+            <li class="mb-2 pointer" routerLink="/">
+              Replacement, Return poll
+            </li> -->
+            <li class="mb-2 pointer" routerLink="/contact-us">
+              {{ "Footer.links.contactUs" | translate }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-item info">
+          <div class="title mb-4 text-uppercase">
+            <h4 class="mb-0">{{ "Footer.info.title" | translate }}</h4>
+          </div>
+
+          <p>
+            {{ "Footer.info.description" | translate }}
+          </p>
+
+          <div class="payment-methods">
+            <span>
+              <img
+                src="./assets/images/icons/footer-payment.svg"
+                alt="payment-methods"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

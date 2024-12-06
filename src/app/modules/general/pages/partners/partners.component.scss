@@ -1,0 +1,247 @@
+.hero {
+  height: 600px;
+  backdrop-filter: blur(147px);
+  border-radius: 0px 0px 110px 110px;
+  background: #292929a1;
+  .blurred-balls {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    &.white {
+      top: 70%;
+      left: 80%;
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  .heading {
+    h1 {
+      font-size: 5rem;
+    }
+    p {
+      color: #ffffffcc;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.trusted-brands {
+  margin: 5rem 0 8rem;
+  img {
+    border-radius: 28px;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: #ffffffcc;
+    line-height: 45px;
+  }
+}
+
+.partners {
+  .container {
+    background: linear-gradient(
+      180deg,
+      rgba(215, 155, 30, 0.5) 0%,
+      rgba(113, 81, 16, 0.5) 100%
+    );
+
+    .vector {
+      top: 0;
+      right: 0;
+      width: 350px;
+      height: auto;
+    }
+
+    .heading {
+      p {
+        font-size: 1.1rem;
+        max-width: 100ch;
+        line-height: 35px;
+        color: #ffffffcc;
+      }
+    }
+    .partner-link {
+      background: white;
+      width: 100%;
+      height: 100%;
+      img {
+        width: 60%;
+        height: auto;
+      }
+    }
+  }
+}
+
+.why-us {
+  .blurred-balls {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.2;
+  }
+
+  h3 {
+    font-size: 3rem;
+    margin-bottom: 5rem;
+  }
+
+  .features {
+    .feature {
+      .icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 10px;
+        img {
+          width: 40px;
+          height: auto;
+        }
+      }
+
+      h4 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+        max-width: 30ch;
+        color: var(--paragraph-text-color);
+      }
+
+      &:nth-child(1) .icon {
+        background-color: #46422b80;
+      }
+      &:nth-child(2) .icon {
+        background-color: #462b2b80;
+      }
+      &:nth-child(3) .icon {
+        background-color: #2b464180;
+      }
+      &:nth-child(4) .icon {
+        background-color: #41708380;
+      }
+    }
+  }
+}
+
+.join-us {
+  margin-bottom: 9rem;
+  p {
+    max-width: 42ch;
+    color: #b6b6b6;
+  }
+
+  button {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .hero {
+    height: 400px;
+
+    .heading {
+      h1 {
+        font-size: 3rem;
+      }
+      p {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .hero {
+    height: 250px;
+    border-radius: 0px;
+
+    .heading {
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 0.9rem;
+      }
+    }
+
+    .images {
+      bottom: -70px;
+      img {
+        width: 200px;
+        height: 150px;
+      }
+    }
+  }
+
+  .trusted-brands {
+    margin-bottom: 5em;
+
+    img {
+      border-radius: 15px;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 35px;
+    }
+  }
+
+  .partners {
+    .container {
+      padding: 2em !important;
+      .heading {
+        p {
+          font-size: 1rem;
+          line-height: 25px;
+        }
+      }
+    }
+  }
+
+  .why-us {
+    margin: 3em 0;
+
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .features {
+      .feature {
+        .icon {
+          width: 60px;
+          height: 60px;
+          img {
+            width: 30px;
+          }
+        }
+
+        h4 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 0.7rem;
+        }
+      }
+    }
+  }
+
+  .join-us {
+    margin-bottom: 5rem;
+    .container {
+      flex-direction: column !important;
+
+      button {
+        font-size: 1.2rem;
+        padding: 0.5em 2em !important;
+      }
+    }
+  }
+}

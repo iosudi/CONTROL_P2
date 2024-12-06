@@ -1,0 +1,350 @@
+<p-toast />
+<app-home-navbar></app-home-navbar>
+<section
+  class="hero d-flex align-items-center justify-content-center position-relative overflow-hidden"
+  [dir]="'dir' | translate"
+>
+  <div class="blurred-balls"></div>
+  <div class="blurred-balls white"></div>
+
+  <div class="heading text-center">
+    <h1 class="fw-bold" [innerHTML]="'ContactPage.Hero.title' | translate"></h1>
+    <p class="mb-0 mx-auto">
+      {{ "ContactPage.Hero.paragraph" | translate }}
+    </p>
+  </div>
+</section>
+
+<section class="contact-methods">
+  <div class="container">
+    <div class="row gy-5">
+      <div class="col-lg-4">
+        <div
+          class="method h-100 px-5 py-4 d-flex align-items-center justify-content-center flex-column"
+        >
+          <img
+            class="mb-4"
+            src="./assets/images/contact/phone.png"
+            alt="phone"
+          />
+          <h2 class="h5 fw-bold text-center">
+            {{ "ContactPage.ContactMethods.CallUs.title" | translate }}
+          </h2>
+          <p class="text-center">
+            {{ "ContactPage.ContactMethods.CallUs.description" | translate }}
+          </p>
+          <p class="heading-color text-center">+966 54 722 3203</p>
+
+          <button
+            class="fs-5 main-btn outlined px-5 py-2 rounded-5"
+            (click)="callPhoneNumber()"
+          >
+            {{ "ContactPage.ContactMethods.CallUs.button" | translate }}
+          </button>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div
+          class="method h-100 px-5 py-4 d-flex align-items-center justify-content-center flex-column"
+        >
+          <img
+            class="mb-4"
+            src="./assets/images/contact/mail.png"
+            alt="phone"
+          />
+          <h2 class="h5 fw-bold text-center">
+            {{ "ContactPage.ContactMethods.EmailUs.title" | translate }}
+          </h2>
+          <p class="text-center">
+            {{ "ContactPage.ContactMethods.EmailUs.description" | translate }}
+          </p>
+          <p class="heading-color text-center">info&#64;ctrlplusp.com</p>
+
+          <button
+            class="fs-5 main-btn outlined px-5 py-2 rounded-5"
+            (click)="sendEmail()"
+          >
+            {{ "ContactPage.ContactMethods.EmailUs.button" | translate }}
+          </button>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div
+          class="method h-100 px-5 py-4 d-flex align-items-center justify-content-center flex-column"
+        >
+          <img
+            class="mb-4"
+            src="./assets/images/contact/location.png"
+            alt="phone"
+          />
+          <h2 class="h5 fw-bold text-center">
+            {{ "ContactPage.ContactMethods.VisitUs.title" | translate }}
+          </h2>
+          <p class="text-center">
+            {{ "ContactPage.ContactMethods.VisitUs.description" | translate }}
+          </p>
+          <p class="heading-color text-center">
+            {{ "ContactPage.ContactMethods.VisitUs.address" | translate }}
+          </p>
+
+          <button
+            class="fs-5 main-btn outlined px-5 py-2 rounded-5"
+            routerLink="/contact-us"
+            fragment="location"
+          >
+            {{ "ContactPage.ContactMethods.VisitUs.button" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-message" id="contact" [dir]="'dir' | translate">
+  <div class="container">
+    <div class="row form-container gy-4">
+      <div class="col-lg-8">
+        <form
+          class="p-5 h-100"
+          [formGroup]="contactForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="row g-4">
+            <div class="col-lg-6 d">
+              <label class="d-block fw-bold" for="name">{{
+                "ContactPage.ContactMessage.Form.fields.fullName.label"
+                  | translate
+              }}</label>
+              <input
+                class="w-100 px-4 py-3"
+                type="text"
+                id="Name"
+                formControlName="full_name"
+                [placeholder]="
+                  'ContactPage.ContactMessage.Form.fields.fullName.placeholder'
+                    | translate
+                "
+              />
+              <div
+                class="alerts"
+                *ngIf="
+                  contactForm.get('full_name')?.errors &&
+                  contactForm.get('full_name')?.touched
+                "
+              >
+                <p
+                  class="text-danger mb-1"
+                  *ngIf="contactForm.get('full_name')?.getError('required')"
+                >
+                  {{ "Validation.required" | translate }}
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6 d">
+              <label class="d-block fw-bold" for="email">{{
+                "ContactPage.ContactMessage.Form.fields.email.label" | translate
+              }}</label>
+              <input
+                class="w-100 px-4 py-3"
+                type="email"
+                id="email"
+                formControlName="email"
+                [placeholder]="
+                  'ContactPage.ContactMessage.Form.fields.email.placeholder'
+                    | translate
+                "
+              />
+              <div
+                class="alerts"
+                *ngIf="
+                  contactForm.get('email')?.errors &&
+                  contactForm.get('email')?.touched
+                "
+              >
+                <p
+                  class="text-danger mb-1"
+                  *ngIf="contactForm.get('email')?.getError('required')"
+                >
+                  {{ "Validation.required" | translate }}
+                </p>
+                <p
+                  class="text-danger mb-1"
+                  *ngIf="contactForm.get('email')?.getError('email')"
+                >
+                  {{ "Validation.email_invalid" | translate }}
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6 d">
+              <label class="d-block fw-bold" for="phone">{{
+                "ContactPage.ContactMessage.Form.fields.phone.label" | translate
+              }}</label>
+              <input
+                class="w-100 px-4 py-3"
+                type="text"
+                id="phone"
+                formControlName="phone"
+                [placeholder]="
+                  'ContactPage.ContactMessage.Form.fields.phone.placeholder'
+                    | translate
+                "
+              />
+              <div
+                class="alerts"
+                *ngIf="
+                  contactForm.get('phone')?.errors &&
+                  contactForm.get('phone')?.touched
+                "
+              >
+                <p
+                  class="text-danger mb-1"
+                  *ngIf="contactForm.get('phone')?.getError('required')"
+                >
+                  {{ "Validation.required" | translate }}
+                </p>
+                <p
+                  class="text-danger mb-1"
+                  *ngIf="contactForm.get('phone')?.getError('maxlength')"
+                >
+                  {{ "Validation.phone_length" | translate }}
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6 d">
+              <label class="d-block fw-bold" for="subject">{{
+                "ContactPage.ContactMessage.Form.fields.subject.label"
+                  | translate
+              }}</label>
+              <input
+                class="w-100 px-4 py-3"
+                type="text"
+                id="subject"
+                formControlName="subject"
+                [placeholder]="
+                  'ContactPage.ContactMessage.Form.fields.subject.placeholder'
+                    | translate
+                "
+              />
+              <div
+                class="alerts"
+                *ngIf="
+                  contactForm.get('subject')?.errors &&
+                  contactForm.get('subject')?.touched
+                "
+              >
+                <p
+                  class="text-danger mb-1"
+                  *ngIf="contactForm.get('subject')?.getError('required')"
+                >
+                  {{ "Validation.required" | translate }}
+                </p>
+              </div>
+            </div>
+            <div class="col-12">
+              <label class="d-block fw-bold" for="message">{{
+                "ContactPage.ContactMessage.Form.fields.message.label"
+                  | translate
+              }}</label>
+              <textarea
+                class="w-100 px-4 py-3"
+                id="message"
+                formControlName="message"
+                [placeholder]="
+                  'ContactPage.ContactMessage.Form.fields.message.placeholder'
+                    | translate
+                "
+                rows="5"
+                maxlength="500"
+              ></textarea>
+              <div
+                class="alerts"
+                *ngIf="
+                  contactForm.get('message')?.errors &&
+                  contactForm.get('message')?.touched
+                "
+              >
+                <p
+                  class="text-danger mb-1"
+                  *ngIf="contactForm.get('message')?.getError('required')"
+                >
+                  {{ "Validation.required" | translate }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <button
+            class="main-btn mt-4 fs-5 px-5 py-3 rounded-5 fw-bold"
+            [ngClass]="{
+              'me-auto': direction === 'ltr',
+              'ms-auto': direction === 'rtl'
+            }"
+            type="submit"
+          >
+            {{ "ContactPage.ContactMessage.Form.button" | translate }}
+          </button>
+        </form>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="content mt-5">
+          <h2
+            class="h3 fw-bold mb-1"
+            [innerHTML]="'ContactPage.ContactMessage.Form.title' | translate"
+          ></h2>
+          <p>
+            {{ "ContactPage.ContactMessage.Form.paragraph" | translate }}
+          </p>
+          <div class="social d-flex align-items-center gap-3">
+            <a
+              class="d-flex align-items-center justify-content-center"
+              [href]="getWhatsAppLink()"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="./assets/images/contact/whatapp.png"
+                alt="whats app icon"
+              />
+            </a>
+            <a
+              class="d-flex align-items-center justify-content-center"
+              href="https://www.facebook.com/share/1Efj6cUt5J/?mibextid=LQQJ4d"
+              target="_blank"
+            >
+              <img
+                src="./assets/images/contact/facebook-f.png"
+                alt="facebook icon"
+              />
+            </a>
+            <a
+              class="d-flex align-items-center justify-content-center"
+              href="https://www.instagram.com/controlpadv?igsh=MWo5MnNibTJ3dGt1ZQ%3D%3D&utm_source=qr"
+              target="_blank"
+            >
+              <img
+                src="./assets/images/contact/instgram.png"
+                alt="instgram icon"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="our-location my-5" id="location">
+  <div class="container">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d466640.30510255817!2d42.699564!3d23.973613!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f0757b1bea081%3A0xef92be33e3490686!2z2YjZg9in2YTYqSDYqtit2YPZhSDYp9mE2LfYqNin2LnYqSDZhNmE2K_Yudin2YrYqSDZiNin2YTYp9i52YTYp9mGINin2YTYp9iv2KfYsdipINin2YTYudin2YXYqSAo2YPYqtix2YjZhCDYqNmE2LMg2KjZiiljb250cm9sIHByaW50IGFkdmVydGlzaW5nIGFnZW5jeSAoY3RybCtwKQ!5e0!3m2!1sen!2ssa!4v1728567896240!5m2!1sen!2ssa"
+      class="w-100 h-100"
+      style="border: 0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+</section>
+
+<app-footer></app-footer>

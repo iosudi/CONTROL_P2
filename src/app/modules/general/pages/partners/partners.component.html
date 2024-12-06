@@ -1,0 +1,192 @@
+<app-home-navbar></app-home-navbar>
+
+<section
+  class="hero d-flex align-items-center justify-content-center position-relative overflow-hidden"
+  [dir]="'dir' | translate"
+>
+  <div class="blurred-balls"></div>
+  <div class="blurred-balls white"></div>
+
+  <div class="heading text-center">
+    <h1
+      class="fw-bold"
+      [innerHTML]="'PartnersPage.Hero.title' | translate"
+    ></h1>
+    <p class="mb-0">
+      {{ "PartnersPage.Hero.paragraph" | translate }}
+    </p>
+  </div>
+</section>
+
+<section class="trusted-brands overflow-hidden" [dir]="'dir' | translate">
+  <div class="container">
+    <div class="row gx-5 gy-4">
+      <div class="col-lg-6">
+        <img src="./assets/images/partners-page/hands.png" alt="image" />
+      </div>
+      <div class="col-lg-6">
+        <div class="content h-100 d-flex flex-column justify-content-center">
+          <h2
+            class="fw-bold"
+            [innerHTML]="'PartnersPage.TrustedBrands.title' | translate"
+          ></h2>
+          <p class="mb-0">
+            {{ "PartnersPage.TrustedBrands.paragraph" | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="partners" [dir]="'dir' | translate">
+  <div class="container overflow-hidden position-relative rounded-5 p-5">
+    <div class="vector position-absolute">
+      <img src="./assets/images/partners-page/vector.png" alt="vector" />
+    </div>
+    <div class="heading mb-5">
+      <h2
+        class="fw-bold mb-3"
+        [innerHTML]="'PartnersPage.PartnersSection.title' | translate"
+      >
+        Our Valued <span class="fs-1">Partners</span>
+      </h2>
+      <p class="fw-normal">
+        {{ "PartnersPage.PartnersSection.paragraph" | translate }}
+      </p>
+    </div>
+
+    <div class="row g-4">
+      <div
+        class="col-xl-2 col-lg-3 col-md-4 col-6"
+        *ngFor="let partner of partners"
+      >
+        <div
+          class="partner-link d-flex align-items-center justify-content-center rounded-3 py-3"
+        >
+          <img [src]="partner.image" alt="partner logo" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why-us my-sections position-relative" [dir]="'dir' | translate">
+  <div class="blurred-balls"></div>
+
+  <div class="container">
+    <h3
+      class="fw-light text-center"
+      [innerHTML]="'PartnersPage.WhyUs.title' | translate"
+    ></h3>
+
+    <div class="features row g-4">
+      <div class="col-lg-3 col-6">
+        <div
+          class="feature d-flex align-items-center justify-content-center flex-column"
+        >
+          <div
+            class="icon d-flex align-items-center justify-content-center mb-3"
+          >
+            <img
+              src="./assets/images/icons/Hotel-Five-Star--Streamline-Core.png"
+              alt="icon"
+            />
+          </div>
+
+          <h4 class="h3">
+            {{ "PartnersPage.WhyUs.features.experience.title" | translate }}
+          </h4>
+          <p class="text-center mb-0">
+            {{
+              "PartnersPage.WhyUs.features.experience.description" | translate
+            }}
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-6">
+        <div
+          class="feature d-flex align-items-center justify-content-center flex-column"
+        >
+          <div
+            class="icon d-flex align-items-center justify-content-center mb-3"
+          >
+            <img
+              src="./assets/images/icons/Collaborations-Idea--Streamline-Core.png"
+              alt="icon"
+            />
+          </div>
+
+          <h4>{{ "PartnersPage.WhyUs.features.talent.title" | translate }}</h4>
+          <p class="text-center mb-0">
+            {{ "PartnersPage.WhyUs.features.talent.description" | translate }}
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div
+          class="feature d-flex align-items-center justify-content-center flex-column"
+        >
+          <div
+            class="icon d-flex align-items-center justify-content-center mb-3"
+          >
+            <img
+              src="./assets/images/icons/Business-Handshake--Streamline-Core.png"
+              alt="icon"
+            />
+          </div>
+
+          <h4>
+            {{ "PartnersPage.WhyUs.features.broadness.title" | translate }}
+          </h4>
+          <p class="text-center mb-0">
+            {{
+              "PartnersPage.WhyUs.features.broadness.description" | translate
+            }}
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div
+          class="feature d-flex align-items-center justify-content-center flex-column"
+        >
+          <div
+            class="icon d-flex align-items-center justify-content-center mb-3"
+          >
+            <img
+              src="./assets/images/icons/Share-Setting-Bolt--Streamline-Core.png"
+              alt="icon"
+            />
+          </div>
+
+          <h4>{{ "PartnersPage.WhyUs.features.assets.title" | translate }}</h4>
+          <p class="text-center mb-0">
+            {{ "PartnersPage.WhyUs.features.assets.description" | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="join-us" [dir]="'dir' | translate">
+  <div class="container d-flex align-items-start justify-content-between gap-2">
+    <p class="fs-3 fw-light">
+      <span
+        class="fw-bold"
+        [innerHTML]="'PartnersPage.JoinUs.title' | translate"
+      ></span>
+      {{ "PartnersPage.JoinUs.paragraph" | translate }}
+    </p>
+
+    <button
+      class="fw-normal rounded-5 main-btn px-5 py-3"
+      routerLink="/contact-us"
+    >
+      {{ "PartnersPage.JoinUs.button" | translate }}
+    </button>
+  </div>
+</section>
+
+<app-footer></app-footer>

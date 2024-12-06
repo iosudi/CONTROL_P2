@@ -1,0 +1,41 @@
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 20;
+}
+
+.nav-menu {
+  width: 300px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #1e1e1e;
+  z-index: 20;
+  .nav-heading {
+    &.border-bottom {
+      border-color: #cccccc6e !important;
+    }
+    button {
+      background-color: transparent;
+      color: #cccccc6e;
+      border: 0;
+      outline: 0;
+    }
+  }
+  .nav-items {
+    li {
+      &.active-link {
+        font-weight: bold;
+        color: var(--main-color);
+      }
+    }
+
+    .btn {
+      color: var(--white-text);
+    }
+  }
+}

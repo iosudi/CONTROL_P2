@@ -1,0 +1,249 @@
+<div class="form-wrapper p-4">
+  <i class="fa-solid fa-xmark close-icon" (click)="close()"></i>
+
+  <h2 class="mb-4 mt-4 heading-color">Welcome To CTRL+P</h2>
+
+  <div class="form-container w-100">
+    <form (ngSubmit)="onSubmit()">
+      <div class="inputs-container mb-3">
+        <!-- username field -->
+        <div class="input-box my-3">
+          <div
+            [class.error]="
+              registerForm.get('name')?.errors &&
+              registerForm.get('name')?.touched
+            "
+            class="input-field d-flex gap-2 align-items-center px-4"
+          >
+            <input
+              class="py-3"
+              formControlName="name"
+              type="text"
+              placeholder="Name"
+            />
+          </div>
+
+          <div
+            class="alerts"
+            *ngIf="
+              registerForm.get('name')?.errors &&
+              registerForm.get('name')?.touched
+            "
+          >
+            <p
+              class="text-danger mb-1"
+              *ngIf="registerForm.get('name')?.getError('required')"
+            >
+              الاسم مطلوب
+            </p>
+            <p
+              class="text-danger mb-1"
+              *ngIf="registerForm.get('name')?.getError('minlength')"
+            >
+              يجب أن يكون الاسم اكبر من 3 أحرف
+            </p>
+            <p
+              class="text-danger mb-1"
+              *ngIf="registerForm.get('name')?.getError('pattern')"
+            >
+              يجب أن لا يحتوي الاسم علي حروف مميزة
+            </p>
+          </div>
+        </div>
+
+        <!-- email field -->
+        <div class="input-box my-3">
+          <div
+            [class.error]="
+              registerForm.get('email')?.errors &&
+              registerForm.get('email')?.touched
+            "
+            class="input-field d-flex gap-2 align-items-center px-4"
+          >
+            <input
+              class="py-3"
+              formControlName="email"
+              type="email"
+              placeholder="Email"
+            />
+          </div>
+
+          <div
+            class="alerts"
+            *ngIf="
+              registerForm.get('email')?.errors &&
+              registerForm.get('email')?.touched
+            "
+          >
+            <p
+              class="text-danger mb-1"
+              *ngIf="registerForm.get('email')?.getError('required')"
+            >
+              البريد الالكتروني مطلوب
+            </p>
+            <p
+              class="text-danger mb-1"
+              *ngIf="registerForm.get('email')?.getError('email')"
+            >
+              البريد الإلكتروني ليس في شكل بريد إلكتروني
+            </p>
+          </div>
+        </div>
+
+        <!-- password field -->
+        <div class="input-box my-3">
+          <div
+            [class.error]="
+              registerForm.get('password')?.errors &&
+              registerForm.get('password')?.touched
+            "
+            class="input-field d-flex gap-2 align-items-center px-4"
+          >
+            <input
+              class="py-3"
+              [type]="passwordVisibility ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="Password"
+            />
+            <img
+              (click)="togglePasswordVisibility('password')"
+              class="eye"
+              [src]="
+                passwordVisibility
+                  ? 'assets/images/icons/closed-eye.png'
+                  : 'assets/images/icons/opened-eye.png'
+              "
+              alt="opened eye icon"
+            />
+          </div>
+
+          <div
+            class="alerts"
+            *ngIf="
+              registerForm.get('password')?.errors &&
+              registerForm.get('password')?.touched
+            "
+          >
+            <p
+              class="text-danger mb-1"
+              *ngIf="registerForm.get('password')?.getError('required')"
+            >
+              كملة السر مطلوبة
+            </p>
+
+            <p
+              class="text-danger mb-1"
+              *ngIf="registerForm.get('password')?.getError('minlength')"
+            >
+              يجب أن تكون كلمة المرور اكبر من 8 حروف
+            </p>
+
+            <p
+              class="text-danger mb-1"
+              *ngIf="registerForm.get('password')?.getError('pattern')"
+            >
+              يجب ان يحتوي كلمة المرور علي ارقام واحرف
+            </p>
+          </div>
+        </div>
+
+        <!-- confirm password field -->
+        <div class="input-box my-3">
+          <div
+            [class.error]="
+              registerForm.get('confirm_password')?.errors &&
+              registerForm.get('confirm_password')?.touched
+            "
+            class="input-field d-flex gap-2 align-items-center px-4"
+          >
+            <input
+              class="py-3"
+              [type]="confirmPasswordVisibility ? 'text' : 'password'"
+              formControlName="confirm_password"
+              placeholder="Confirm Password"
+            />
+            <img
+              (click)="togglePasswordVisibility('confirm_password')"
+              class="eye"
+              [src]="
+                confirmPasswordVisibility
+                  ? 'assets/images/icons/closed-eye.png'
+                  : 'assets/images/icons/opened-eye.png'
+              "
+              alt="eye icon"
+            />
+          </div>
+
+          <div
+            class="alerts"
+            *ngIf="
+              registerForm.get('confirm_password')?.errors &&
+              registerForm.get('confirm_password')?.touched
+            "
+          >
+            <p
+              class="text-danger mb-1"
+              *ngIf="registerForm.get('confirm_password')?.getError('required')"
+            >
+              يجب تأكيد كملة المرور
+            </p>
+
+            <p
+              class="text-danger mb-1"
+              *ngIf="registerForm.get('confirm_password')?.getError('notMatch')"
+            >
+              كلمة المرور غير متطابقة
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="accept-terms d-flex align-items-center justify-content-start gap-2"
+      >
+        <p-checkbox
+          formControlName="terms"
+          [binary]="true"
+          value="True"
+          inputId="terms"
+        />
+        <label for="terms"
+          >Accept
+          <a class="text-decoration-underline">Terms and conditions</a></label
+        >
+      </div>
+
+      <div
+        class="form-controls d-flex align-items-center justify-content-between mb-3"
+      >
+        <button class="main-btn rounded-5 d-flex align-items-center gap-2 my-4">
+          Sign Up
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <p class="mb-0">
+          already have account ?
+          <span class="fw-bold heading-color" (click)="openLoginForm()"
+            >Login</span
+          >
+        </p>
+      </div>
+    </form>
+
+    <div class="separator d-flex align-items-center gap-3">
+      <div class="line"></div>
+      <p class="mb-0">OR</p>
+      <div class="line"></div>
+    </div>
+
+    <div class="social-methods">
+      <div class="method px-4 py-3 mt-4 mb-2 d-flex gap-2 align-items-center">
+        <img src="./assets/images/icons/google.png" alt="google icon" />
+        <p class="mb-0 fw-lighter">Sign Up With Google</p>
+      </div>
+      <div class="method px-4 py-3 d-flex gap-2 align-items-center">
+        <img src="./assets/images/icons/facebook.png" alt="facebook icon" />
+        <p class="mb-0 fw-lighter">Sign Up Facebook</p>
+      </div>
+    </div>
+  </div>
+</div>

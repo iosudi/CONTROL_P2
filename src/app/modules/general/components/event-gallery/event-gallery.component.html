@@ -1,0 +1,82 @@
+<div
+  class="gallery py-5 position-relative d-flex justify-content-center align-items-center"
+>
+  <div class="container position-relative">
+    <div
+      class="controls-wrapper d-flex p-3 justify-content-end align-items-center"
+    >
+      <div
+        class="controls py-3 px-4 rounded-4 d-flex align-items-center justify-content-center gap-2"
+      >
+        <button
+          class="btn d-flex align-items-center justify-content-center view-project"
+          (click)="viewProject(projectId)"
+        >
+          View Project
+          <i class="fa-solid fa-arrow-up ms-3"></i>
+        </button>
+
+        <!-- <button class="btn d-flex align-items-center justify-content-center">
+          <i class="fa-solid fa-arrow-up-from-bracket"></i>
+        </button> -->
+
+        <!-- <button
+          class="btn d-flex align-items-center justify-content-center heart-icon"
+        >
+          <i class="fa-regular fa-heart"></i>
+        </button> -->
+
+        <button
+          class="btn d-flex align-items-center justify-content-center close-btn ms-4"
+          (click)="close()"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="event-preview position-relative">
+      <span class="index-show px-4 py-2 rounded-4">
+        {{ activeIndex }} / {{ projectImages.length }}
+      </span>
+
+      <button
+        class="prev-btn btn d-flex align-items-center justify-content-center"
+        (click)="triggerPrev()"
+      >
+        <i class="fa-solid fa-angle-left"></i>
+      </button>
+      <button
+        class="next-btn btn d-flex align-items-center justify-content-center"
+        (click)="triggerNext()"
+      >
+        <i class="fa-solid fa-angle-right"></i>
+      </button>
+
+      <swiper-container
+        #GallerySwiper
+        class="mySwiper"
+        thumbs-swiper=".mySwiper2"
+        space-between="10"
+        pagination="true"
+      >
+        <swiper-slide *ngFor="let image of projectImages">
+          <img [src]="image.image" />
+        </swiper-slide>
+      </swiper-container>
+    </div>
+
+    <swiper-container
+      class="mySwiper2 mt-4 px-4 py-3 rounded-4"
+      space-between="20"
+      slides-per-view="7.5"
+      free-mode="true"
+      watch-slides-progress="true"
+      [breakpoints]="thumbnailsBreakpoints"
+    >
+      <swiper-slide *ngFor="let image of projectImages">
+        <img [src]="image.image" />
+      </swiper-slide>
+    </swiper-container>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="filters" (click)="closeMenu()">
+  <div class="filtering-container p-4" (click)="preventClosing($event)">
+    <div class="price-filter">
+      <h4 class="mb-4">Price</h4>
+
+      <p-slider [(ngModel)]="rangeValues" [range]="true" />
+
+      <div
+        class="price-filter-controls d-flex align-items-center justify-content-between gap-2 mt-3 border-bottom py-4"
+      >
+        <p class="mb-0">
+          <span class="price-filter-label">Price: </span>
+          <span>{{
+            rangeValues[0] | currency : "£" : "symbol" : "1.0-0"
+          }}</span>
+          -
+          <span>{{
+            rangeValues[1] | currency : "£" : "symbol" : "1.0-0"
+          }}</span>
+        </p>
+
+        <button class="main-btn rounded-5 px-4 py-1 fs-6">filter</button>
+      </div>
+    </div>
+
+    <div class="filter-box py-4">
+      <div
+        class="filter-title d-flex align-items-center justify-content-between mb-4"
+      >
+        <h4 class="mb-0">Size</h4>
+
+        <i class="fa-solid fa-angle-down"></i>
+      </div>
+
+      <div class="filter-options">
+        <div
+          class="filter-option d-flex justify-content-between align-items-center mb-3"
+          *ngFor="let option of filterOptions; let i = index"
+        >
+          <div class="d-flex align-items-center gap-2">
+            <p-checkbox
+              [(ngModel)]="option.isChecked"
+              [binary]="true"
+              value="True"
+              inputId="filterOption{{ i }}"
+            />
+            <label
+              for="filterOption{{ i }}"
+              [ngClass]="{ 'checked': option.isChecked, }"
+              >{{ option.label }}
+            </label>
+          </div>
+          <p
+            class="products-quantity rounded-5 px-3 py-1 mb-0"
+            [ngClass]="{ 'checked': option.isChecked, }"
+          >
+            {{ option.quantity }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

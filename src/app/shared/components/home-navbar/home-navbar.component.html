@@ -1,0 +1,100 @@
+<app-cart-overlay *ngIf="cartOverlayOpened"></app-cart-overlay>
+
+<nav>
+  <div
+    class="navbar container d-flex align-items-center gap-2"
+    [dir]="'dir' | translate"
+  >
+    <div class="logo pointer" routerLink="/">
+      <img src="./assets/images/logo.png" alt="logo" />
+    </div>
+
+    <ul class="nav-items p-0 m-0 d-flex align-items-center gap-3">
+      <li>
+        <a routerLink="/home" routerLinkActive="active-link">{{
+          "Navbar.home" | translate
+        }}</a>
+      </li>
+      <li>
+        <a routerLink="/about-us" routerLinkActive="active-link">{{
+          "Navbar.about" | translate
+        }}</a>
+      </li>
+      <li>
+        <a routerLink="/portfolio" routerLinkActive="active-link">{{
+          "Navbar.portfolio" | translate
+        }}</a>
+      </li>
+      <li>
+        <a routerLink="/services" routerLinkActive="active-link">{{
+          "Navbar.services" | translate
+        }}</a>
+      </li>
+      <!-- <li><a routerLink="/shop" routerLinkActive="active-link">Shop</a></li> -->
+      <li>
+        <a routerLink="/partners" routerLinkActive="active-link">{{
+          "Navbar.partners" | translate
+        }}</a>
+      </li>
+      <li>
+        <a routerLink="/contact-us" routerLinkActive="active-link">{{
+          "Navbar.contactUs" | translate
+        }}</a>
+      </li>
+    </ul>
+
+    <div class="nav-controls d-flex align-items-center">
+      <div
+        class="d-flex align-items-center gap-lg-3 gap-2"
+        [ngClass]="{
+          'pe-3': direction === 'ltr',
+          'ps-3': direction === 'rtl'
+        }"
+      >
+        <!-- <button class="btn p-0 d-flex align-items-center gap-3">
+          <img src="./assets/images/icons/search.svg" alt="icon" />
+        </button> -->
+        <button
+          class="btn p-0 d-flex align-items-center gap-3 language-btn"
+          (click)="changeLanguage()"
+        >
+          <img src="./assets/images/icons/global.svg" alt="icon" />
+          <span *ngIf="currentLanguage === 'ar'">English</span>
+          <span *ngIf="currentLanguage === 'en'">العربية</span>
+        </button>
+      </div>
+
+      <!-- <div
+        class="d-flex align-items-center gap-lg-3 gap-2"
+        [class.border-end]="direction == 'rtl'"
+        [ngClass]="{
+          'ps-3': direction === 'ltr',
+          'pe-3': direction === 'rtl'
+        }"
+      >
+        <button
+          class="btn p-0 d-flex align-items-center"
+          (click)="openLoginDialog()"
+        >
+          <img src="./assets/images/icons/user.svg" alt="icon" />
+        </button>
+        <button class="btn p-0 d-flex align-items-center gap-1">
+          <img src="./assets/images/icons/heart.svg" alt="icon" />
+          1
+        </button>
+        <button
+          class="btn p-0 d-flex align-items-center gap-lg-2 gap-1"
+          (click)="openCartOverlay()"
+        >
+          <img src="./assets/images/icons/cart.svg" alt="icon" />
+          <span class="d-flex gap-1">
+            <span class="cart-count">1 </span> /
+            <span class="cart-price"> 0</span>
+          </span>
+        </button>
+      </div> -->
+    </div>
+  </div>
+</nav>
+
+<app-mobile-navbar></app-mobile-navbar>

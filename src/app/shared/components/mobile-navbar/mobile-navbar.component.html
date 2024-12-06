@@ -1,0 +1,107 @@
+<app-mobile-links-menu
+  *ngIf="menuOpened"
+  [menuOpened]="menuOpened"
+  (menuStatusChange)="onMenuStatusChange($event)"
+></app-mobile-links-menu>
+
+<nav class="status-bar px-2">
+  <div class="navbar">
+    <div
+      class="nav-items d-flex align-items-center justify-content-between w-100"
+    >
+      <button
+        class="menu-btn d-flex align-items-center justify-content-center"
+        (click)="openLinksMenu()"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <div
+        class="search-field disabled d-flex align-items-center justify-content-between rounded-5 p-2"
+        [dir]="'dir' | translate"
+      >
+        <p class="mb-0">{{ "Navbar.search_label" | translate }}</p>
+
+        <div class="icon d-flex align-items-center justify-content-center">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+      </div>
+
+      <button
+        class="cart d-flex align-items-center justify-content-center disabled"
+        (click)="openCartOverlay()"
+      >
+        <img src="./assets/images/icons/cart-white.svg" alt="icon" />
+      </button>
+    </div>
+  </div>
+</nav>
+
+<nav class="links-bar" [dir]="'dir' | translate">
+  <div class="navbar">
+    <ul
+      class="nav-items d-flex align-items-center justify-content-between m-0 px-4 py-1 w-100"
+    >
+      <li
+        class="d-flex flex-column align-items-center justify-content-center"
+        routerLink="/home"
+        routerLinkActive="active-link"
+      >
+        <img
+          [src]="
+            activeLink === '/home'
+              ? './assets/images/icons/nav-active-home.svg'
+              : './assets/images/icons/nav-home.svg'
+          "
+          alt="icon"
+        />
+        <span> {{ "Navbar.home" | translate }} </span>
+      </li>
+      <li
+        class="d-flex disabled flex-column align-items-center justify-content-center"
+        routerLink="/profile/wishlist"
+        routerLinkActive="active-link"
+      >
+        <img
+          [src]="
+            activeLink === '/profile/wishlist'
+              ? './assets/images/icons/nav-active-heart.svg'
+              : './assets/images/icons/nav-heart.svg'
+          "
+          alt="icon"
+        />
+        <span> {{ "Navbar.wishlist" | translate }} </span>
+      </li>
+      <li
+        class="d-flex disabled flex-column align-items-center justify-content-center"
+        routerLink="/cart"
+        routerLinkActive="active-link"
+      >
+        <img
+          [src]="
+            activeLink === '/cart'
+              ? './assets/images/icons/nav-active-cart.svg'
+              : './assets/images/icons/nav-cart.svg'
+          "
+          alt="icon"
+        />
+        <span> {{ "Navbar.cart" | translate }} </span>
+      </li>
+      <li
+        class="d-flex disabled flex-column align-items-center justify-content-center"
+        routerLink="/profile"
+        [ngClass]="{ 'active-link': isProfileActive }"
+      >
+        <img
+          [src]="
+            activeLink === '/profile'
+              ? './assets/images/icons/nav-active-user.svg'
+              : './assets/images/icons/nav-user.svg'
+          "
+          alt="icon"
+        />
+        <span> {{ "Navbar.my_account" | translate }} </span>
+      </li>
+    </ul>
+  </div>
+</nav>

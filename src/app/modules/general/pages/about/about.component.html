@@ -1,0 +1,430 @@
+<app-home-navbar></app-home-navbar>
+
+<section
+  class="hero d-flex align-items-center justify-content-center position-relative"
+  [dir]="'dir' | translate"
+>
+  <div class="blurred-balls"></div>
+  <div class="blurred-balls white"></div>
+
+  <div class="heading text-center">
+    <h1 class="fw-bold" [innerHTML]="'AboutPage.hero.title' | translate"></h1>
+    <p class="mb-0">
+      {{ "AboutPage.hero.paragraph" | translate }}
+    </p>
+  </div>
+
+  <div
+    class="images position-absolute d-flex justify-content-center align-items-center gap-3"
+  >
+    <img src="./assets/images/home/work/1.png" alt="image" />
+    <img src="./assets/images/home/work/5.png" alt="image" />
+    <img src="./assets/images/home/work/6.png" alt="image" />
+    <img src="./assets/images/home/work/8.png" alt="image" />
+  </div>
+</section>
+
+<section class="staff-crew" [dir]="'dir' | translate">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-6">
+        <img src="./assets/images/about/staff.jpg" alt="image" />
+      </div>
+      <div class="col-lg-6">
+        <div class="content h-100 d-flex flex-column justify-content-center">
+          <h2
+            class="fw-bold"
+            [innerHTML]="'AboutPage.staff_crew.title' | translate"
+          ></h2>
+          <p class="mb-0">
+            {{ "AboutPage.staff_crew.paragraph" | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-us">
+  <div class="container rounded-5">
+    <div class="row gy-3 gx-5">
+      <div class="col-lg-4">
+        <div
+          class="card d-flex align-items-center justify-content-start p-5 h-100"
+        >
+          <img src="./assets/images/icons/vision.png" alt="eye" />
+          <h3 class="h1 mb-5 fw-bold">
+            {{ "AboutPage.about_us.vision.title" | translate }}
+          </h3>
+          <p class="text-center mb-0">
+            {{ "AboutPage.about_us.vision.paragraph" | translate }}
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div
+          class="card d-flex align-items-center justify-content-start p-5 h-100"
+        >
+          <img src="./assets/images/icons/message.png" alt="message" />
+          <h3 class="h1 mb-5 fw-bold">
+            {{ "AboutPage.about_us.mission.title" | translate }}
+          </h3>
+          <p class="text-center mb-0">
+            {{ "AboutPage.about_us.mission.paragraph" | translate }}
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div
+          class="card d-flex align-items-center justify-content-start p-5 h-100"
+        >
+          <img src="./assets/images/icons/group.png" alt="group" />
+          <h3 class="h1 mb-5 fw-bold">
+            {{ "AboutPage.about_us.team.title" | translate }}
+          </h3>
+          <p class="text-center mb-0">
+            {{ "AboutPage.about_us.team.paragraph" | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team-members overflow-hidden my-5">
+  <div class="container overflow-hidden py-5">
+    <div class="heading text-center mb-5">
+      <h3
+        class="text-center"
+        [innerHTML]="'AboutPage.our_team.title' | translate"
+      ></h3>
+      <p class="text-center">
+        {{ "AboutPage.our_team.paragraph" | translate }}
+      </p>
+    </div>
+    <swiper-container [breakpoints]="TeamSlider">
+      <swiper-slide *ngFor="let member of teamMembers">
+        <div class="member">
+          <img
+            class="mb-4"
+            src="./assets/images/about/crew/1.png"
+            alt="member"
+          />
+          <div class="member-info text-center mb-4">
+            <h4 class="mb-2">{{ member.name }}</h4>
+            <p class="mb-0">{{ member.title }}</p>
+          </div>
+
+          <div
+            class="member-social d-flex align-items-center justify-content-center gap-2"
+          >
+            <a
+              class="d-flex align-items-center justify-content-center"
+              [href]="member.social_links.twitter"
+              target="_blank"
+            >
+              <i class="fab fa-x-twitter"></i>
+            </a>
+
+            <a
+              class="d-flex align-items-center justify-content-center"
+              [href]="member.social_links.dribbble"
+              target="_blank"
+            >
+              <i class="fab fa-dribbble"></i>
+            </a>
+
+            <a
+              class="d-flex align-items-center justify-content-center"
+              [href]="member.social_links.instagram"
+              target="_blank"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+
+            <a
+              class="d-flex align-items-center justify-content-center"
+              [href]="member.social_links.facebook"
+              target="_blank"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </a>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+</section>
+
+<section class="our-features my-5">
+  <div class="container text-center">
+    <h2 class="h1" [innerHTML]="'AboutPage.features.title' | translate"></h2>
+    <p>{{ "AboutPage.features.paragraph1" | translate }}</p>
+    <p class="description my-5">
+      {{ "AboutPage.features.paragraph2" | translate }}
+    </p>
+
+    <div class="row gy-4">
+      <div class="col-lg-4">
+        <div class="feature">
+          <img
+            class="mb-4"
+            src="./assets/images/about/icons/truck.png"
+            alt="truck"
+          />
+          <h3 class="h4">
+            {{ "AboutPage.features.cards.delivery.title" | translate }}
+          </h3>
+          <p class="mb-0 mx-auto">
+            {{ "AboutPage.features.cards.delivery.paragraph" | translate }}
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="feature">
+          <img
+            class="mb-4"
+            src="./assets/images/about/icons/like.png"
+            alt="truck"
+          />
+          <h3 class="h4">
+            {{ "AboutPage.features.cards.quality.title" | translate }}
+          </h3>
+          <p class="mb-0 mx-auto">
+            {{ "AboutPage.features.cards.quality.paragraph" | translate }}
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="feature">
+          <img
+            class="mb-4"
+            src="./assets/images/about/icons/return.png"
+            alt="truck"
+          />
+          <h3 class="h4">
+            {{ "AboutPage.features.cards.return.title" | translate }}
+          </h3>
+          <p class="mb-0 mx-auto">
+            {{ "AboutPage.features.cards.return.paragraph" | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how-we-work" [dir]="'dir' | translate">
+  <div class="container">
+    <div class="row gy-3">
+      <div class="col-lg-6">
+        <div class="content">
+          <img
+            class="mb-4 rounded-5"
+            src="./assets/images/about/mac.jpg"
+            alt="image"
+          />
+          <h4 class="h5 fw-bold">
+            {{ "AboutPage.how_we_work.work.title" | translate }}
+          </h4>
+          <p
+            class="my-5"
+            [innerHTML]="'AboutPage.how_we_work.work.paragraph' | translate"
+          ></p>
+
+          <ul>
+            <li class="mb-3">
+              <h5>
+                {{ "AboutPage.how_we_work.work.list.item1.title" | translate }}:
+              </h5>
+              <p class="mb-0">
+                {{
+                  "AboutPage.how_we_work.work.list.item1.paragraph" | translate
+                }}
+              </p>
+            </li>
+            <li class="mb-3">
+              <h5>
+                {{ "AboutPage.how_we_work.work.list.item2.title" | translate }}:
+              </h5>
+              <p class="mb-0">
+                {{
+                  "AboutPage.how_we_work.work.list.item2.paragraph" | translate
+                }}
+              </p>
+            </li>
+            <li class="mb-3">
+              <h5>
+                {{ "AboutPage.how_we_work.work.list.item3.title" | translate }}
+                :
+              </h5>
+              <p class="mb-0">
+                {{
+                  "AboutPage.how_we_work.work.list.item3.paragraph" | translate
+                }}
+              </p>
+            </li>
+            <li class="mb-3">
+              <h5>
+                {{ "AboutPage.how_we_work.work.list.item4.title" | translate }}:
+              </h5>
+              <p class="mb-0">
+                {{
+                  "AboutPage.how_we_work.work.list.item4.paragraph" | translate
+                }}
+              </p>
+            </li>
+            <li class="mb-3">
+              <h5>
+                {{ "AboutPage.how_we_work.work.list.item5.title" | translate }}:
+              </h5>
+              <p class="mb-0">
+                {{
+                  "AboutPage.how_we_work.work.list.item5.paragraph" | translate
+                }}:
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="content">
+          <img
+            class="mb-4 rounded-5"
+            src="./assets/images/about/book.jpg"
+            alt="image"
+          />
+          <h4 class="h5 fw-bold">
+            {{ "AboutPage.how_we_work.do.title" | translate }}:
+          </h4>
+          <p
+            class="my-5"
+            [innerHTML]="'AboutPage.how_we_work.do.paragraph' | translate"
+          ></p>
+
+          <ul>
+            <li class="mb-3">
+              <h5>
+                {{ "AboutPage.how_we_work.do.list.item1.title" | translate }}:
+              </h5>
+              <p class="mb-0">
+                {{
+                  "AboutPage.how_we_work.do.list.item1.paragraph" | translate
+                }}
+              </p>
+            </li>
+            <li class="mb-3">
+              <h5>
+                {{ "AboutPage.how_we_work.do.list.item2.title" | translate }}:
+              </h5>
+              <p class="mb-0">
+                {{
+                  "AboutPage.how_we_work.do.list.item2.paragraph" | translate
+                }}
+              </p>
+            </li>
+            <li class="mb-3">
+              <h5>
+                {{ "AboutPage.how_we_work.do.list.item3.title" | translate }}:
+              </h5>
+              <p class="mb-0">
+                {{
+                  "AboutPage.how_we_work.do.list.item3.paragraph" | translate
+                }}
+              </p>
+            </li>
+            <li class="mb-3">
+              <h5>
+                {{ "AboutPage.how_we_work.do.list.item4.title" | translate }}:
+              </h5>
+              <p class="mb-0">
+                {{
+                  "AboutPage.how_we_work.do.list.item4.paragraph" | translate
+                }}
+              </p>
+            </li>
+            <li class="mb-3">
+              <h5>
+                {{ "AboutPage.how_we_work.do.list.item5.title" | translate }}:
+              </h5>
+              <p class="mb-0">
+                {{
+                  "AboutPage.how_we_work.do.list.item5.paragraph" | translate
+                }}
+              </p>
+            </li>
+            <li class="mb-3">
+              <h5>
+                {{ "AboutPage.how_we_work.do.list.item6.title" | translate }}:
+              </h5>
+              <p class="mb-0">
+                {{
+                  "AboutPage.how_we_work.do.list.item6.paragraph" | translate
+                }}
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="FAQS my-sections" [dir]="'dir' | translate">
+  <div class="container">
+    <div class="row gy-5">
+      <div class="col-lg-6">
+        <div class="heading">
+          <h2 class="fw-bold">
+            {{ "AboutPage.faqs.title" | translate }}
+          </h2>
+          <p>
+            {{ "AboutPage.faqs.paragraph" | translate }}
+          </p>
+
+          <button
+            class="main-btn px-4 py-2 rounded-5 mt-5"
+            routerLink="/contact-us"
+            [ngClass]="{
+              'me-auto': direction === 'ltr',
+              'ms-auto': direction === 'rtl'
+            }"
+          >
+            <span class="fw-semibold">
+              {{ "AboutPage.faqs.btn_contact" | translate }}
+            </span>
+            <div class="icon d-flex align-items-center justify-content-center">
+              <img src="./assets/images/icons/phone.png" alt="phone icon" />
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="row">
+          <div class="col-12" *ngFor="let faq of faqs; let i = index">
+            <div
+              class="faq p-2"
+              (click)="toggleExpand(i)"
+              [class.expand]="expandedIndex === i"
+              data-aos="fade-up"
+            >
+              <div
+                class="question gap-2 mb-2 d-flex align-items-center justify-content-between"
+              >
+                <h4 class="mb-0">{{ faq.question }}</h4>
+                <i class="fa-solid fa-plus"></i>
+              </div>
+              <p class="answer mb-0 overflow-hidden">
+                {{ faq.answer }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

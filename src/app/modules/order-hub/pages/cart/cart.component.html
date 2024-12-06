@@ -1,0 +1,114 @@
+<app-home-navbar></app-home-navbar>
+
+<section class="cart p-5">
+  <div class="container">
+    <div
+      class="bread-crumb d-flex justify-content-start align-items-center mt-4 mb-5"
+    >
+      <p-breadcrumb class="max-w-full" [model]="items" [home]="home" />
+    </div>
+
+    <div class="shopping-cart">
+      <div class="row g-5">
+        <div class="col-lg-8">
+          <div class="cart-details">
+            <table class="w-100">
+              <tr class="border-bottom">
+                <th class="px-4 py-3 text-center fw-medium"></th>
+                <th class="px-4 py-3 text-center fw-medium"></th>
+                <th class="px-4 py-3 text-center fw-medium">Product</th>
+                <th class="px-4 py-3 text-center fw-medium">Price</th>
+                <th class="px-4 py-3 text-center fw-medium">Quantity</th>
+                <th class="px-4 py-3 text-center fw-medium">Subtotal</th>
+              </tr>
+
+              <tr class="border-bottom" *ngFor="let item of [1, 2, 3, 4]">
+                <td class="pt-5 pb-4 px-3">
+                  <i class="fa-solid fa-xmark fs-2 pointer"></i>
+                </td>
+                <td class="pt-5 pb-4 px-3">
+                  <div class="product-image rounded-3 overflow-hidden">
+                    <img
+                      src="./assets/images/home/events/4.jpg"
+                      alt="product image"
+                    />
+                  </div>
+                </td>
+                <td class="pt-5 pb-4 px-3">
+                  <div class="product-details text-center">
+                    <p
+                      class="mb-1 fs-6 product-id heading-color text-decoration-underline"
+                    >
+                      B2003
+                    </p>
+                    <p class="mb-1">size: 60x80</p>
+                    <p class="mb-1">material: قماش كانفس</p>
+                    <p class="mb-0">Frame: + frame</p>
+                  </div>
+                </td>
+                <td class="pt-5 pb-4 px-3">
+                  <p class="mb-0 price">{{ 825 | currency : "RSA " }}</p>
+                </td>
+                <td class="pt-5 pb-4 px-3">
+                  <div
+                    class="quantity-input d-flex gap-2 align-items-center justify-content-between rounded-5 px-3 py-1"
+                  >
+                    <button class="btn p-0">-</button>
+                    <input type="text" class="text-center" value="1" />
+                    <button class="btn p-0">+</button>
+                  </div>
+                </td>
+
+                <td class="pt-5 pb-4 px-3">
+                  <p class="mb-0 Subtotal">{{ 825 | currency : "RSA " }}</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="order-summary py-5 px-4 rounded-2">
+            <h4 class="fw-bold mb-4">Cart totals</h4>
+
+            <div
+              class="subtotal border-bottom d-flex justify-content-between align-items-center py-2 mb-4"
+            >
+              <h4 class="mb-0">Subtotal:</h4>
+              <p class="mb-0">{{ 825 | currency : "RSA " }}</p>
+            </div>
+
+            <div
+              class="shipping border-bottom d-flex justify-content-between align-items-center py-2"
+            >
+              <h4 class="mb-0">Shipping</h4>
+              <div>
+                <p class="text-end fs-5 mb-2">Free shipping</p>
+                <p class="text-end mb-2">Shipping to Riyadh</p>
+                <p class="text-end mb-0 text-decoration-underline pointer">
+                  Change address
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="total d-flex justify-content-between align-items-center py-4"
+            >
+              <h4 class="fw-bold mb-0">Total</h4>
+              <p class="mb-0 fw-bold fs-4 total-price">
+                {{ 825 | currency : "RSA " }}
+              </p>
+            </div>
+            <button
+              class="main-btn py-3 px-4 rounded-5 w-100 text-uppercase fw-bold"
+            >
+              PROCEED TO CHECKOUT
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

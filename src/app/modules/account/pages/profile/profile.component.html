@@ -1,0 +1,66 @@
+<app-home-navbar></app-home-navbar>
+
+<section class="profile">
+  <div class="breadcrumb mb-5">
+    <div class="container breadcrumb-container">
+      <h2 class="h3 mb-3">
+        <span class="heading-color fw-bold">My</span> account
+      </h2>
+      <p class="mb-0">home <span>/ my account</span></p>
+    </div>
+  </div>
+  <div class="container pb-5 pt-lg-0 pt-5">
+    <div class="row gx-md-5">
+      <div class="col-lg-4 profile-nav-col">
+        <div class="profile-navbar border-end pb-5 pe-5">
+          <h3 class="mb-4">My account</h3>
+          <ul class="p-0 m-0">
+            <li
+              class="px-2 py-2 rounded-3 pointer fs-4"
+              routerLink="dashboard"
+              routerLinkActive="active-route"
+            >
+              Dashboard
+            </li>
+            <li
+              class="px-2 py-2 rounded-3 pointer fs-4"
+              routerLink="account-details"
+              routerLinkActive="active-route"
+            >
+              Account details
+            </li>
+            <li
+              class="px-2 py-2 rounded-3 pointer fs-4"
+              routerLink="orders"
+              routerLinkActive="active-route"
+            >
+              Orders
+            </li>
+            <li
+              class="px-2 py-2 rounded-3 pointer fs-4"
+              routerLink="addresses"
+              routerLinkActive="active-route"
+            >
+              Addresses
+            </li>
+            <li
+              class="px-2 py-2 rounded-3 pointer fs-4"
+              routerLink="wishlist"
+              routerLinkActive="active-route"
+            >
+              Wishlist
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="profile-routing">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

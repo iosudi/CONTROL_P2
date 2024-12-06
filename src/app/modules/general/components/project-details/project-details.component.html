@@ -1,0 +1,205 @@
+<div class="event-details">
+  <div class="container my-5">
+    <div
+      class="controls-wrapper d-flex p-3 justify-content-end align-items-center"
+    >
+      <div
+        class="controls rounded-4 d-flex align-items-center justify-content-center gap-2"
+      >
+        <!-- <button class="btn d-flex align-items-center justify-content-center">
+          <i class="fa-solid fa-arrow-up-from-bracket"></i>
+        </button> -->
+
+        <!-- <button
+          class="btn d-flex align-items-center justify-content-center heart-icon"
+        >
+          <i class="fa-regular fa-heart"></i>
+        </button> -->
+
+        <button
+          class="btn d-flex align-items-center justify-content-center close-btn ms-4"
+          (click)="close()"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="row" [dir]="direction == 'ltr' ? 'rtl' : 'ltr'">
+      <div class="col-lg-7">
+        <p-timeline
+          [value]="eventsWithIndex"
+          [align]="direction == 'ltr' ? 'left' : 'right'"
+          dir="ltr"
+        >
+          <ng-template pTemplate="content" let-event let-i="index">
+            <div class="content">
+              <h5 class="mb-4" [ngClass]="{ 'h2 fw-bold': event.index === 0 }">
+                <ng-container
+                  *ngIf="event.title.split(' ').length === 2; else longerStatus"
+                >
+                  <span class="heading-color">{{
+                    event.title.split(" ")[0]
+                  }}</span>
+                  <span> {{ event.title.split(" ")[1] }}</span>
+                </ng-container>
+                <ng-template #longerStatus>
+                  <span class="heading-color">{{
+                    event.title.split(" ").slice(0, 2).join(" ")
+                  }}</span>
+                  <span> {{ event.title.split(" ").slice(2).join(" ") }}</span>
+                </ng-template>
+              </h5>
+              <p class="mb-5" [dir]="'dir' | translate">
+                {{ event.description }}
+              </p>
+            </div>
+          </ng-template>
+        </p-timeline>
+
+        <div
+          class="testimonials-content position-relative overflow-hidden"
+          dir="ltr"
+        >
+          <div class="row">
+            <div
+              class="col-md-9 col-11"
+              [ngClass]="{
+                'me-auto': direction === 'ltr',
+                'ms-auto': direction === 'rtl'
+              }"
+            >
+              <div class="carousel-container">
+                <div
+                  class="navigation-dots d-flex flex-column gap-2"
+                  [ngClass]="{
+                    en: direction === 'ltr'
+                  }"
+                >
+                  <div
+                    #dot1
+                    class="dot"
+                    [class.active-dot]="activeSlideIndex === 0"
+                    *ngIf="project.testimonials.length >= 1"
+                  ></div>
+                  <div
+                    #dot2
+                    class="dot"
+                    [class.active-dot]="activeSlideIndex === 1"
+                    *ngIf="project.testimonials.length >= 2"
+                  ></div>
+                  <div
+                    #dot3
+                    class="dot"
+                    [class.active-dot]="activeSlideIndex === 2"
+                    *ngIf="project.testimonials.length >= 3"
+                  ></div>
+                  <div
+                    #dot4
+                    class="dot"
+                    [class.active-dot]="activeSlideIndex === 3"
+                    *ngIf="project.testimonials.length >= 4"
+                  ></div>
+                </div>
+
+                <div class="carousel" dir="ltr">
+                  <swiper-container
+                    #testimonialSwiper
+                    slides-per-view="1"
+                    [spaceBetween]="50"
+                    (swiperslidechangetransitionend)="onSlideChange()"
+                  >
+                    <swiper-slide
+                      *ngFor="
+                        let feedback of project.testimonials;
+                        let i = index
+                      "
+                    >
+                      <div
+                        class="slide pb-4 pt-5 px-5"
+                        [dir]="'dir' | translate"
+                      >
+                        <img
+                          src="./assets/images/quote.png"
+                          alt="quote symbol"
+                          class="quote-symbol"
+                        />
+                        <div class="feedback-content">
+                          <p class="my-4 fw-semibold">
+                            {{ feedback.content }}
+                          </p>
+                        </div>
+                        <div
+                          class="review-author d-flex justify-content-between align-items-center border-top pt-4"
+                        >
+                          <div class="author d-flex gap-2 align-items-center">
+                            <img
+                              [src]="feedback.client_image"
+                              alt="profile-icon"
+                            />
+                            <h5 class="author-name fw-normal mb-0">
+                              {{ feedback.client_name }}
+                            </h5>
+                          </div>
+                          <div class="rating">
+                            <i class="fa-solid fa-star star-color"></i>
+                            <i class="fa-solid fa-star star-color"></i>
+                            <i class="fa-solid fa-star star-color"></i>
+                            <i class="fa-solid fa-star star-color"></i>
+                            <i class="fa-solid fa-star star-color"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </swiper-slide>
+                  </swiper-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-us mt-5" [dir]="'dir' | translate">
+          <h4
+            [innerHTML]="'Portfolio.project_details.about_title' | translate"
+          ></h4>
+          <button
+            class="main-btn px-5 py-2 rounded-5 fs-5 fw-bold mt-4"
+            routerLink="/contact-us"
+            [ngClass]="{
+              'me-auto': direction === 'ltr',
+              'ms-auto': direction === 'rtl'
+            }"
+          >
+            {{ "Portfolio.project_details.about_btn" | translate }}
+          </button>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div
+          class="event-images w-100 h-100"
+          [ngStyle]="{
+            '--quantity': project.images.length
+          }"
+        >
+          <div
+            *ngFor="let image of project.images.slice(0, 6); let i = index"
+            [class]="
+              'rounded-3 image overflow-hidden pointer  image-' + (i + 1)
+            "
+            (click)="eventGallery(project.id)"
+          >
+            <img [src]="image.image" alt="event image" />
+
+            <div
+              class="overlay"
+              *ngIf="i === 5 || i == project.images.length - 1"
+            >
+              <h5 class="h4 mb-0">+{{ project.images.length }}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

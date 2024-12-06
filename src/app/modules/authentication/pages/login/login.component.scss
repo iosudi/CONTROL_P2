@@ -1,0 +1,158 @@
+:host {
+  width: 100%;
+}
+.form-wrapper {
+  overflow-y: auto;
+  background-color: var(--background-secondary-color);
+  position: relative;
+  border-radius: 20px;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+  }
+  .close-icon {
+    position: absolute;
+    cursor: pointer;
+    top: 2rem;
+    right: 2rem;
+  }
+  h2 {
+    color: var(--main-color);
+  }
+
+  form {
+    .inputs-container {
+      .input-field {
+        background: #2b2b2b;
+        border-radius: 8px;
+        border: 1px solid #2b2b2b;
+        transition: 0.3s;
+        input {
+          background: transparent;
+          outline: none;
+          border: 0;
+          width: 100%;
+          font-size: 18px;
+          font-weight: light;
+          color: var(--white-text);
+        }
+        img {
+          width: 25px;
+          height: 25px;
+          &.eye {
+            cursor: pointer;
+          }
+        }
+
+        &:focus-within {
+          background-color: #2d2d2d;
+          border: 1px solid #818181;
+        }
+      }
+    }
+
+    .options {
+      font-size: 1rem;
+      .forgot-password {
+        text-decoration: underline;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.5);
+      }
+      p {
+        color: rgba(255, 255, 255, 0.5);
+
+        span {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .main-btn {
+      color: white;
+      padding: 0.8rem 4rem;
+      font-size: 1.1rem;
+      i {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .separator {
+    .line {
+      width: 100%;
+      height: 1px;
+      background: #6f6f6f;
+    }
+    p {
+      font-size: 1rem;
+      color: #6f6f6f;
+    }
+  }
+
+  .social-methods {
+    .method {
+      background: #2b2b2b;
+      border-radius: 8px;
+      cursor: pointer;
+      p {
+        font-size: 1rem;
+        color: #b8b8b8;
+      }
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}
+
+@media (max-width: 775px) {
+  .form-wrapper {
+    form {
+      .inputs-container {
+        .input-field {
+          input {
+            font-size: 13px;
+          }
+          img {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+
+      .options {
+        font-size: 13px;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 20px !important;
+      }
+    }
+
+    .social-methods {
+      .method {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px !important;
+        gap: 10px;
+        background: #e5e5e5 !important;
+        img {
+          width: 20px !important;
+          height: 20px !important;
+        }
+        p {
+          font-size: 13px !important;
+        }
+      }
+    }
+  }
+}

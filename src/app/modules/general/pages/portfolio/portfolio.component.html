@@ -1,0 +1,187 @@
+<app-home-navbar></app-home-navbar>
+
+<section
+  class="hero overflow-hidden d-flex align-items-center justify-content-center position-relative overflow-hidden"
+  [dir]="'dir' | translate"
+>
+  <div class="container">
+    <div class="blurred-balls"></div>
+    <div class="blurred-balls white"></div>
+
+    <div class="heading text-center mb-5">
+      <h1 class="fw-bold" [innerHTML]="'Portfolio.hero.title' | translate"></h1>
+      <p class="mb-0 mx-auto">
+        {{ "Portfolio.hero.paragraph" | translate }}
+      </p>
+    </div>
+
+    <div class="images d-flex gap-3">
+      <img src="./assets/images/our-services/1.png" alt="image" />
+      <img src="./assets/images/our-services/3.png" alt="image" />
+      <img src="./assets/images/our-services/7.png" alt="image" />
+    </div>
+  </div>
+</section>
+
+<section class="work-categories">
+  <div class="container">
+    <swiper-container slides-per-view="4" [breakpoints]="ourWorkBreakpoints">
+      <swiper-slide *ngFor="let item of ourWork">
+        <div
+          class="category d-flex justify-content-between overflow-hidden px-4 pointer"
+          (click)="setProjectsByCategoryId(item.id)"
+        >
+          <div class="title d-flex flex-column justify-content-center">
+            <h4 class="fw-bold mb-0">{{ item.categoryName.split(" ")[0] }}</h4>
+            <p class="mb-0">
+              {{ item.categoryName.split(" ").slice(1).join(" ") }}
+            </p>
+          </div>
+
+          <div class="ball"></div>
+
+          <div class="images row g-1">
+            <div class="col-6" *ngFor="let img of item.images.slice(0, 8)">
+              <img [src]="img" alt="event" />
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+</section>
+
+<section class="events-work pb-5" [dir]="'dir' | translate">
+  <div class="container">
+    <div class="heading d-flex justify-content-between align-items-center">
+      <h3 class="fw-ligh mb-0">
+        <span class="fw-bold">{{ eventCategoryName.split(" ")[0] }}</span>
+        {{ eventCategoryName.split(" ").slice(1).join(" ") }}
+      </h3>
+      <!-- <h4 class="h3 mb-0 pagination-counter">
+        24 /150 {{ "Portfolio.events_work.images_counter" | translate }}
+      </h4> -->
+    </div>
+
+    <div
+      class="search-categories my-4 d-flex gap-2 justify-content-between align-items-center"
+    >
+      <div
+        class="search-input px-3 py-2 rounded-5 d-flex align-items-center justify-content-between"
+      >
+        <input
+          type="text"
+          [(ngModel)]="searchQuery"
+          [placeholder]="'Portfolio.events_work.search_placeholder' | translate"
+          (input)="filterProjects()"
+        />
+        <i class="fa-solid fa-magnifying-glass pointer"></i>
+      </div>
+
+      <!-- <div class="categories d-flex gap-2">
+        <div class="category rounded-5 px-4 py-2 fs-5 pointer">
+          {{ "Portfolio.events_work.trend" | translate }}
+        </div>
+        <div class="category rounded-5 px-4 py-2 fs-5 pointer">
+          {{ "Portfolio.events_work.latest" | translate }}
+        </div>
+        <div class="category rounded-5 px-4 py-2 fs-5 pointer">
+          {{ "Portfolio.events_work.milestone" | translate }}
+        </div>
+        <div class="category rounded-5 px-4 py-2 fs-5 pointer">
+          {{ "Portfolio.events_work.most_viewed" | translate }}
+        </div>
+      </div>
+
+      <swiper-container
+        slides-per-view="4"
+        class="mx-0 w-100"
+        [breakpoints]="workCategoriesBreakPoints"
+        dir="ltr"
+      >
+        <swiper-slide>
+          <div class="category rounded-5 px-4 py-2 fs-5 pointer">
+            {{ "Portfolio.events_work.trend" | translate }}
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div class="category rounded-5 px-4 py-2 fs-5 pointer">
+            {{ "Portfolio.events_work.latest" | translate }}
+          </div>
+        </swiper-slide>
+        <swiper-slide
+          ><div class="category rounded-5 px-4 py-2 fs-5 pointer">
+            {{ "Portfolio.events_work.milestone" | translate }}
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div class="category rounded-5 px-4 py-2 fs-5 pointer">
+            {{ "Portfolio.events_work.most_viewed" | translate }}
+          </div>
+        </swiper-slide>
+      </swiper-container> -->
+    </div>
+
+    <div class="event-images" *ngIf="filteredProjects.length > 0; else empty">
+      <div
+        class="event-preview position-relative pointer overflow-hidden"
+        dir="ltr"
+        *ngFor="let project of filteredProjects"
+      >
+        <img [src]="project.image" *ngIf="project.image" alt="image" />
+        <div
+          class="event-info position-absolute d-flex align-items-center justify-content-center"
+        >
+          <!-- <button class="btn heart-icon">
+            <i class="fa-regular fa-heart"></i>
+          </button> -->
+
+          <h5 class="h2 text-center">{{ project.name }}</h5>
+
+          <div
+            class="controls d-flex w-100 p-3 justify-content-between align-items-center"
+          >
+            <button class="btn view-project" (click)="viewProject(project.id)">
+              {{ "Portfolio.project_overlay.view" | translate }}
+              <i class="fa-solid fa-arrow-up ms-3"></i>
+            </button>
+
+            <div class="d-flex align-items-center gap-2">
+              <button class="btn" (click)="eventGallery(project.id)">
+                <i class="fa-solid fa-magnifying-glass-plus"></i>
+              </button>
+
+              <!-- <button class="btn">
+                <i class="fa-solid fa-arrow-up-from-bracket"></i>
+              </button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #empty>
+      <div
+        class="d-flex align-items-center justify-content-center flex-column empty"
+      >
+        <img
+          src="./assets/images/icons/empty.svg"
+          alt="image"
+          class="not_found_image"
+        />
+
+        <h4 class="heading-color fw-bold mt-4">
+          {{ "noProjects" | translate }}
+        </h4>
+      </div>
+    </ng-template>
+
+    <!-- <button
+      class="main-btn px-5 py-3 mt-5 rounded-5 mx-auto fw-bold fs-4 disabled"
+    >
+      {{ "Portfolio.load_btn" | translate }}
+    </button> -->
+  </div>
+</section>
+
+<app-footer></app-footer>

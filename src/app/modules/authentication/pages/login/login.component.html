@@ -1,0 +1,78 @@
+<div class="form-wrapper py-5 px-4">
+  <i class="fa-solid fa-xmark close-icon" (click)="close()"></i>
+
+  <h2 class="h3 mb-4 mt-3">Welcome Back</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="inputs-container mb-3">
+      <div class="input-box my-3">
+        <div class="input-field d-flex gap-2 align-items-center px-4">
+          <input
+            formControlName="email"
+            class="py-3"
+            type="email"
+            placeholder="Name"
+          />
+        </div>
+      </div>
+
+      <div class="input-box my-3">
+        <div class="input-field d-flex gap-2 align-items-center px-4">
+          <input
+            class="py-3"
+            [type]="passwordVisibility ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Password"
+          />
+          <img
+            (click)="togglePasswordVisibility('password')"
+            class="eye"
+            [src]="
+              passwordVisibility
+                ? 'assets/images/icons/closed-eye.png'
+                : 'assets/images/icons/opened-eye.png'
+            "
+            alt="opened eye icon"
+          />
+        </div>
+      </div>
+
+      <p class="text-danger text-center" *ngIf="errorMessage != ''">
+        {{ errorMessage }}
+      </p>
+    </div>
+
+    <button class="main-btn rounded-5 d-flex align-items-center gap-2 my-4">
+      Login
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
+
+    <div class="options d-flex justify-content-between mb-3">
+      <p class="forgot-password" (click)="openForgotPasswordForm()">
+        Forget password ?
+      </p>
+      <p class="mb-0">
+        Don't have account?
+        <span (click)="openSignupForm()" class="fw-bold heading-color"
+          >Sign up</span
+        >
+      </p>
+    </div>
+  </form>
+
+  <div class="separator d-flex align-items-center gap-3">
+    <div class="line"></div>
+    <p class="mb-0">OR</p>
+    <div class="line"></div>
+  </div>
+
+  <div class="social-methods">
+    <div class="method px-4 py-3 mt-4 mb-2 d-flex gap-2 align-items-center">
+      <img src="./assets/images/icons/google.png" alt="google icon" />
+      <p class="mb-0 fw-lighter">Sign Up With Google</p>
+    </div>
+    <div class="method px-4 py-3 d-flex gap-2 align-items-center">
+      <img src="./assets/images/icons/facebook.png" alt="facebook icon" />
+      <p class="mb-0 fw-lighter">Sign Up Facebook</p>
+    </div>
+  </div>
+</div>

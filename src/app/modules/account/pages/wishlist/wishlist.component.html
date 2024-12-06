@@ -1,0 +1,94 @@
+<div class="wishlist">
+  <div class="heading mb-3 d-flex align-items-center justify-content-between">
+    <h1 class="mb-0 fw-normal h2">Your products wishlist</h1>
+    <div class="socials">
+      <button class="btn">share</button>
+      <a href="#" class="social-icon"
+        ><i class="fa-brands fa-facebook-f"></i
+      ></a>
+      <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="#" class="social-icon"
+        ><i class="fa-brands fa-facebook-messenger"></i
+      ></a>
+      <a href="#" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+  </div>
+
+  <div
+    class="wishlist-controls d-flex align-items-end justify-content-end gap-3"
+  >
+    <button class="btn p-0 text-decoration-underline fs-4">
+      Clear wish list
+    </button>
+    <p-dropdown
+      [options]="cities"
+      [(ngModel)]="selectedCity"
+      optionLabel="name"
+      placeholder="Sort by"
+    />
+  </div>
+
+  <div class="wishlist-products mt-4">
+    <div class="row gy-3 gx-2 g-lg-4">
+      <div class="col-lg-4 col-6" *ngFor="let item of [1, 2, 3, 4]">
+        <div class="product px-2 py-3 rounded-4 pointer">
+          <div class="product-image mb-3 position-relative">
+            <div
+              class="overlays px-2 position-absolute d-flex align-items-center justify-content-between"
+            >
+              <div
+                class="dimensions rounded-5 d-flex gap-2 align-items-center px-2 py-1 fw-semibold"
+              >
+                <img src="./assets/images/icons/dimension.png" alt="icon" />
+                80x50 cm
+              </div>
+
+              <div
+                class="heart-icon d-flex align-items-center justify-content-center"
+              >
+                <i class="fa-solid fa-heart"></i>
+              </div>
+            </div>
+
+            <img src="./assets/images/shop/1.png" alt="painting" />
+          </div>
+
+          <div class="product-body">
+            <div>
+              <div
+                class="product-title d-flex justify-content-between align-items-center"
+              >
+                <h4 class="h5 mb-0 fw-normal">Product 1</h4>
+                <p class="mb-0">
+                  4.1
+                  <i class="fa-solid fa-star star-color"></i>
+                </p>
+              </div>
+            </div>
+
+            <div class="price heading-color">
+              <span class="discount"> 435.00 </span>
+              435.00 SAR
+            </div>
+
+            <div class="product-actions d-flex align-items-center gap-2 mt-3">
+              <button class="main-btn px-4 py-2 rounded-5 fw-semibold">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Add to cart
+              </button>
+              <button
+                class="quick-view-btn d-flex align-items-center justify-content-center"
+              >
+                <img
+                  src="./assets/images/icons/quick view eye.png"
+                  alt="quick view"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

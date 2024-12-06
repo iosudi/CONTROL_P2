@@ -1,0 +1,20 @@
+.row {
+  .images {
+    img {
+      max-height: 400px;
+    }
+  }
+
+  .content {
+    p,
+    li {
+      color: #ffffff80;
+      font-size: 1.1rem;
+      line-height: 30px;
+    }
+
+    li {
+      list-style: disc;
+    }
+  }
+}

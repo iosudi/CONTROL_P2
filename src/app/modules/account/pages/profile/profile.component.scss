@@ -1,0 +1,39 @@
+.profile {
+  .breadcrumb {
+    background: #333333;
+    padding: 2.5rem 0;
+
+    p {
+      font-size: 1.3rem;
+      color: var(--paragraph-text-color);
+      span {
+        color: var(--white-text);
+      }
+    }
+  }
+
+  .profile-navbar {
+    ul {
+      list-style: none;
+      li {
+        color: var(--paragraph-text-color);
+        &.active-route {
+          background-color: #303030;
+          color: var(--white-text);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .profile-nav-col {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .breadcrumb {
+    display: none;
+  }
+}

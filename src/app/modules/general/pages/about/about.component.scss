@@ -1,0 +1,418 @@
+.hero {
+  height: 600px;
+  backdrop-filter: blur(147px);
+  border-radius: 0px 0px 110px 110px;
+  background: #292929a1;
+  position: relative;
+  .blurred-balls {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    &.white {
+      top: 70%;
+      left: 80%;
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  .heading {
+    h1 {
+      font-size: 5rem;
+    }
+    p {
+      color: #ffffffcc;
+      font-size: 1.5rem;
+      max-width: 50ch;
+    }
+  }
+
+  .images {
+    bottom: -125px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    overflow: hidden;
+    img {
+      border-radius: 30px;
+      &:nth-child(odd) {
+        width: 250px;
+        height: 250px;
+      }
+      &:nth-child(even) {
+        width: 250px;
+        height: 190px;
+      }
+    }
+  }
+}
+
+.staff-crew {
+  margin-top: 15rem;
+  margin-bottom: 8rem;
+  img {
+    border-radius: 28px;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: #ffffffcc;
+    line-height: 45px;
+  }
+}
+
+.about-us {
+  .container {
+    background: #d79b1e1c;
+    padding: 4em;
+    .col-lg-4 {
+      .card {
+        background: #a8a8a82b;
+        border-radius: 3em;
+        img {
+          width: 70px;
+          height: auto;
+        }
+
+        h3 {
+          color: var(--white-text);
+          font-size: 3rem;
+        }
+
+        p {
+          color: var(--white-text);
+          font-size: 1.1rem;
+          line-height: 35px;
+          font-weight: 300;
+        }
+      }
+      &:nth-child(2) .card {
+        background: #d79b1e2b;
+        h3 {
+          color: var(--main-color);
+        }
+      }
+    }
+  }
+}
+
+.team-members {
+  color: white;
+
+  .heading {
+    h3 {
+      font-size: 3.5rem;
+    }
+    p {
+      font-size: 1rem;
+      color: var(--paragraph-text-color);
+    }
+  }
+
+  .member {
+    img {
+      border-radius: 20px;
+    }
+
+    .member-info {
+      h4 {
+        font-size: 1.2rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+        color: var(--paragraph-text-color);
+      }
+    }
+
+    .member-social {
+      a {
+        width: 40px;
+        text-decoration: none;
+        height: 40px;
+        background: #d9d9d978;
+        border-radius: 50%;
+        color: var(--white-text);
+        border: 0.03px solid #000000;
+        outline: none;
+      }
+    }
+  }
+}
+
+.our-features {
+  .description {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--paragraph-text-color);
+  }
+  .feature {
+    img {
+      width: 70px;
+      height: auto;
+    }
+
+    p {
+      max-width: 40ch;
+      font-weight: 300;
+    }
+  }
+}
+
+.how-we-work {
+  margin-top: 8rem;
+  p {
+    color: var(--paragraph-text-color);
+    max-width: 63ch;
+    span {
+      color: var(--white-text);
+    }
+  }
+  ul {
+    li {
+      list-style: disc;
+      h5 {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.FAQS {
+  .heading {
+    button {
+      font-size: 1.2rem;
+      .icon {
+        width: 35px;
+        height: 35px;
+        background-color: var(--background-primary-color);
+        border-radius: 50%;
+        img {
+          width: 20px;
+          height: auto;
+        }
+      }
+    }
+  }
+
+  .col-12 {
+    .faq {
+      border-bottom: 1px solid #444;
+      overflow: hidden;
+      transition: 0.5s;
+      cursor: pointer;
+      display: grid;
+      grid-template-rows: 1.8em 0fr;
+      h4 {
+        color: var(--white-text);
+        font-size: 1.2rem;
+        transition: 0.2s;
+      }
+      i {
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      p {
+        color: var(--white-text);
+        line-height: 30px;
+        font-size: 1rem;
+      }
+
+      &.expand {
+        cursor: auto;
+        grid-template-rows: 1.8em 1fr;
+
+        h4 {
+          color: var(--main-color);
+        }
+        i {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+    &:last-child .faq {
+      border-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: 1399px) {
+  .about-us {
+    .container {
+      padding: 3em;
+      .col-lg-4 {
+        .card {
+          border-radius: 1em;
+          padding: 2em 1em !important;
+          img {
+            width: 70px;
+          }
+
+          h3 {
+            font-size: 2rem;
+          }
+
+          p {
+            font-size: 1rem;
+            line-height: 25px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .hero {
+    height: 400px;
+
+    .heading {
+      h1 {
+        font-size: 3rem;
+      }
+      p {
+        font-size: 1.2rem;
+      }
+    }
+
+    .images {
+      bottom: -110px;
+      img {
+        &:nth-child(odd) {
+          width: 220px;
+          height: 220px;
+        }
+        &:nth-child(even) {
+          min-width: 220px;
+          height: 160px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .hero {
+    height: 250px;
+    border-radius: 0;
+    .blurred-balls {
+      top: 30%;
+      left: 40%;
+    }
+
+    .heading {
+      h1 {
+        font-size: 1.5rem;
+      }
+      p {
+        font-size: 0.9rem;
+        max-width: 50ch;
+        padding: 0 1em;
+      }
+    }
+
+    .images {
+      bottom: -65px;
+      img {
+        border-radius: 10px;
+        &:nth-child(odd) {
+          width: 150px;
+          height: 130px;
+        }
+        &:nth-child(even) {
+          min-width: 150px;
+          height: 100px;
+        }
+      }
+    }
+  }
+
+  .staff-crew {
+    img {
+      border-radius: 13px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 300 !important;
+      span {
+        font-weight: bold;
+      }
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 28px;
+    }
+  }
+
+  .about-us {
+    margin: 1em;
+    .container {
+      border-radius: 10px !important;
+      background: #d79b1e1c;
+      padding: 2em;
+      .col-lg-4 {
+        .card {
+          border-radius: 1em;
+          padding: 1em !important;
+          img {
+            width: 45px;
+          }
+
+          h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px !important;
+          }
+
+          p {
+            font-size: 0.8rem;
+            line-height: 25px;
+          }
+        }
+      }
+    }
+  }
+
+  .team-members {
+    .heading {
+      h3 {
+        font-size: 1.5rem;
+      }
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .our-features {
+    .description {
+      font-size: 0.9rem;
+    }
+    .feature {
+      img {
+        width: 60px;
+      }
+    }
+  }
+
+  .how-we-work {
+    p.my-5 {
+      margin: 1.5em !important;
+    }
+  }
+
+  .FAQS {
+    margin-top: 2em !important;
+    .heading {
+      button {
+        margin-top: 1.5em !important;
+      }
+    }
+  }
+}

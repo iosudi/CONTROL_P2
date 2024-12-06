@@ -1,0 +1,162 @@
+<app-home-navbar></app-home-navbar>
+
+<section
+  class="hero overflow-hidden d-flex align-items-center justify-content-center position-relative overflow-hidden"
+  [dir]="'dir' | translate"
+>
+  <div class="container">
+    <div class="blurred-balls"></div>
+    <div class="blurred-balls white"></div>
+
+    <div class="heading text-center mb-5">
+      <h1 class="fw-bold" [innerHTML]="'Services.hero.title' | translate">
+        <span class="heading-color"> Our </span> Services
+      </h1>
+      <p class="mb-0 mx-auto">
+        {{ "Services.hero.paragraph" | translate }}
+      </p>
+    </div>
+
+    <div class="images d-flex gap-3">
+      <img src="./assets/images/our-services/1.png" alt="image" />
+      <img src="./assets/images/our-services/3.png" alt="image" />
+      <img src="./assets/images/our-services/7.png" alt="image" />
+    </div>
+  </div>
+</section>
+
+<section class="our-solutions" [dir]="'dir' | translate">
+  <div class="container">
+    <div class="heading text-center mb-5">
+      <h2
+        class="mb-3"
+        [innerHTML]="'Services.our_solutions.title' | translate"
+      ></h2>
+      <h3 class="fs-4 mb-3">
+        {{ "Services.our_solutions.subtitle" | translate }}
+      </h3>
+      <p class="mx-auto">
+        {{ "Services.our_solutions.paragraph" | translate }}
+      </p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6" *ngFor="let solution of services">
+        <div class="solution h-100">
+          <img [src]="solution.image" alt="image" />
+          <div
+            class="content-overlay d-flex flex-column justify-content-end p-4"
+          >
+            <button
+              class="d-flex align-items-center justify-content-center pointer mb-3"
+            >
+              <i class="fa-solid fa-plus"></i>
+            </button>
+            <h3 class="h4 fw-bold">{{ solution.name }}</h3>
+            <p
+              class="mb-0 fs-5 heading-color text-uppercase pointer"
+              (click)="openServiceDetails(solution.id)"
+            >
+              {{ "Services.btn_read_more" | translate }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div
+          class="content d-flex justify-content-center gap-5 flex-column h-100 p-5"
+        >
+          <img src="./assets/images/logo.png" alt="logo" />
+          <h3 class="fw-bold">
+            {{ "Services.solutions_cards.card_extra.title" | translate }}
+          </h3>
+          <button
+            class="white-btn fw-semibold fs-4 px-5 py-3 rounded-5"
+            routerLink="/contact-us"
+            [ngClass]="{
+              'me-auto': direction === 'ltr',
+              'ms-auto': direction === 'rtl'
+            }"
+          >
+            {{
+              "Services.solutions_cards.card_extra.btn_get_in_touch" | translate
+            }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section
+  class="contact-banner overflow-hidden"
+  [dir]="'dir' | translate"
+  [class.ar]="direction == 'rtl'"
+>
+  <div class="container position-relative">
+    <img class="star" src="./assets/images/home/banner/star.png" alt="star" />
+    <div class="row h-100">
+      <div class="col-lg-6 d-flex align-items-center px-0">
+        <div
+          class="content d-flex flex-column justify-content-around h-100 py-5 px-5"
+        >
+          <div>
+            <h2
+              class="fw-bold"
+              [innerHTML]="'Services.contact_banner.title' | translate"
+            >
+              Enjoy 20% Off Your <br />
+              First Order!
+            </h2>
+            <p class="fw-light">
+              {{ "Services.contact_banner.paragraph" | translate }}
+            </p>
+          </div>
+
+          <div class="contact-buttons d-flex align-items-center gap-3">
+            <button
+              class="px-3 py-2 d-flex align-items-center justify-content-center gap-3"
+              routerLink="/contact-us"
+            >
+              <span
+                class="icon d-flex align-items-center justify-content-center"
+              >
+                <i class="fa-solid fa-phone"></i>
+              </span>
+              {{ "Services.contact_banner.btn_call" | translate }}
+            </button>
+            <button
+              class="px-3 py-2 d-flex align-items-center justify-content-center gap-3"
+              (click)="openWhatsApp()"
+            >
+              <span
+                class="icon d-flex align-items-center justify-content-center"
+              >
+                <i class="fa-brands fa-whatsapp"></i>
+              </span>
+              {{ "Services.contact_banner.btn_whatsapp" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 px-0">
+        <div class="images">
+          <img
+            class="vector"
+            src="./assets/images/home/banner/vector.png"
+            alt="vector"
+          />
+          <img
+            class="man"
+            src="./assets/images/our-services/man.png"
+            alt="man"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

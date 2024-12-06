@@ -1,0 +1,724 @@
+<app-home-navbar></app-home-navbar>
+
+<section class="hero position-relative" [dir]="'dir' | translate">
+  <div
+    class="container-fluid px-container d-flex align-items-end justify-content-centers position-relative overflow-hidden"
+  >
+    <div class="blurred-balls"></div>
+    <div class="blurred-balls"></div>
+    <div class="row w-100 justify-content-between">
+      <div class="col-lg-6">
+        <div class="title py-4">
+          <h1
+            class="fw-bold"
+            [innerHTML]="'HomePage.Hero.title' | translate"
+          ></h1>
+          <p class="mt-4">
+            {{ "HomePage.Hero.paragraph" | translate }}
+          </p>
+          <button
+            class="main-btn p-3 rounded-5 mt-5 disabled"
+            [ngClass]="{
+              'me-auto': direction === 'ltr',
+              'ms-auto': direction === 'rtl'
+            }"
+            routerLink="/shop"
+          >
+            <span class="icon d-flex align-items-center justify-content-center">
+              <img src="./assets/images/icons/Cart.png" alt="cart icon" />
+            </span>
+            <span class="fw-semibold">
+              {{ "HomePage.btn_shop" | translate }}
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="col-lg-6 image d-flex align-items-center justify-content-center"
+      >
+        <img
+          src="./assets/images/home/hero-image.svg"
+          class="hero-image"
+          alt="woman"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+  <button class="scroll-down-btn main-btn" routerLink="/home" fragment="shop">
+    <img src="./assets/images/icons/arrow-down.png" alt="arrow down" />
+  </button>
+</section>
+
+<section class="our-work my-sections px-container overflow-hidden">
+  <div
+    class="header d-flex justify-content-between align-items-center mb-5"
+    [dir]="'dir' | translate"
+  >
+    <h2
+      class="h1 text-center fw-bold mb-0"
+      [innerHTML]="'HomePage.our_work.title' | translate"
+    ></h2>
+    <div
+      class="slider-arrows gap-4"
+      [ngClass]="{
+        'd-flex': direction === 'ltr' || direction === 'rtl',
+        'flex-row align-items-center': direction === 'ltr',
+        'flex-row-reverse align-items-center': direction === 'rtl'
+      }"
+    >
+      <button
+        (click)="triggerPrev()"
+        [disabled]="preventSlide('prev')"
+        class="prev-btn white-outlined-btn"
+      >
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <button
+        (click)="triggerNext()"
+        [disabled]="preventSlide('next')"
+        class="next-btn white-outlined-btn"
+      >
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="work-categories">
+    <swiper-container
+      slides-per-view="5.25"
+      [breakpoints]="ourWorkBreakpoints"
+      #ourWorkSwiper
+    >
+      <swiper-slide *ngFor="let item of ourWork">
+        <div
+          class="category d-flex justify-content-between overflow-hidden px-4 pointer"
+          (click)="setProjectImagesByCategoryId(item.id)"
+        >
+          <div class="title d-flex flex-column justify-content-center">
+            <h4 class="fw-bold mb-0">{{ item.categoryName.split(" ")[0] }}</h4>
+            <p class="mb-0">
+              {{ item.categoryName.split(" ").slice(1).join(" ") }}
+            </p>
+          </div>
+
+          <div class="ball"></div>
+
+          <div class="images row g-1">
+            <div class="col-6" *ngFor="let img of item.images.slice(0, 8)">
+              <img [src]="img" alt="event" />
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+
+  <div pDefer>
+    <ng-template>
+      <div class="work-preview mt-5">
+        <div
+          class="heading d-flex justify-content-between align-items-center"
+          [dir]="'dir' | translate"
+        >
+          <h3 class="fw-ligh mb-0">
+            <span class="fw-bold">{{ eventCategoryName.split(" ")[0] }}</span>
+            {{ eventCategoryName.split(" ").slice(1).join(" ") }}
+          </h3>
+          <button
+            class="white-outlined-btn rounded-5 px-3 py-2 fs-5 gap-3"
+            routerLink="/portfolio"
+          >
+            {{ "HomePage.btn_discover" | translate }}
+            <i
+              class="fa-solid fa-arrow-right"
+              [ngClass]="{
+                'fa-arrow-right': direction === 'ltr',
+                'fa-arrow-left': direction === 'rtl'
+              }"
+            ></i>
+          </button>
+        </div>
+
+        <div class="images mt-5" *ngIf="eventImages.length > 0; else empty">
+          <img
+            *ngFor="let image of eventImages.slice(0, 5); let i = index"
+            [class]="'rounded-4 image-' + (i + 1)"
+            [src]="image"
+            alt="event image"
+          />
+        </div>
+
+        <ng-template #empty>
+          <div
+            class="d-flex align-items-center justify-content-center flex-column empty"
+          >
+            <img
+              src="./assets/images/icons/empty.svg"
+              alt="image"
+              class="not_found_image"
+            />
+
+            <h4 class="heading-color fw-bold mt-4">
+              {{ "noImages" | translate }}
+            </h4>
+          </div>
+        </ng-template>
+      </div>
+    </ng-template>
+  </div>
+</section>
+
+<section class="about" [dir]="'dir' | translate">
+  <div class="about-content position-relative overflow-hidden">
+    <div class="background"></div>
+    <div pDefer>
+      <ng-template>
+        <div class="container-fluid pb-5">
+          <div class="blurred-balls"></div>
+          <div class="row gy-4 justify-content-between">
+            <div class="col-lg-5 d-flex justify-content-between flex-column">
+              <h3
+                class="h2 mb-2"
+                [innerHTML]="'HomePage.about_us.title' | translate"
+              ></h3>
+
+              <p class="mb-2 fw-normal">
+                {{ "HomePage.about_us.paragraph" | translate }}
+              </p>
+
+              <button
+                class="white-outlined-btn rounded-5 px-3 py-2 fs-5 gap-3"
+                [ngClass]="{
+                  'me-auto': direction === 'ltr',
+                  'ms-auto': direction === 'rtl'
+                }"
+                routerLink="/about-us"
+              >
+                {{ "HomePage.btn_discover" | translate }}
+                <i
+                  class="fa-solid fa-arrow-right"
+                  [ngClass]="{
+                    'fa-arrow-right': direction === 'ltr',
+                    'fa-arrow-left': direction === 'rtl'
+                  }"
+                ></i>
+              </button>
+            </div>
+
+            <div
+              class="col-lg-6 d-flex align-items-center justify-content-center"
+            >
+              <div class="image position-relative">
+                <img
+                  loading="lazy"
+                  src="./assets/images/home/cars.svg"
+                  alt="about us"
+                />
+                <div
+                  class="logo position-absolute d-flex align-items-center justify-content-center px-2"
+                >
+                  <img src="./assets/images/logo.png" alt="logo" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</section>
+
+<section
+  class="why-us my-sections px-container position-relative"
+  [dir]="'dir' | translate"
+>
+  <div class="blurred-balls"></div>
+
+  <div class="container">
+    <h3
+      class="fw-light text-center"
+      [innerHTML]="'HomePage.why_us.title' | translate"
+    ></h3>
+
+    <div class="features row g-4">
+      <div class="col-lg-3 col-6">
+        <div
+          class="feature d-flex align-items-center justify-content-center flex-column"
+        >
+          <div
+            class="icon d-flex align-items-center justify-content-center mb-3"
+          >
+            <img
+              src="./assets/images/icons/Hotel-Five-Star--Streamline-Core.png"
+              alt="icon"
+            />
+          </div>
+
+          <h4 class="h3">
+            {{ "HomePage.why_us.cards.experience.title" | translate }}
+          </h4>
+          <p class="text-center mb-0">
+            {{ "HomePage.why_us.cards.experience.description" | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-6">
+        <div
+          class="feature d-flex align-items-center justify-content-center flex-column"
+        >
+          <div
+            class="icon d-flex align-items-center justify-content-center mb-3"
+          >
+            <img
+              src="./assets/images/icons/Collaborations-Idea--Streamline-Core.png"
+              alt="icon"
+            />
+          </div>
+
+          <h4>{{ "HomePage.why_us.cards.talent.title" | translate }}</h4>
+          <p class="text-center mb-0">
+            {{ "HomePage.why_us.cards.talent.description" | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-6">
+        <div
+          class="feature d-flex align-items-center justify-content-center flex-column"
+        >
+          <div
+            class="icon d-flex align-items-center justify-content-center mb-3"
+          >
+            <img
+              src="./assets/images/icons/Business-Handshake--Streamline-Core.png"
+              alt="icon"
+            />
+          </div>
+
+          <h4>{{ "HomePage.why_us.cards.broadness.title" | translate }}</h4>
+          <p class="text-center mb-0">
+            {{ "HomePage.why_us.cards.broadness.description" | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-6">
+        <div
+          class="feature d-flex align-items-center justify-content-center flex-column"
+        >
+          <div
+            class="icon d-flex align-items-center justify-content-center mb-3"
+          >
+            <img
+              src="./assets/images/icons/Share-Setting-Bolt--Streamline-Core.png"
+              alt="icon"
+            />
+          </div>
+
+          <h4>{{ "HomePage.why_us.cards.assets.title" | translate }}</h4>
+          <p class="text-center mb-0">
+            {{ "HomePage.why_us.cards.assets.description" | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="our-services position-relative">
+  <div class="background position-absolute overflow-hidden">
+    <img
+      class="banner-star"
+      src="./assets/images/home/services/star1.png"
+      alt="star"
+    />
+    <img
+      class="banner-star"
+      src="./assets/images/home/services/star2.png"
+      alt="star"
+    />
+  </div>
+  <div pDefer>
+    <ng-template>
+      <div class="services">
+        <h3
+          class="h2 mb-4 fw-light"
+          [innerHTML]="'HomePage.services.title' | translate"
+        ></h3>
+
+        <div class="dots d-flex gap-2 mb-5">
+          <span
+            [class]="dot.className"
+            *ngFor="let dot of dotsCount; let i = index"
+            (click)="slideTo(i)"
+          ></span>
+        </div>
+
+        <div class="service-slider">
+          <swiper-container
+            #serviceSwiper
+            slides-per-view="5.5"
+            [spaceBetween]="50"
+            [breakpoints]="servicesBreakpoints"
+            (swiperslidechangetransitionend)="onSlideChange('services')"
+            (swiperbreakpoint)="updateDots()"
+            pagination="true"
+          >
+            <swiper-slide
+              *ngFor="let service of services"
+              [routerLink]="['/services', service.id]"
+            >
+              <div class="service pointer">
+                <h4 class="fw-bold mb-5">{{ service.name }}</h4>
+
+                <img
+                  [src]="service.image"
+                  alt="service"
+                  class="service-preview"
+                />
+              </div>
+            </swiper-slide>
+          </swiper-container>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</section>
+
+<section class="shop position-relative" id="shop" [dir]="'dir' | translate">
+  <div class="blurred-balls"></div>
+  <div class="container-fluid px-container my-sections">
+    <div class="row gy-4">
+      <div class="col-lg-3">
+        <div class="px-5 py-5 categories-list h-100">
+          <h3
+            class="fw-normal mb-5"
+            [innerHTML]="'HomePage.mini_shop.title' | translate"
+          ></h3>
+
+          <button
+            class="dark-outlined-btn px-4 py-2 rounded-5 d-flex gap-4 fw-semibold mb-4 disabled"
+          >
+            {{ "HomePage.btn_shop" | translate }}
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+
+          <div class="categories d-flex flex-column gap-4">
+            <div
+              class="category pointer overflow-hidden"
+              *ngFor="let category of productsCategories"
+              (click)="
+                setActiveCategory(
+                  category.category.id,
+                  category.products,
+                  category.category.name
+                )
+              "
+              [class.activeCategory]="category.category.id == activeCategory"
+            >
+              <p class="mb-3 fw-semibold">{{ category.category.name }}</p>
+              <img [src]="category.category.image" alt="category image" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-9">
+        <app-home-mini-shop
+          [activeCategory]="activeCategory"
+          [products]="activeCategoryProducts"
+          [categoryName]="activeCategoryName"
+        ></app-home-mini-shop>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" [dir]="'dir' | translate">
+  <div pDefer>
+    <ng-template>
+      <div
+        class="testimonials-content position-relative ps-sm-5 ps-3 pe-2 overflow-hidden"
+      >
+        <div class="background"></div>
+        <div class="container ps-sm-5 ps-4 position-relative">
+          <div class="blurred-balls"></div>
+          <div class="row gy-4">
+            <div class="col-lg-6 d-flex justify-content-center flex-column">
+              <h3
+                class="h2 mb-2"
+                [innerHTML]="'HomePage.testimonials.title' | translate"
+              ></h3>
+
+              <p class="mb-2 fw-light">
+                {{ "HomePage.testimonials.paragraph" | translate }}
+              </p>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="carousel-container" dir="ltr">
+                <div class="navigation-dots d-flex flex-column gap-2">
+                  <div
+                    #dot1
+                    class="dot"
+                    [class.active-dot]="activeSlideIndex === 0"
+                  ></div>
+                  <div
+                    #dot2
+                    class="dot"
+                    [class.active-dot]="activeSlideIndex === 1"
+                  ></div>
+                  <div
+                    #dot3
+                    class="dot"
+                    [class.active-dot]="activeSlideIndex === 2"
+                  ></div>
+                  <div
+                    #dot4
+                    class="dot"
+                    [class.active-dot]="activeSlideIndex === 3"
+                  ></div>
+                </div>
+
+                <div class="carousel">
+                  <swiper-container
+                    #testimonialSwiper
+                    slides-per-view="1"
+                    [spaceBetween]="50"
+                    (swiperslidechangetransitionend)="
+                      onSlideChange('feedbacks')
+                    "
+                  >
+                    <swiper-slide *ngFor="let review of reviews; let i = index">
+                      <div
+                        class="slide pb-4 pt-5 px-5"
+                        [dir]="'dir' | translate"
+                      >
+                        <img
+                          src="./assets/images/quote.png"
+                          alt="quote symbol"
+                          class="quote-symbol"
+                        />
+                        <div class="review-content">
+                          <p class="my-4 fw-semibold">
+                            {{ review.content }}
+                          </p>
+                        </div>
+                        <div
+                          class="review-author d-flex justify-content-between align-items-center border-top pt-4"
+                        >
+                          <div class="author d-flex gap-2 align-items-center">
+                            <img
+                              [src]="review.client_image"
+                              alt="profile-icon"
+                            />
+                            <h5 class="author-name fw-normal mb-0">
+                              {{ review.client_name }}
+                            </h5>
+                          </div>
+                          <div class="rating d-flex align-items-center">
+                            <i
+                              class="fa-solid fa-star star-color"
+                              [class.rating-color]="review.rating >= num"
+                              *ngFor="let num of [1, 2, 3, 4, 5]"
+                            ></i>
+                          </div>
+                        </div>
+                      </div>
+                    </swiper-slide>
+                  </swiper-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            class="white-outlined-btn px-3 py-1 fs-6 fw-light rounded-5 d-none align-items-center justify-content-center gap-2 mt-4 me-auto"
+          >
+            Write your comment
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</section>
+
+<section class="partners-slider overflow-hidden my-5 py-5">
+  <div pDefer>
+    <ng-template>
+      <div class="blurred-balls"></div>
+
+      <ul
+        class="list m-0 p-0 d-flex mb-4"
+        [ngStyle]="{
+          '--quantity': partners.length,
+          '--width': '180px',
+          '--height': '80px'
+        }"
+      >
+        <li
+          *ngFor="let partner of partners; let i = index"
+          class="partner-link pointer d-flex align-items-center justify-content-center rounded-3 py-3"
+          [ngStyle]="{ '--position': i + 1 }"
+        >
+          <img [src]="partner.image" alt="partner logo" />
+        </li>
+      </ul>
+
+      <ul
+        class="list m-0 p-0 d-flex"
+        [ngStyle]="{
+          '--quantity': partners.length,
+          '--width': '180px',
+          '--height': '80px'
+        }"
+      >
+        <li
+          *ngFor="let partner of partners; let i = index"
+          class="partner-link reversed pointer d-flex align-items-center justify-content-center rounded-3 py-3"
+          [ngStyle]="{ '--position': i + 1 }"
+        >
+          <img [src]="partner.image" alt="partner logo" />
+        </li>
+      </ul>
+    </ng-template>
+  </div>
+</section>
+
+<section
+  class="event-step d-flex align-items-center justify-content-center overflow-hidden"
+>
+  <div pDefer>
+    <ng-template>
+      <div class="images">
+        <img
+          loading="lazy"
+          src="./assets/images/home/events/8.jpg"
+          alt="image"
+        />
+        <img
+          loading="lazy"
+          src="./assets/images/home/events/1.jpg"
+          alt="image"
+        />
+        <img
+          loading="lazy"
+          src="./assets/images/home/events/2.jpg"
+          alt="image"
+        />
+        <img
+          loading="lazy"
+          src="./assets/images/home/events/3.jpg"
+          alt="image"
+        />
+        <img
+          loading="lazy"
+          src="./assets/images/home/events/4.jpg"
+          alt="image"
+        />
+        <img
+          loading="lazy"
+          src="./assets/images/home/events/5.jpg"
+          alt="image"
+        />
+        <img
+          loading="lazy"
+          src="./assets/images/home/events/6.jpg"
+          alt="image"
+        />
+        <img
+          loading="lazy"
+          src="./assets/images/home/events/7.jpg"
+          alt="image"
+        />
+      </div>
+      <div class="content text-center">
+        <h3
+          class="fw-bold fs-1"
+          [innerHTML]="'HomePage.events.title' | translate"
+        ></h3>
+
+        <p class="mx-auto fw-light">
+          {{ "HomePage.events.paragraph" | translate }}
+        </p>
+
+        <button class="main-btn p-2 rounded-5 mx-auto disabled">
+          <div class="icon d-flex align-items-center justify-content-center">
+            <img src="./assets/images/icons/Cart.png" alt="cart icon" />
+          </div>
+          <span class="fw-semibold mx-2" routerLink="/shop">
+            {{ "HomePage.btn_shop" | translate }}
+          </span>
+        </button>
+      </div>
+    </ng-template>
+  </div>
+</section>
+
+<section
+  class="contact-banner overflow-hidden"
+  [class.ar]="direction == 'rtl'"
+  [dir]="'dir' | translate"
+>
+  <div class="container position-relative">
+    <img class="star" src="./assets/images/home/banner/star.png" alt="star" />
+    <div class="row h-100">
+      <div class="col-lg-6 d-flex align-items-center px-0">
+        <div class="content px-5">
+          <h2
+            class="fw-bold"
+            [innerHTML]="'HomePage.contact_banner.title' | translate"
+          ></h2>
+          <p class="fw-light">
+            {{ "HomePage.contact_banner.paragraph" | translate }}
+          </p>
+
+          <div class="contact-buttons d-flex align-items-center gap-3">
+            <button
+              class="px-3 py-2 d-flex align-items-center justify-content-center gap-3"
+              routerLink="/contact-us"
+            >
+              <span
+                class="icon d-flex align-items-center justify-content-center"
+              >
+                <i class="fa-solid fa-phone"></i>
+              </span>
+              {{ "HomePage.contact_banner.btn_call" | translate }}
+            </button>
+            <button
+              class="px-3 py-2 d-flex align-items-center justify-content-center gap-3"
+              (click)="openWhatsApp()"
+            >
+              <span
+                class="icon d-flex align-items-center justify-content-center"
+              >
+                <i class="fa-brands fa-whatsapp"></i>
+              </span>
+              {{ "HomePage.contact_banner.btn_whatsapp" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 px-0">
+        <div class="images">
+          <img
+            class="vector"
+            src="./assets/images/home/banner/vector.png"
+            alt="vector"
+          />
+          <img
+            class="man"
+            src="./assets/images/home/banner/man.png"
+            alt="man"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

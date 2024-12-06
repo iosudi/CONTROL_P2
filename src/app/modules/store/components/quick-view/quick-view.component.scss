@@ -1,0 +1,113 @@
+:host {
+  min-height: 100%;
+}
+
+.container {
+  .product-preview {
+    max-height: 750px;
+  }
+
+  .product-information {
+    .product-rating {
+      .total-reviews {
+        color: var(--paragraph-text-color);
+      }
+    }
+
+    .product-price {
+      .pre-offer-price {
+        color: var(--paragraph-text-color);
+      }
+    }
+
+    .product-description {
+      color: var(--paragraph-text-color);
+      font-size: 0.9rem;
+      line-height: 25px;
+    }
+
+    .product-specifications {
+      ul {
+        li {
+          position: relative;
+          padding: 0.3em 1em;
+          border: 1px solid var(--paragraph-text-color);
+          color: var(--paragraph-text-color);
+          background: transparent;
+          cursor: pointer;
+          &.active {
+            color: var(--dark-text);
+            border-color: var(--white-text);
+            background: var(--white-text);
+            cursor: default;
+            &::before {
+              position: absolute;
+              content: "✓";
+              width: 10px;
+              height: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 4px;
+              color: white;
+              background: #367a3b;
+              border-radius: 50%;
+              top: 2px;
+              left: 2px;
+            }
+          }
+        }
+      }
+    }
+
+    .actions {
+      .quantity {
+        background: var(--white-text);
+        color: var(--dark-text);
+
+        input {
+          background: transparent;
+          outline: none;
+          border: 0;
+
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+        }
+      }
+
+      .main-btn {
+        font-size: 1.4rem;
+      }
+
+      .whatsapp-order {
+        color: #518c4a;
+        font-size: 1.5rem;
+
+        &:hover {
+          color: #60a359;
+        }
+      }
+    }
+
+    .product-details {
+      p {
+        font-size: 1.2rem;
+        span {
+          color: var(--paragraph-text-color);
+          i {
+            margin: 0 4px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+            &:hover {
+              color: var(--white-text);
+            }
+          }
+        }
+      }
+    }
+  }
+}

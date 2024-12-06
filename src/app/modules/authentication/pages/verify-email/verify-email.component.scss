@@ -1,0 +1,101 @@
+:host {
+  width: 100%;
+}
+.form-wrapper {
+  background-color: var(--background-secondary-color);
+  position: relative;
+  border-radius: 20px;
+
+  .close-icon {
+    position: absolute;
+    cursor: pointer;
+    top: 2rem;
+    right: 2rem;
+  }
+
+  .image {
+    display: none;
+  }
+  .title {
+    h2,
+    .userEmail {
+      color: var(--white-text);
+      span {
+        color: #6c6c6c;
+      }
+    }
+
+    .userEmail {
+      font-size: 1.2rem;
+    }
+
+    p {
+      color: var(--white-text);
+      font-size: 1rem;
+    }
+  }
+
+  form {
+    ng-otp-input ::ng-deep {
+      input {
+        background: #656565;
+        border: 0.71px solid #cfcfcf;
+        border-radius: 11.43px;
+        outline: none;
+        width: 45px;
+        height: 45px;
+        color: var(--white-text);
+        font-size: 1rem;
+        font-weight: bold;
+        &:focus {
+          box-shadow: unset;
+        }
+      }
+    }
+
+    .options {
+      .otpFail {
+        font-size: 0.7rem;
+        button {
+          background-color: transparent;
+          border: none;
+          outline: none;
+          font-size: 0.8rem;
+          color: var(--main-color);
+          text-decoration: underline;
+        }
+      }
+
+      .countDown {
+        font-size: 10px;
+        color: #ce941d80;
+      }
+    }
+
+    .main-btn {
+      color: white;
+      padding: 0.8rem 4rem;
+      font-size: 1.1rem;
+      i {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+app-mobile-navbar {
+  display: none;
+}
+@media (max-width: 775px) {
+  .form-wrapper {
+    .image {
+      display: flex;
+
+      img {
+        width: 70%;
+      }
+    }
+  }
+  app-mobile-navbar {
+    display: block;
+  }
+}

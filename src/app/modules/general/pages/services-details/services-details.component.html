@@ -1,0 +1,194 @@
+<app-home-navbar></app-home-navbar>
+
+<section
+  class="hero d-flex align-items-center justify-content-center position-relative overflow-hidden"
+>
+  <div class="blurred-balls"></div>
+  <div class="blurred-balls white"></div>
+
+  <div class="heading text-center">
+    <h1
+      class="fw-bold"
+      [innerHTML]="'ServiceDetailsPage.Hero.title' | translate"
+    ></h1>
+
+    <div class="bread-crumb" [dir]="'dir' | translate">
+      <ul
+        class="m-0 p-0 d-flex align-items-center gap-2 justify-content-center"
+      >
+        <li class="fs-5 heading-color pointer" routerLink="/home">
+          {{ "ServiceDetailsPage.Hero.breadcrumb.home" | translate }}
+        </li>
+        <li class="fs-5 heading-color">
+          {{ "ServiceDetailsPage.Hero.breadcrumb.separator" | translate }}
+        </li>
+        <li class="fs-5 heading-color pointer" routerLink="/services">
+          {{ "ServiceDetailsPage.Hero.breadcrumb.services" | translate }}
+        </li>
+        <li class="fs-5 heading-color">
+          {{ "ServiceDetailsPage.Hero.breadcrumb.separator" | translate }}
+        </li>
+        <li class="fs-5 fw-bold">{{ serviceDetails.name }}</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="service-information my-sections" [dir]="'dir' | translate">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-8">
+        <div class="service-description">
+          <img
+            class="mb-4"
+            [src]="serviceDetails.image"
+            alt="service preview"
+          />
+          <h2 class="h1 fw-bold">
+            {{
+              serviceDetails.name.slice(0, serviceDetails.name.lastIndexOf(" "))
+            }}
+            <span class="heading-color">
+              {{
+                serviceDetails.name.slice(
+                  serviceDetails.name.lastIndexOf(" ") + 1
+                )
+              }}
+            </span>
+          </h2>
+
+          <p>
+            {{ serviceDetails.description }}
+          </p>
+        </div>
+
+        <div class="service-content">
+          <h2 class="fw-bold h1 mb-5">
+            {{
+              "ServiceDetailsPage.ServiceInformation.whatsIncluded.title"
+                | translate
+            }}
+          </h2>
+          <div class="row gx-4 gy-3">
+            <div
+              class="col-lg-6"
+              *ngFor="let item of serviceDetails.service_includings"
+            >
+              <div class="content p-5">
+                <img class="mb-4" [src]="item.icon" alt="icon" />
+                <h3 class="mb-3 fw-bold fs-4">{{ item.title }}</h3>
+                <p class="mb-0">
+                  {{ item.description }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="working-process my-5">
+          <h2 class="fw-bold h1 mb-5">
+            {{
+              "ServiceDetailsPage.ServiceInformation.workingProcess.title"
+                | translate
+            }}
+          </h2>
+          <div class="row g-4">
+            <div
+              class="col-lg-6"
+              *ngFor="let item of serviceDetails.service_working_processes"
+            >
+              <div
+                class="step d-flex gap-4 align-items-center justify-content-start"
+              >
+                <div class="no heading-color">{{ item.id }}</div>
+                <div class="step-description">
+                  <h4 class="h5 fw-bold">{{ item.title }}</h4>
+                  <p>
+                    {{ item.description }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="services-list px-4 py-5">
+          <h3 class="fs-4 fw-light mb-4">
+            {{ "ServiceDetailsPage.Sidebar.servicesListTitle" | translate }}
+          </h3>
+          <div
+            class="service pointer p-4 d-flex justify-content-between align-items-center"
+            *ngFor="let service of services"
+            [routerLink]="['/services', service.id]"
+          >
+            <h4 class="h5 mb-0">{{ service.name }}</h4>
+            <i class="fa-solid fa-arrow-up"></i>
+          </div>
+        </div>
+
+        <!-- <div class="service-request p-5">
+          <h3
+            class="h4 fw-bold"
+            [innerHTML]="'ServiceDetailsPage.ServiceRequest.title' | translate"
+          ></h3>
+          <p class="mb-4 fw-light">
+            {{ "ServiceDetailsPage.ServiceRequest.description" | translate }}
+          </p>
+
+          <form>
+            <div class="input">
+              <input
+                class="w-100 mb-2"
+                type="text"
+                [placeholder]="
+                  'ServiceDetailsPage.ServiceRequest.form.firstName' | translate
+                "
+              />
+            </div>
+            <div class="input">
+              <input
+                class="w-100 mb-2"
+                type="email"
+                [placeholder]="
+                  'ServiceDetailsPage.ServiceRequest.form.email' | translate
+                "
+              />
+            </div>
+            <div class="input">
+              <input
+                class="w-100 mb-2"
+                type="text"
+                [placeholder]="
+                  'ServiceDetailsPage.ServiceRequest.form.phone' | translate
+                "
+              />
+            </div>
+            <div class="input">
+              <input
+                class="w-100 mb-2"
+                type="text"
+                [placeholder]="
+                  'ServiceDetailsPage.ServiceRequest.form.subject' | translate
+                "
+              />
+            </div>
+            <div class="input">
+              <textarea
+                class="w-100"
+                [placeholder]="
+                  'ServiceDetailsPage.ServiceRequest.form.orderDetails'
+                    | translate
+                "
+                rows="5"
+              ></textarea>
+            </div>
+          </form>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

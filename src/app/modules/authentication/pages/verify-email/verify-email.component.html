@@ -1,0 +1,47 @@
+<div class="form-wrapper p-5">
+  <i class="fa-solid fa-xmark close-icon" (click)="close()"></i>
+
+  <div class="image justify-content-center px-3">
+    <img
+      class="mx-auto"
+      src="./assets/images/icons/openMail.png"
+      alt="Check your email "
+    />
+  </div>
+
+  <div class="title text-center">
+    <h2 class="mb-3 mt-3 text-center fw-bold">Verify Your Email</h2>
+    <p class="mb-4 h5 fw-normal userEmail">
+      code send to <span>example&#64;gmail.com</span>
+    </p>
+    <p>Enter code to confirm your email</p>
+  </div>
+
+  <form
+    (ngSubmit)="onSubmit()"
+    class="form-container w-100 d-flex flex-column align-items-center justify-content-center"
+  >
+    <div class="inputs-container mb-3">
+      <ng-otp-input
+        formControlName="otp"
+        [config]="{ length: 5, allowNumbersOnly: true, placeholder: ' - ' }"
+      ></ng-otp-input>
+    </div>
+
+    <div class="options text-center">
+      <p class="otpFail mb-1">
+        don't get code ?
+        <button>Resend code</button>
+      </p>
+
+      <p class="countDown">Resend code in 00:59</p>
+    </div>
+
+    <button
+      class="main-btn rounded-5 d-flex align-items-center gap-2 justify-content-center"
+    >
+      Verify Account
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </form>
+</div>

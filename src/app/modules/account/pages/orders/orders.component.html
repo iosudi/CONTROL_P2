@@ -1,0 +1,98 @@
+<div class="orders" *ngIf="!isMobileView; else mobileViewOrders">
+  <table class="w-100">
+    <thead>
+      <tr class="border-bottom">
+        <th class="px-4 py-2">Order</th>
+        <th class="px-4 py-2">Date</th>
+        <th class="px-4 py-2">status</th>
+        <th class="px-4 py-2">Total</th>
+        <th class="px-4 py-2 text-center">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="border-bottom">
+        <td class="px-4 py-2">
+          <p class="text-decoration-underline mb-0 fw-semibold">#12345</p>
+        </td>
+        <td class="px-4 py-2">
+          <p class="date mb-0">September 30, 2024</p>
+        </td>
+        <td class="px-4 py-2">
+          <div class="d-flex align-items-center gap-2 order-status fw-bold">
+            <img
+              src="./assets/images/icons/mdi_package-variant.png"
+              alt="icon"
+            />
+            On hold
+          </div>
+        </td>
+        <td class="px-4 py-2 fw-bold">
+          {{ 123 | currency : "RSA " }}
+        </td>
+
+        <td class="px-4 py-2">
+          <button class="main-btn px-4 py-1 rounded-5 fw-bold mx-auto">
+            View
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #mobileViewOrders>
+  <div class="mobile-view-orders">
+    <table class="w-100 mb-5" *ngFor="let order of orders">
+      <tbody>
+        <!-- Order ID Row -->
+        <tr class="border-bottom">
+          <td class="row-label">Order</td>
+          <td class="px-4 py-3">
+            <p class="text-decoration-underline mb-0 fw-semibold">
+              #{{ order.id }}
+            </p>
+          </td>
+        </tr>
+
+        <!-- Date Row -->
+        <tr class="border-bottom">
+          <td class="row-label">Date</td>
+          <td class="px-4 py-3">
+            <p class="date mb-0">{{ order.date }}</p>
+          </td>
+        </tr>
+
+        <!-- Status Row -->
+        <tr class="border-bottom">
+          <td class="row-label">Status</td>
+          <td class="px-4 py-3">
+            <div class="d-flex align-items-center gap-2 order-status fw-bold">
+              <img
+                src="./assets/images/icons/mdi_package-variant.png"
+                alt="icon"
+              />
+              {{ order.status }}
+            </div>
+          </td>
+        </tr>
+
+        <!-- Total Row -->
+        <tr class="border-bottom">
+          <td class="row-label">Total</td>
+          <td class="px-4 py-3 fw-bold">
+            {{ order.total | currency : "USD" }}
+          </td>
+        </tr>
+
+        <!-- Actions Row -->
+        <tr class="border-bottom">
+          <td class="row-label">Actions</td>
+          <td class="px-4 py-3">
+            <button class="main-btn px-4 py-1 rounded-5 fw-bold">View</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>

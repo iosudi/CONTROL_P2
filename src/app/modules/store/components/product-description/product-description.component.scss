@@ -1,0 +1,17 @@
+.product-description {
+  p {
+    color: var(--paragraph-text-color);
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .description {
+    margin-bottom: 1rem !important;
+
+    p {
+      font-size: 0.8rem;
+      max-width: 55ch;
+    }
+  }
+}

@@ -1,0 +1,301 @@
+<app-home-navbar></app-home-navbar>
+
+<section class="checkout p-5">
+  <div class="container">
+    <div
+      class="bread-crumb d-flex justify-content-start align-items-center mt-4 mb-5"
+    >
+      <p-breadcrumb class="max-w-full" [model]="items" [home]="home" />
+    </div>
+
+    <div class="row g-5">
+      <div class="col-lg-8">
+        <div class="billing-details">
+          <h3 class="mb-4 fs-4 fw-bold">Billing details</h3>
+
+          <form class="checkout-form">
+            <div
+              class="form-group d-flex align-items-center justify-content-center gap-3 mb-3"
+            >
+              <div class="input-container w-100">
+                <label for="fname" class="form-label"
+                  >First Name <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control error"
+                  placeholder="First"
+                  id="fname"
+                  required
+                />
+              </div>
+
+              <div class="input-container w-100">
+                <label for="lname" class="form-label"
+                  >Last Name <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control error"
+                  placeholder="Last"
+                  id="lname"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="company" class="form-label"
+                >Company name (optional)
+              </label>
+              <input type="text" class="form-control" id="company" />
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="region" class="form-label d-block"
+                >country / region <span class="text-danger">*</span>
+              </label>
+              <select
+                name="region"
+                id="region"
+                class="w-100 form-select success"
+                required
+              >
+                <option value="" disabled selected>
+                  Select a country / region
+                </option>
+                <option value="1">Country 1</option>
+                <option value="2">Country 2</option>
+                <option value="3">Country 3</option>
+              </select>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="street" class="form-label"
+                >Street address <span class="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                class="form-control mb-3"
+                id="street"
+                placeholder="House number and street name"
+                required
+              />
+              <input
+                type="text"
+                class="form-control"
+                id="apartment"
+                placeholder="Apartment, suite ,unit , etc (optional )"
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="city" class="form-label"
+                >City / Town <span class="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="city"
+                placeholder="Cairo"
+                required
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="state" class="form-label d-block"
+                >state / country <span class="text-danger">*</span>
+              </label>
+              <select
+                name="state"
+                id="state"
+                class="w-100 form-select"
+                required
+              >
+                <option value="" disabled selected>Select option</option>
+                <option value="1">State 1</option>
+                <option value="2">State 2</option>
+                <option value="3">State 3</option>
+              </select>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="postcode" class="form-label"
+                >postcode / zip <span class="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="postcode"
+                placeholder="Town postal code"
+                required
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="phone" class="form-label"
+                >Phone <span class="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone"
+                placeholder="Phone number"
+                required
+              />
+            </div>
+
+            <div
+              class="different-address d-flex align-items-center justify-content-start gap-3 my-4"
+            >
+              <p-checkbox
+                [binary]="true"
+                value="True"
+                inputId="shipping-checkbox"
+              />
+              <label for="shipping-checkbox">Ship to different address? </label>
+            </div>
+
+            <div class="form-group">
+              <label for="order-notes" class="form-label">
+                order notes (optional)
+              </label>
+              <textarea
+                class="form-control"
+                id="order-notes"
+                placeholder="Notes about your order ...."
+                rows="7"
+              ></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="order-summary py-5 px-4 rounded-2">
+          <h4 class="fw-bold mb-4">Your order</h4>
+
+          <div class="order-details p-2 mb-4 rounded-2">
+            <div
+              class="subtotal border-bottom d-flex justify-content-between align-items-center py-2 mb-4"
+            >
+              <h4 class="mb-0">Product</h4>
+              <p class="mb-0 fs-5">Subtotal</p>
+            </div>
+
+            <div
+              class="product border-bottom d-flex justify-content-between align-items-center py-2 mb-4"
+            >
+              <div class="product-image rounded-2 overflow-hidden">
+                <img
+                  src="./assets/images/home/events/4.jpg"
+                  alt="product image"
+                />
+              </div>
+
+              <div class="product-details text-center">
+                <p
+                  class="mb-1 fs-6 product-id heading-color text-decoration-underline"
+                >
+                  B2003
+                </p>
+                <p class="mb-1">60x80</p>
+                <p class="mb-0">+ frame</p>
+              </div>
+
+              <p class="product-total-price fs-5">
+                1X {{ 825 | currency : "RSA " }}
+              </p>
+            </div>
+
+            <div
+              class="subtotal border-bottom d-flex justify-content-between align-items-center py-2 mb-4"
+            >
+              <h4 class="fw-bold mb-0">Subtotal</h4>
+              <p class="mb-0 fs-5">
+                {{ 825 | currency : "RSA " }}
+              </p>
+            </div>
+
+            <div
+              class="shipping border-bottom d-flex justify-content-between align-items-center py-2"
+            >
+              <h4 class="mb-0">Shipping</h4>
+              <div>
+                <p class="text-end fs-5">Free shipping</p>
+              </div>
+            </div>
+
+            <div
+              class="total d-flex justify-content-between align-items-center pt-4"
+            >
+              <h4 class="mb-0">Total</h4>
+              <p class="mb-0 fw-bold fs-4 total-price">
+                {{ 825 | currency : "RSA " }}
+              </p>
+            </div>
+          </div>
+
+          <div class="payment-method border-bottom py-2">
+            <div class="method d-flex align-items-center mb-2">
+              <p-radioButton
+                value="cash"
+                [(ngModel)]="ingredient"
+                inputId="cash"
+              />
+              <label for="cash" class="ms-2"> Cash on delivery </label>
+            </div>
+
+            <div class="method d-flex align-items-center mb-2">
+              <p-radioButton
+                value="card"
+                [(ngModel)]="ingredient"
+                inputId="card"
+              />
+              <label for="card" class="ms-2">  Direct bank transfer </label>
+            </div>
+
+            <div class="method d-flex align-items-center mb-2">
+              <p-radioButton
+                value="paypal"
+                [(ngModel)]="ingredient"
+                inputId="paypal"
+              />
+              <label for="paypal" class="ms-2">
+                PayPal <span> (visa , Mastercard )</span>
+              </label>
+            </div>
+          </div>
+
+          <p class="py-3 border-bottom">
+            Your personal data will be used to process your order, support your
+            experience throughout this website, and for other purposes described
+            in our <a href="#" class="heading-color"> privacy policy.</a>
+          </p>
+
+          <div
+            class="terms d-flex align-items-center justify-content-start gap-3 my-4"
+          >
+            <p-checkbox
+              [binary]="true"
+              value="True"
+              inputId="terms-conditions"
+            />
+            <label for="terms-conditions">
+              I have read and agree to the website terms and conditions
+              <span class="text-danger">*</span>
+            </label>
+          </div>
+
+          <button
+            class="main-btn py-3 px-4 rounded-5 w-100 text-uppercase fw-bold"
+          >
+            PROCEED TO CHECKOUT
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

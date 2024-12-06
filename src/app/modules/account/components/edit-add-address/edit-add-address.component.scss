@@ -1,0 +1,30 @@
+.form-group {
+  .form-control,
+  .form-select {
+    background: #2b2b2b;
+    border: 1px solid #2b2b2b;
+    padding: 0.9rem 0.8rem;
+    color: var(--white-text);
+    border-radius: 10px;
+
+    &:focus {
+      border-color: var(--white-text);
+      box-shadow: unset;
+    }
+
+    &::placeholder {
+      color: var(--paragraph-text-color);
+    }
+
+    &.error {
+      border-color: var(--danger-color);
+    }
+    &.success {
+      border-color: var(--success-color);
+    }
+  }
+
+  p {
+    color: var(--paragraph-text-color);
+  }
+}

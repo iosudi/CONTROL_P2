@@ -1,0 +1,109 @@
+<div class="row g-5">
+  <div class="col-lg-6">
+    <div class="reviews">
+      <div class="review d-flex align-items-start justify-content-between mb-4">
+        <div class="review-details d-flex gap-2 align-items-center">
+          <img src="./assets/images/pfp.jpg" alt="profile photo" />
+          <div class="content">
+            <p class="mb-1">your review is awaiting approval</p>
+            <p class="mb-0">Comment here</p>
+          </div>
+        </div>
+
+        <div class="stars">
+          <i
+            *ngFor="let num of [1, 2, 3, 4, 5]"
+            class="fa-solid fa-star star-color"
+          ></i>
+        </div>
+      </div>
+
+      <div class="review d-flex align-items-start justify-content-between">
+        <div class="review-details d-flex gap-2 align-items-center">
+          <img src="./assets/images/pfp.jpg" alt="profile photo" />
+          <div class="content">
+            <p class="mb-1">
+              Adel Saudi
+              <span class="d-block"> 29-9-2024 </span>
+            </p>
+            <p class="mb-0">Very Good ❤️</p>
+          </div>
+        </div>
+        <div class="stars">
+          <i
+            *ngFor="let num of [1, 2, 3, 4, 5]"
+            class="fa-solid fa-star star-color"
+          ></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="review-form">
+      <h6 class="text-uppercase">add a review</h6>
+      <p>
+        Your email address will not be published. Required fields are marked
+        <span class="text-danger">*</span>
+      </p>
+
+      <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+        <div class="rating d-flex align-items-center my-3 gap-1">
+          <h6 class="mb-0">your rating<span class="text-danger">*</span> :</h6>
+          <ngb-rating
+            formControlName="rating"
+            [max]="maxRate"
+            (rateChange)="updateRating($event)"
+          >
+            <ng-template let-fill="fill">
+              <span class="star" [class.full]="fill === 100">
+                <i class="fa-solid fa-star"></i>
+              </span>
+            </ng-template>
+          </ngb-rating>
+        </div>
+
+        <div class="review-content review-field mb-3">
+          <label class="mb-2" for="review-body"
+            >your review <span class="text-danger">*</span> :
+          </label>
+          <textarea
+            name="review-body"
+            placeholder="write your review .."
+            class="d-block px-3 py-2 w-100"
+            rows="4"
+            formControlName="review"
+          ></textarea>
+        </div>
+
+        <div class="review-author-name review-field mb-3">
+          <label class="mb-2" for="name"
+            >name <span class="text-danger">*</span> :</label
+          >
+          <input
+            class="d-block px-3 py-2 w-100"
+            type="text"
+            placeholder="name"
+            formControlName="name"
+          />
+        </div>
+
+        <div class="review-author-email review-field mb-3">
+          <label class="mb-2" for="email"
+            >email <span class="text-danger">*</span> :</label
+          >
+          <input
+            class="d-block px-3 py-2 w-100"
+            type="email"
+            placeholder="exmaple@email.com"
+            formControlName="email"
+          />
+        </div>
+
+        <button class="main-btn px-4 py-2 rounded-5 fw-semibold" type="submit">
+          Submit review
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
