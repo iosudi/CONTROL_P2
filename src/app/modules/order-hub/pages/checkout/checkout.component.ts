@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -7,6 +8,7 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./checkout.component.scss'],
 })
 export class CheckoutComponent {
+  constructor(private translate: TranslateService) {}
   ingredient!: string;
 
   items: MenuItem[] | undefined;

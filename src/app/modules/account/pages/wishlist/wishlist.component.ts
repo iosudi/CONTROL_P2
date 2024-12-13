@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-wishlist',
@@ -6,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wishlist.component.scss'],
 })
 export class WishlistComponent implements OnInit {
+  constructor(private translateService: TranslateService) {
+    this.translateService
+      .get('HomePage.mini_shop.sortPlaceholder')
+      .subscribe((translation) => {
+        console.log(translation); // Debug to check if the translation loads correctly
+      });
+  }
+
   cities: any[] | undefined;
 
   selectedCity: any | undefined;

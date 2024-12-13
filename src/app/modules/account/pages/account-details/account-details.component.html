@@ -5,12 +5,15 @@
     >
       <div class="input-container w-100">
         <label for="fname" class="form-label fw-bold"
-          >First Name <span class="text-danger">*</span></label
+          >{{ "Account.AccountDetails.form.firstName.label" | translate }}
+          <span class="text-danger">*</span></label
         >
         <input
           type="text"
           class="form-control error"
-          placeholder="First"
+          [placeholder]="
+            'Account.AccountDetails.form.firstName.placeholder' | translate
+          "
           id="fname"
           required
         />
@@ -18,12 +21,15 @@
 
       <div class="input-container w-100">
         <label for="lname" class="form-label fw-bold"
-          >Last Name <span class="text-danger">*</span></label
+          >{{ "Account.AccountDetails.form.lastName.label" | translate }}
+          <span class="text-danger">*</span></label
         >
         <input
           type="text"
           class="form-control error"
-          placeholder="Last"
+          [placeholder]="
+            'Account.AccountDetails.form.lastName.placeholder' | translate
+          "
           id="lname"
           required
         />
@@ -31,16 +37,19 @@
     </div>
 
     <div class="form-group mb-3">
-      <label for="username" class="form-label fw-bold">Display name </label>
+      <label for="username" class="form-label fw-bold"
+        >{{ "Account.AccountDetails.form.displayName.label" | translate }}
+      </label>
       <input type="text" class="form-control mb-2" id="username" />
       <p class="mb-0">
-        This will be how your name will be displayed in the account section and
-        in reviews
+        {{ "Account.AccountDetails.form.displayName.info" | translate }}
       </p>
     </div>
 
     <div class="form-group mb-3">
-      <label for="email" class="form-label fw-bold">Email address </label>
+      <label for="email" class="form-label fw-bold"
+        >{{ "Account.AccountDetails.form.email.label" | translate }}
+      </label>
       <input
         type="email"
         class="form-control mb-3"
@@ -52,7 +61,7 @@
 
     <div class="form-group mb-3">
       <label for="password-change" class="form-label fw-bold"
-        >Password change
+        >{{ "Account.AccountDetails.form.passwordChange.title" | translate }}
       </label>
       <div
         class="input-container mb-3 d-flex align-items-center justify-content-between form-control"
@@ -61,7 +70,10 @@
           type="password"
           [type]="currentPasswordVisibility ? 'text' : 'password'"
           class="password-input w-100"
-          placeholder="Current password"
+          [placeholder]="
+            'Account.AccountDetails.form.passwordChange.currentPassword.placeholder'
+              | translate
+          "
         />
 
         <img
@@ -82,7 +94,10 @@
           type="password"
           [type]="newPasswordVisibility ? 'text' : 'password'"
           class="password-input w-100"
-          placeholder="Confirm password"
+          [placeholder]="
+            'Account.AccountDetails.form.passwordChange.newPassword.placeholder'
+              | translate
+          "
         />
 
         <img
@@ -103,7 +118,10 @@
           type="password"
           [type]="confirmPasswordVisibility ? 'text' : 'password'"
           class="password-input w-100"
-          placeholder="Confirm new password"
+          [placeholder]="
+            'Account.AccountDetails.form.passwordChange.confirmPassword.placeholder'
+              | translate
+          "
         />
 
         <img
@@ -119,6 +137,8 @@
       </div>
     </div>
 
-    <button class="main-btn px-5 py-2 fs-4 rounded-5">save changes</button>
+    <button class="main-btn px-5 py-2 fs-4 rounded-5">
+      {{ "Account.AccountDetails.form.saveButton.text" | translate }}
+    </button>
   </form>
 </div>

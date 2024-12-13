@@ -12,19 +12,42 @@
 
   <div class="col-lg-5">
     <div class="content">
-      <h3 class="fs-4 fw-bold mb-5">SHIPPING & DELIVERY</h3>
+      <h3 class="fs-4 fw-bold mb-5">
+        {{
+          "productDetails.productInformationSection.shippingAndDelivery.title"
+            | translate
+        }}
+      </h3>
       <p>
-        We offer free delivery across all regions of the Kingdom of Saudi
-        Arabia. Each order is carefully packed to ensure it arrives in perfect
-        condition.
+        {{
+          "productDetails.productInformationSection.shippingAndDelivery.description"
+            | translate
+        }}
       </p>
       <ul>
-        <li>Delivery Time: 3-7 business days</li>
-        <li>Shipping Fee: Free</li>
-        <li>Tax: Included in the price</li>
         <li>
-          Customization Delivery: Custom sizes or framed paintings may take an
-          additional 2-3 business days to process.
+          {{
+            "productDetails.productInformationSection.shippingAndDelivery.details.deliveryTime"
+              | translate
+          }}
+        </li>
+        <li>
+          {{
+            "productDetails.productInformationSection.shippingAndDelivery.details.shippingFee"
+              | translate
+          }}
+        </li>
+        <li>
+          {{
+            "productDetails.productInformationSection.shippingAndDelivery.details.tax"
+              | translate
+          }}
+        </li>
+        <li>
+          {{
+            "productDetails.productInformationSection.shippingAndDelivery.details.customizationDelivery"
+              | translate
+          }}
         </li>
       </ul>
     </div>

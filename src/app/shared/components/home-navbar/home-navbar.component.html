@@ -50,9 +50,10 @@
     <div class="nav-controls d-flex align-items-center">
       <div
         class="d-flex align-items-center gap-lg-3 gap-2"
+        [class.border-end]="direction === 'ltr'"
         [ngClass]="{
-          'pe-3': direction === 'ltr',
-          'ps-3': direction === 'rtl'
+          'pe-3': direction == 'ltr',
+          'ps-3': direction == 'rtl'
         }"
       >
         <button class="btn p-0 d-flex align-items-center gap-3">
@@ -70,10 +71,10 @@
 
       <div
         class="d-flex align-items-center gap-lg-3 gap-2"
-        [class.border-end]="direction == 'rtl'"
+        [class.border-end]="direction === 'rtl'"
         [ngClass]="{
-          'ps-3': direction === 'ltr',
-          'pe-3': direction === 'rtl'
+          'ps-3': direction == 'ltr',
+          'pe-3': direction == 'rtl'
         }"
       >
         <button

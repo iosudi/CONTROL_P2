@@ -1,5 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 import { QuickViewComponent } from '../../components/quick-view/quick-view.component';
 
 @Component({
@@ -10,21 +12,41 @@ import { QuickViewComponent } from '../../components/quick-view/quick-view.compo
 export class ShopComponent implements OnInit {
   private modalService = inject(NgbModal);
 
-  rangeValues: number[] = [0, 100];
+  constructor(
+    private translate: TranslateService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
+  rangeValues: number[] = [0, 100];
+  direction: string = 'ltr'; // Default direction
   pageSize: number = 8;
   currentPage = 1;
   filtersOpened: boolean = false;
-
+  selectedFilters: any[] = [];
   filterOptions = [
-    { label: '80x50cm', isChecked: false, quantity: 38 },
-    { label: '140x70cm', isChecked: false, quantity: 95 },
-    { label: '30x40cm', isChecked: false, quantity: 94 },
-    { label: '60x60cm', isChecked: false, quantity: 12 },
+    {
+      title: 'Size',
+      options: [
+        { label: 'Small', quantity: 10, isChecked: false },
+        { label: 'Medium', quantity: 15, isChecked: false },
+        { label: 'Large', quantity: 8, isChecked: false },
+      ],
+    },
+    {
+      title: 'Color',
+      options: [
+        { label: 'Red', quantity: 12, isChecked: false },
+        { label: 'Blue', quantity: 9, isChecked: false },
+        { label: 'Green', quantity: 5, isChecked: false },
+      ],
+    },
   ];
 
   cities: any[] | undefined;
   selectedCity: any | undefined;
+  isHorizontal: boolean = false;
+  activeGridStyle: string = 'vertical-small';
 
   categoriesBreakpoints = {
     0: {
@@ -42,6 +64,12 @@ export class ShopComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.initialize();
+  }
+
+  initialize(): void {
+    this.initializeFiltersFromQueryParams();
+
     this.cities = [
       { name: 'New York', code: 'NY' },
       { name: 'Rome', code: 'RM' },
@@ -49,6 +77,169 @@ export class ShopComponent implements OnInit {
       { name: 'Istanbul', code: 'IST' },
       { name: 'Paris', code: 'PRS' },
     ];
+
+    const currentLang =
+      this.translate.currentLang || this.translate.getDefaultLang() || 'en';
+    this.direction = currentLang === 'ar' ? 'rtl' : 'ltr';
+
+    this.translate.onLangChange.subscribe((event) => {
+      this.direction = event.lang === 'ar' ? 'rtl' : 'ltr';
+    });
+  }
+
+  initializeFiltersFromQueryParams(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.filterOptions.forEach((filter) => {
+        const filterKey = filter.title.toLowerCase();
+        const selectedOptions = params[filterKey];
+
+        if (selectedOptions) {
+          const selectedLabels = selectedOptions.split(','); // Split the query param string
+
+          // Mark options as checked if they match the selected labels
+          filter.options.forEach((option) => {
+            if (selectedLabels.includes(option.label)) {
+              option.isChecked = true;
+            }
+          });
+        }
+      });
+
+      const priceMin = params['price_min']
+        ? parseInt(params['price_min'], 10)
+        : this.rangeValues[0];
+      const priceMax = params['price_max']
+        ? parseInt(params['price_max'], 10)
+        : this.rangeValues[1];
+
+      this.rangeValues = [priceMin, priceMax];
+    });
+    this.updateSelectedFiltersAndQueryParams();
+  }
+
+  setDirection(): void {
+    this.direction = this.translate.instant('dir') === 'rtl' ? 'rtl' : 'ltr';
+  }
+
+  setViewMode(mode: string, gridStyle?: string) {
+    this.isHorizontal = mode === 'horizontal';
+    if (gridStyle) {
+      this.activeGridStyle = gridStyle;
+    }
+  }
+
+  getGridClasses(): string {
+    if (this.isHorizontal) {
+      return 'col-12';
+    } else {
+      return this.activeGridStyle === 'vertical-large'
+        ? 'col-xl-3 col-lg-4 col-sm-6'
+        : 'col-xl-4 col-lg-4 col-sm-6';
+    }
+  }
+
+  updatePriceRangeFilter(): void {
+    const rangeParams = {
+      ['price_min']: this.rangeValues[0], // Minimum value from range slider
+      ['price_max']: this.rangeValues[1], // Maximum value from range slider
+    };
+
+    this.updateQueryParamsWithSelectedFilters(rangeParams);
+  }
+
+  updateSelectedFiltersAndQueryParams(): void {
+    // Update the selected filters based on user input
+    this.selectedFilters = this.filterOptions.flatMap((filter) =>
+      filter.options
+        .filter((option) => option.isChecked)
+        .map((option) => ({
+          title: filter.title,
+          label: option.label,
+        }))
+    );
+
+    // Add the selected filters to the query parameters
+    this.updateQueryParamsWithSelectedFilters();
+  }
+
+  updateQueryParamsWithSelectedFilters(rangeParams?: {
+    [key: string]: number;
+  }): void {
+    const params: { [key: string]: string } = {};
+
+    // Collect checked options for each filter
+    this.filterOptions.forEach((filter) => {
+      const checkedOptions = filter.options
+        .filter((option) => option.isChecked)
+        .map((option) => option.label);
+
+      if (checkedOptions.length > 0) {
+        // If there are selected options, add them to the params object
+        params[filter.title.toLowerCase()] = checkedOptions.join(',');
+      }
+    });
+
+    if (rangeParams) {
+      params['price_min'] = rangeParams['price_min'].toString();
+      params['price_max'] = rangeParams['price_max'].toString();
+    }
+
+    // Update the query parameters with the selected filters
+    this.applyUpdatedQueryParams(params);
+  }
+
+  applyUpdatedQueryParams(params: { [key: string]: string }): void {
+    this.route.queryParams.subscribe((currentParams) => {
+      // Merge current params with new ones
+      const updatedParams = { ...currentParams, ...params };
+
+      // Remove any filters that no longer have selected options
+      Object.keys(currentParams).forEach((key) => {
+        if (!(key in params) && key !== 'price_min' && key !== 'price_max') {
+          delete updatedParams[key];
+        }
+      });
+
+      // Update the URL with the final query parameters
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: updatedParams,
+      });
+    });
+  }
+
+  removeFilter(index: number): void {
+    const filterToRemove = this.selectedFilters[index];
+
+    this.selectedFilters.splice(index, 1);
+
+    const filter = this.filterOptions.find(
+      (f) => f.title === filterToRemove.title
+    );
+    if (filter) {
+      const option = filter.options.find(
+        (opt) => opt.label === filterToRemove.label
+      );
+      if (option) {
+        option.isChecked = false;
+      }
+    }
+
+    // Update the URL query parameters
+    this.updateQueryParamsWithSelectedFilters();
+  }
+
+  clearAllFilters(): void {
+    this.selectedFilters = [];
+
+    this.filterOptions.forEach((filter) => {
+      filter.options.forEach((option) => {
+        option.isChecked = false;
+      });
+    });
+
+    // Update the URL query parameters
+    this.updateQueryParamsWithSelectedFilters();
   }
 
   openFiltersMenu() {

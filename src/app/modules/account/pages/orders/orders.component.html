@@ -2,11 +2,19 @@
   <table class="w-100">
     <thead>
       <tr class="border-bottom">
-        <th class="px-4 py-2">Order</th>
-        <th class="px-4 py-2">Date</th>
-        <th class="px-4 py-2">status</th>
-        <th class="px-4 py-2">Total</th>
-        <th class="px-4 py-2 text-center">Actions</th>
+        <th class="px-4 py-2">
+          {{ "Account.Orders.table.order" | translate }}
+        </th>
+        <th class="px-4 py-2">{{ "Account.Orders.table.date" | translate }}</th>
+        <th class="px-4 py-2">
+          {{ "Account.Orders.table.status" | translate }}
+        </th>
+        <th class="px-4 py-2">
+          {{ "Account.Orders.table.total" | translate }}
+        </th>
+        <th class="px-4 py-2 text-center">
+          {{ "Account.Orders.table.actions" | translate }}
+        </th>
       </tr>
     </thead>
 
@@ -33,7 +41,7 @@
 
         <td class="px-4 py-2">
           <button class="main-btn px-4 py-1 rounded-5 fw-bold mx-auto">
-            View
+            {{ "Account.Orders.table.viewButton" | translate }}
           </button>
         </td>
       </tr>
@@ -47,7 +55,9 @@
       <tbody>
         <!-- Order ID Row -->
         <tr class="border-bottom">
-          <td class="row-label">Order</td>
+          <td class="row-label">
+            {{ "Account.Orders.table.order" | translate }}
+          </td>
           <td class="px-4 py-3">
             <p class="text-decoration-underline mb-0 fw-semibold">
               #{{ order.id }}
@@ -57,7 +67,9 @@
 
         <!-- Date Row -->
         <tr class="border-bottom">
-          <td class="row-label">Date</td>
+          <td class="row-label">
+            {{ "Account.Orders.table.date" | translate }}
+          </td>
           <td class="px-4 py-3">
             <p class="date mb-0">{{ order.date }}</p>
           </td>
@@ -65,7 +77,9 @@
 
         <!-- Status Row -->
         <tr class="border-bottom">
-          <td class="row-label">Status</td>
+          <td class="row-label">
+            {{ "Account.Orders.table.status" | translate }}
+          </td>
           <td class="px-4 py-3">
             <div class="d-flex align-items-center gap-2 order-status fw-bold">
               <img
@@ -79,7 +93,9 @@
 
         <!-- Total Row -->
         <tr class="border-bottom">
-          <td class="row-label">Total</td>
+          <td class="row-label">
+            {{ "Account.Orders.table.total" | translate }}
+          </td>
           <td class="px-4 py-3 fw-bold">
             {{ order.total | currency : "USD" }}
           </td>
@@ -87,9 +103,13 @@
 
         <!-- Actions Row -->
         <tr class="border-bottom">
-          <td class="row-label">Actions</td>
+          <td class="row-label">
+            {{ "Account.Orders.table.actions" | translate }}
+          </td>
           <td class="px-4 py-3">
-            <button class="main-btn px-4 py-1 rounded-5 fw-bold">View</button>
+            <button class="main-btn px-4 py-1 rounded-5 fw-bold">
+              {{ "Account.Orders.table.viewButton" | translate }}
+            </button>
           </td>
         </tr>
       </tbody>

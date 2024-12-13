@@ -5,7 +5,12 @@
         <div class="review-details d-flex gap-2 align-items-center">
           <img src="./assets/images/pfp.jpg" alt="profile photo" />
           <div class="content">
-            <p class="mb-1">your review is awaiting approval</p>
+            <p class="mb-1">
+              {{
+                "productDetails.productInformationSection.reviews.yourReviewIsAwaitingApproval"
+                  | translate
+              }}
+            </p>
             <p class="mb-0">Comment here</p>
           </div>
         </div>
@@ -41,15 +46,28 @@
 
   <div class="col-lg-6">
     <div class="review-form">
-      <h6 class="text-uppercase">add a review</h6>
+      <h6 class="text-uppercase">
+        {{
+          "productDetails.productInformationSection.reviews.addReview"
+            | translate
+        }}
+      </h6>
       <p>
-        Your email address will not be published. Required fields are marked
+        {{
+          "productDetails.productInformationSection.reviews.emailNote"
+            | translate
+        }}
         <span class="text-danger">*</span>
       </p>
 
       <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
         <div class="rating d-flex align-items-center my-3 gap-1">
-          <h6 class="mb-0">your rating<span class="text-danger">*</span> :</h6>
+          <h6 class="mb-0">
+            {{
+              "productDetails.productInformationSection.reviews.yourRating"
+                | translate
+            }}<span class="text-danger">*</span> :
+          </h6>
           <ngb-rating
             formControlName="rating"
             [max]="maxRate"
@@ -64,12 +82,19 @@
         </div>
 
         <div class="review-content review-field mb-3">
-          <label class="mb-2" for="review-body"
-            >your review <span class="text-danger">*</span> :
+          <label class="mb-2" for="review-body">
+            {{
+              "productDetails.productInformationSection.reviews.yourReview"
+                | translate
+            }}
+            <span class="text-danger">*</span> :
           </label>
           <textarea
             name="review-body"
-            placeholder="write your review .."
+            [placeholder]="
+              'productDetails.productInformationSection.reviews.writeYourReview'
+                | translate
+            "
             class="d-block px-3 py-2 w-100"
             rows="4"
             formControlName="review"
@@ -77,20 +102,31 @@
         </div>
 
         <div class="review-author-name review-field mb-3">
-          <label class="mb-2" for="name"
-            >name <span class="text-danger">*</span> :</label
+          <label class="mb-2" for="name">
+            {{
+              "productDetails.productInformationSection.reviews.name"
+                | translate
+            }}
+            <span class="text-danger">*</span> :</label
           >
           <input
             class="d-block px-3 py-2 w-100"
             type="text"
-            placeholder="name"
+            [placeholder]="
+              'productDetails.productInformationSection.reviews.namePlaceholder'
+                | translate
+            "
             formControlName="name"
           />
         </div>
 
         <div class="review-author-email review-field mb-3">
-          <label class="mb-2" for="email"
-            >email <span class="text-danger">*</span> :</label
+          <label class="mb-2" for="email">
+            {{
+              "productDetails.productInformationSection.reviews.email"
+                | translate
+            }}
+            <span class="text-danger">*</span> :</label
           >
           <input
             class="d-block px-3 py-2 w-100"
@@ -101,7 +137,10 @@
         </div>
 
         <button class="main-btn px-4 py-2 rounded-5 fw-semibold" type="submit">
-          Submit review
+          {{
+            "productDetails.productInformationSection.reviews.submitReview"
+              | translate
+          }}
         </button>
       </form>
     </div>

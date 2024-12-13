@@ -6,49 +6,57 @@
       <h2 class="h3 mb-3">
         <span class="heading-color fw-bold">My</span> account
       </h2>
-      <p class="mb-0">home <span>/ my account</span></p>
+      <p class="mb-0">
+        <span routerLink="/home" class="pointer">home</span> / my account
+      </p>
     </div>
   </div>
-  <div class="container pb-5 pt-lg-0 pt-5">
+  <div class="container pb-5 pt-lg-0 pt-5" [dir]="'dir' | translate">
     <div class="row gx-md-5">
       <div class="col-lg-4 profile-nav-col">
-        <div class="profile-navbar border-end pb-5 pe-5">
-          <h3 class="mb-4">My account</h3>
+        <div
+          class="profile-navbar pb-5"
+          [ngClass]="{
+            'border-end pe-5': direction == 'ltr',
+            'border-start ps-5': direction == 'rtl'
+          }"
+        >
+          <h3 class="mb-4">{{ "Account.AccountLinks.Title" | translate }}</h3>
           <ul class="p-0 m-0">
             <li
               class="px-2 py-2 rounded-3 pointer fs-4"
               routerLink="dashboard"
               routerLinkActive="active-route"
             >
-              Dashboard
+              {{ "Account.AccountLinks.dashboard.title" | translate }}
             </li>
             <li
               class="px-2 py-2 rounded-3 pointer fs-4"
               routerLink="account-details"
               routerLinkActive="active-route"
             >
-              Account details
+              {{ "Account.AccountLinks.accountDetails.title" | translate }}
             </li>
             <li
               class="px-2 py-2 rounded-3 pointer fs-4"
               routerLink="orders"
               routerLinkActive="active-route"
             >
-              Orders
+              {{ "Account.AccountLinks.orders.title" | translate }}
             </li>
             <li
               class="px-2 py-2 rounded-3 pointer fs-4"
               routerLink="addresses"
               routerLinkActive="active-route"
             >
-              Addresses
+              {{ "Account.AccountLinks.addresses.title" | translate }}
             </li>
             <li
               class="px-2 py-2 rounded-3 pointer fs-4"
               routerLink="wishlist"
               routerLinkActive="active-route"
             >
-              Wishlist
+              {{ "Account.AccountLinks.wishlist.title" | translate }}
             </li>
           </ul>
         </div>

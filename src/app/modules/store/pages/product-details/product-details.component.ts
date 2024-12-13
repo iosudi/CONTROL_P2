@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -20,7 +21,10 @@ export class ProductDetailsComponent {
     './assets/images/portfolio/10.jpg',
   ];
 
+  constructor(public translate: TranslateService) {}
+
   activeSection: string = 'product-description';
+  direction: string = 'ltr'; // Default direction
 
   items: MenuItem[] | undefined;
 
@@ -40,6 +44,14 @@ export class ProductDetailsComponent {
     ];
 
     this.home = { label: 'Home Page', routerLink: '/home' };
+
+    const currentLang =
+      this.translate.currentLang || this.translate.getDefaultLang() || 'en';
+    this.direction = currentLang === 'ar' ? 'rtl' : 'ltr';
+
+    this.translate.onLangChange.subscribe((event) => {
+      this.direction = event.lang === 'ar' ? 'rtl' : 'ltr';
+    });
   }
 
   changeActiveSection(section: string) {

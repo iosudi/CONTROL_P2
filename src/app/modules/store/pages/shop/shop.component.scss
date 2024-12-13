@@ -164,7 +164,7 @@
     }
 
     .row {
-      .col-lg-4 {
+      .product-card {
         max-height: 350px;
 
         .product {
@@ -232,6 +232,17 @@
                 font-size: 1.1rem;
               }
             }
+            .rating {
+              display: none !important;
+              i {
+                font-size: 1rem;
+              }
+              span {
+                font-size: 0.8rem;
+                color: var(--paragraph-text-color);
+              }
+            }
+
             .price {
               font-size: 1.2rem;
               .discount {
@@ -251,6 +262,60 @@
               img {
                 width: 30px;
                 height: auto;
+              }
+            }
+          }
+
+          &.horizontal {
+            display: flex;
+            gap: 1rem;
+            max-height: 270px;
+
+            .product-image {
+              height: auto;
+              max-width: 250px;
+              width: 250px;
+            }
+
+            .product-body {
+              .product-title {
+                h4 {
+                  font-size: 1.3rem;
+                }
+
+                p {
+                  display: none;
+                }
+              }
+
+              .rating {
+                display: flex !important;
+              }
+              .price {
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+                .discount {
+                  font-size: 0.9rem;
+                }
+              }
+            }
+
+            .product-actions {
+              .quick-view-btn {
+                width: 40px;
+                height: 40px;
+                background: #ffffff1a;
+                outline: none;
+                border: 0;
+                border-radius: 50%;
+                img {
+                  width: 30px;
+                  height: auto;
+                }
+              }
+              .main-btn {
+                font-size: 1rem;
               }
             }
           }
@@ -381,12 +446,8 @@
       }
 
       .row {
-        .col-lg-4 {
+        .product-card {
           .product {
-            .product-image {
-              height: 200px;
-            }
-
             .product-actions {
               .main-btn {
                 font-size: 0.8rem;
@@ -446,7 +507,7 @@
       }
 
       .row {
-        .col-lg-4 {
+        .product-card {
           .product {
             .product-image {
               height: 250px;
@@ -472,10 +533,74 @@
   .shop {
     .shop-products {
       .row {
-        .col-lg-4 {
+        .product-card {
+          max-height: unset;
           .product {
+            max-height: unset;
+
+            .product-image {
+              .heart-icon {
+                opacity: 1;
+                transform: scale(1);
+              }
+            }
+
             &:hover {
               transform: scale(1);
+            }
+
+            &.horizontal {
+              display: unset;
+              gap: 1rem;
+              max-height: unset;
+
+              .product-image {
+                height: 250px;
+                width: unset;
+                max-width: unset;
+              }
+
+              .product-body {
+                .product-title {
+                  h4 {
+                    font-size: 1.3rem;
+                  }
+
+                  p {
+                    display: none;
+                  }
+                }
+
+                .rating {
+                  display: none !important;
+                }
+                .price {
+                  margin-top: 1rem;
+                  margin-bottom: 1rem;
+                  font-size: 1.2rem;
+                  .discount {
+                    font-size: 0.9rem;
+                  }
+                }
+              }
+
+              .product-actions {
+                .quick-view-btn {
+                  width: 40px;
+                  height: 40px;
+                  background: #ffffff1a;
+                  outline: none;
+                  border: 0;
+                  border-radius: 50%;
+                  img {
+                    width: 30px;
+                    height: auto;
+                  }
+                }
+                .main-btn {
+                  font-size: 1.1rem;
+                }
+              }
             }
           }
         }

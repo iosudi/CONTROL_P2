@@ -2,7 +2,7 @@
 
 <section class="product-details-section mb-5">
   <div class="container">
-    <div class="blurred-balls"></div>
+    <div class="blurred-balls" [class.ar]="direction === 'rtl'"></div>
 
     <div class="breadcrumb">
       <p-breadcrumb [model]="items" [home]="home">
@@ -15,7 +15,7 @@
       </p-breadcrumb>
     </div>
 
-    <div class="row">
+    <div class="row" [dir]="'dir' | translate">
       <div class="col-lg-6">
         <div class="product-preview overflow-hidden">
           <div class="product-main-image">
@@ -24,6 +24,7 @@
               class="mySwiper"
               thumbs-swiper=".mySwiper2"
               space-between="10"
+              dir="ltr"
             >
               <swiper-slide *ngFor="let image of images">
                 <img [src]="image" />
@@ -38,6 +39,7 @@
               free-mode="true"
               [breakpoints]="productImagesBreakpoints"
               watch-slides-progress="true"
+              dir="ltr"
             >
               <swiper-slide *ngFor="let image of images">
                 <img [src]="image" />
@@ -51,21 +53,24 @@
           <div class="product-title">
             <h2>Modern Canvas Painting</h2>
             <div class="product-rating d-flex align-items-end">
-              <span class="stars me-2 fs-4 d-flex align-items-center gap-1">
+              <span class="stars mx-2 fs-4 d-flex align-items-center gap-1">
                 <i class="fa-solid fa-star star-color"></i>
                 <i class="fa-solid fa-star star-color"></i>
                 <i class="fa-solid fa-star star-color"></i>
                 <i class="fa-solid fa-star star-color"></i>
               </span>
-              <span class="total-reviews">(2 customer reviews)</span>
+              <span class="total-reviews"
+                >(2
+                {{ "productDetails.product.rating.reviews" | translate }})</span
+              >
             </div>
           </div>
 
           <p class="product-price my-4 fs-5">
-            <span class="text-decoration-line-through pre-offer-price">{{
+            <span class="text-decoration-line-through pre-offer-price mx-1">{{
               435 | currency : " "
             }}</span>
-            <span class="heading-color fs-4 ms-1">{{
+            <span class="heading-color fs-4">{{
               350 | currency : "SAR "
             }}</span>
           </p>
@@ -108,21 +113,27 @@
 
             <button class="main-btn px-4 py-2 rounded-5 fw-semibold">
               <i class="fa-solid fa-cart-shopping"></i>
-              Add to cart
+              {{ "productDetails.product.actions.addToCart" | translate }}
             </button>
 
             <div class="btn whatsapp-order">
-              Order by <i class="fa-brands fa-whatsapp ms-3"></i>
+              {{ "productDetails.product.actions.orderByWhatsapp" | translate }}
+              <i class="fa-brands fa-whatsapp ms-3"></i>
             </div>
           </div>
 
           <div class="mb-2 product-details mt-4">
-            <p class="mb-2 product-id">SKU: <span>B2003</span></p>
+            <p class="mb-2 product-id">
+              {{ "productDetails.product.productDetails.sku" | translate }}:
+              <span>B2003</span>
+            </p>
             <p class="mb-2 product-categories">
-              Categories: <span>Abstract, flowers, art ...</span>
+              {{
+                "productDetails.product.productDetails.categories" | translate
+              }}: <span>Abstract, flowers, art ...</span>
             </p>
             <p>
-              share:
+              {{ "productDetails.product.productDetails.share" | translate }}:
               <span>
                 <i class="fa-brands fa-facebook-f"></i>
                 <i class="fa-brands fa-instagram"></i>
@@ -138,7 +149,7 @@
   </div>
 </section>
 
-<section class="product-information-section pb-5">
+<section class="product-information-section pb-5" [dir]="'dir' | translate">
   <div class="container">
     <nav>
       <ul
@@ -149,21 +160,29 @@
           (click)="changeActiveSection('product-description')"
           [class.activeSection]="activeSection === 'product-description'"
         >
-          additional information
+          {{
+            "productDetails.productInformationSection.tabs.additionalInfo"
+              | translate
+          }}
         </li>
         <li
           class="text-uppercase pointer py-5 fs-5"
           (click)="changeActiveSection('product-reviews')"
           [class.activeSection]="activeSection === 'product-reviews'"
         >
-          reviews(1)
+          {{
+            "productDetails.productInformationSection.tabs.reviews" | translate
+          }}
+          (1)
         </li>
         <li
           class="text-uppercase pointer py-5 fs-5"
           (click)="changeActiveSection('product-delivery')"
           [class.activeSection]="activeSection === 'product-delivery'"
         >
-          shipping & delivery
+          {{
+            "productDetails.productInformationSection.tabs.shipping" | translate
+          }}
         </li>
       </ul>
     </nav>

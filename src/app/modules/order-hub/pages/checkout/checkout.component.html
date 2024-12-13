@@ -1,7 +1,7 @@
 <app-home-navbar></app-home-navbar>
 
 <section class="checkout my-lg-5 mt-3 mb-4">
-  <div class="container">
+  <div class="container" [dir]="'dir' | translate">
     <div
       class="bread-crumb d-flex justify-content-start align-items-center mb-5"
     >
@@ -11,7 +11,9 @@
     <div class="row gx-3 gy-4">
       <div class="col-lg-8">
         <div class="billing-details">
-          <h3 class="mb-4 fs-4 fw-bold">Billing details</h3>
+          <h3 class="mb-4 fs-4 fw-bold">
+            {{ "BillingAndOrderSummary.BillingDetails.title" | translate }}
+          </h3>
 
           <form class="checkout-form">
             <div
@@ -19,12 +21,19 @@
             >
               <div class="input-container w-100">
                 <label for="fname" class="form-label"
-                  >First Name <span class="text-danger">*</span></label
+                  >{{
+                    "BillingAndOrderSummary.BillingDetails.fields.firstName.label"
+                      | translate
+                  }}
+                  <span class="text-danger">*</span></label
                 >
                 <input
                   type="text"
                   class="form-control error"
-                  placeholder="First"
+                  [placeholder]="
+                    'BillingAndOrderSummary.BillingDetails.fields.firstName.placeholder'
+                      | translate
+                  "
                   id="fname"
                   required
                 />
@@ -32,12 +41,19 @@
 
               <div class="input-container w-100">
                 <label for="lname" class="form-label"
-                  >Last Name <span class="text-danger">*</span></label
+                  >{{
+                    "BillingAndOrderSummary.BillingDetails.fields.lastName.label"
+                      | translate
+                  }}
+                  <span class="text-danger">*</span></label
                 >
                 <input
                   type="text"
                   class="form-control error"
-                  placeholder="Last"
+                  [placeholder]="
+                    'BillingAndOrderSummary.BillingDetails.fields.lastName.placeholder'
+                      | translate
+                  "
                   id="lname"
                   required
                 />
@@ -46,14 +62,21 @@
 
             <div class="form-group mb-3">
               <label for="company" class="form-label"
-                >Company name (optional)
+                >{{
+                  "BillingAndOrderSummary.BillingDetails.fields.companyName.label"
+                    | translate
+                }}
               </label>
               <input type="text" class="form-control" id="company" />
             </div>
 
             <div class="form-group mb-3">
               <label for="region" class="form-label d-block"
-                >country / region <span class="text-danger">*</span>
+                >{{
+                  "BillingAndOrderSummary.BillingDetails.fields.countryRegion.label"
+                    | translate
+                }}
+                <span class="text-danger">*</span>
               </label>
               <select
                 name="region"
@@ -62,7 +85,10 @@
                 required
               >
                 <option value="" disabled selected>
-                  Select a country / region
+                  {{
+                    "BillingAndOrderSummary.BillingDetails.fields.countryRegion.placeholder"
+                      | translate
+                  }}
                 </option>
                 <option value="1">Country 1</option>
                 <option value="2">Country 2</option>
@@ -72,39 +98,60 @@
 
             <div class="form-group mb-3">
               <label for="street" class="form-label"
-                >Street address <span class="text-danger">*</span>
+                >{{
+                  "BillingAndOrderSummary.BillingDetails.fields.streetAddress.label"
+                    | translate
+                }}
+                <span class="text-danger">*</span>
               </label>
               <input
                 type="text"
                 class="form-control mb-3"
                 id="street"
-                placeholder="House number and street name"
+                [placeholder]="
+                  'BillingAndOrderSummary.BillingDetails.fields.streetAddress.placeholder1'
+                    | translate
+                "
                 required
               />
               <input
                 type="text"
                 class="form-control"
                 id="apartment"
-                placeholder="Apartment, suite ,unit , etc (optional )"
+                [placeholder]="
+                  'BillingAndOrderSummary.BillingDetails.fields.streetAddress.placeholder2'
+                    | translate
+                "
               />
             </div>
 
             <div class="form-group mb-3">
               <label for="city" class="form-label"
-                >City / Town <span class="text-danger">*</span>
+                >{{
+                  "BillingAndOrderSummary.BillingDetails.fields.city.label"
+                    | translate
+                }}
+                <span class="text-danger">*</span>
               </label>
               <input
                 type="text"
                 class="form-control"
                 id="city"
-                placeholder="Cairo"
+                [placeholder]="
+                  'BillingAndOrderSummary.BillingDetails.fields.city.label'
+                    | translate
+                "
                 required
               />
             </div>
 
             <div class="form-group mb-3">
               <label for="state" class="form-label d-block"
-                >state / country <span class="text-danger">*</span>
+                >{{
+                  "BillingAndOrderSummary.BillingDetails.fields.state.label"
+                    | translate
+                }}
+                <span class="text-danger">*</span>
               </label>
               <select
                 name="state"
@@ -112,7 +159,12 @@
                 class="w-100 form-select"
                 required
               >
-                <option value="" disabled selected>Select option</option>
+                <option value="" disabled selected>
+                  {{
+                    "BillingAndOrderSummary.BillingDetails.fields.state.placeholder"
+                      | translate
+                  }}
+                </option>
                 <option value="1">State 1</option>
                 <option value="2">State 2</option>
                 <option value="3">State 3</option>
@@ -121,26 +173,40 @@
 
             <div class="form-group mb-3">
               <label for="postcode" class="form-label"
-                >postcode / zip <span class="text-danger">*</span>
+                >{{
+                  "BillingAndOrderSummary.BillingDetails.fields.postcode.label"
+                    | translate
+                }}
+                <span class="text-danger">*</span>
               </label>
               <input
                 type="text"
                 class="form-control"
                 id="postcode"
-                placeholder="Town postal code"
+                [placeholder]="
+                  'BillingAndOrderSummary.BillingDetails.fields.postcode.placeholder'
+                    | translate
+                "
                 required
               />
             </div>
 
             <div class="form-group mb-3">
               <label for="phone" class="form-label"
-                >Phone <span class="text-danger">*</span>
+                >{{
+                  "BillingAndOrderSummary.BillingDetails.fields.phone.label"
+                    | translate
+                }}
+                <span class="text-danger">*</span>
               </label>
               <input
                 type="text"
                 class="form-control"
                 id="phone"
-                placeholder="Phone number"
+                [placeholder]="
+                  'BillingAndOrderSummary.BillingDetails.fields.phone.placeholder'
+                    | translate
+                "
                 required
               />
             </div>
@@ -153,17 +219,28 @@
                 value="True"
                 inputId="shipping-checkbox"
               />
-              <label for="shipping-checkbox">Ship to different address? </label>
+              <label for="shipping-checkbox"
+                >{{
+                  "BillingAndOrderSummary.BillingDetails.differentAddress.label"
+                    | translate
+                }}
+              </label>
             </div>
 
             <div class="form-group">
               <label for="order-notes" class="form-label">
-                order notes (optional)
+                {{
+                  "BillingAndOrderSummary.BillingDetails.fields.orderNotes.label"
+                    | translate
+                }}
               </label>
               <textarea
                 class="form-control"
                 id="order-notes"
-                placeholder="Notes about your order ...."
+                [placeholder]="
+                  'BillingAndOrderSummary.BillingDetails.fields.orderNotes.placeholder'
+                    | translate
+                "
                 rows="7"
               ></textarea>
             </div>
@@ -173,14 +250,26 @@
 
       <div class="col-lg-4">
         <div class="order-summary py-5 px-4 rounded-2">
-          <h4 class="fw-bold mb-4">Your order</h4>
+          <h4 class="fw-bold mb-4">
+            {{ "BillingAndOrderSummary.OrderSummary.title" | translate }}
+          </h4>
 
           <div class="order-details p-2 mb-4 rounded-2">
             <div
               class="subtotal border-bottom d-flex justify-content-between align-items-center py-2 mb-4"
             >
-              <h4 class="mb-0">Product</h4>
-              <p class="mb-0 fs-5">Subtotal</p>
+              <h4 class="mb-0">
+                {{
+                  "BillingAndOrderSummary.OrderSummary.header.product"
+                    | translate
+                }}
+              </h4>
+              <p class="mb-0 fs-5">
+                {{
+                  "BillingAndOrderSummary.OrderSummary.header.subtotal"
+                    | translate
+                }}
+              </p>
             </div>
 
             <div
@@ -211,7 +300,12 @@
             <div
               class="subtotal border-bottom d-flex justify-content-between align-items-center py-2 mb-4"
             >
-              <h4 class="fw-bold mb-0">Subtotal</h4>
+              <h4 class="h6 fw-bold mb-0">
+                {{
+                  "BillingAndOrderSummary.OrderSummary.subtotal.title"
+                    | translate
+                }}
+              </h4>
               <p class="mb-0 fs-5">
                 {{ 825 | currency : "RSA " }}
               </p>
@@ -220,14 +314,23 @@
             <div
               class="shipping border-bottom d-flex justify-content-between align-items-center py-2"
             >
-              <h4 class="mb-0">Shipping</h4>
+              <h4 class="h6 mb-0">
+                {{
+                  "BillingAndOrderSummary.OrderSummary.shipping.title"
+                    | translate
+                }}
+              </h4>
               <p class="text-end fs-5 mb-0">Free shipping</p>
             </div>
 
             <div
               class="total d-flex justify-content-between align-items-center pt-4"
             >
-              <h4 class="mb-0">Total</h4>
+              <h4 class="h6 mb-0">
+                {{
+                  "BillingAndOrderSummary.OrderSummary.total.title" | translate
+                }}
+              </h4>
               <p class="mb-0 fw-bold fs-4 total-price">
                 {{ 825 | currency : "RSA " }}
               </p>
@@ -241,7 +344,12 @@
                 [(ngModel)]="ingredient"
                 inputId="cash"
               />
-              <label for="cash" class="ms-2"> Cash on delivery </label>
+              <label for="cash" class="mx-2">
+                {{
+                  "BillingAndOrderSummary.PaymentMethod.methods.cash"
+                    | translate
+                }}
+              </label>
             </div>
 
             <div class="method d-flex align-items-center mb-2">
@@ -250,7 +358,12 @@
                 [(ngModel)]="ingredient"
                 inputId="card"
               />
-              <label for="card" class="ms-2">  Direct bank transfer </label>
+              <label for="card" class="mx-2">
+                {{
+                  "BillingAndOrderSummary.PaymentMethod.methods.bankTransfer"
+                    | translate
+                }}
+              </label>
             </div>
 
             <div class="method d-flex align-items-center mb-2">
@@ -259,16 +372,29 @@
                 [(ngModel)]="ingredient"
                 inputId="paypal"
               />
-              <label for="paypal" class="ms-2">
-                PayPal <span> (visa , Mastercard )</span>
+              <label for="paypal" class="mx-2">
+                {{
+                  "BillingAndOrderSummary.PaymentMethod.methods.paypal"
+                    | translate
+                }}
+                <span>
+                  {{
+                    "BillingAndOrderSummary.PaymentMethod.methods.paypalOptions"
+                      | translate
+                  }}</span
+                >
               </label>
             </div>
           </div>
 
           <p class="py-3 border-bottom">
-            Your personal data will be used to process your order, support your
-            experience throughout this website, and for other purposes described
-            in our <a href="#" class="heading-color"> privacy policy.</a>
+            {{ "BillingAndOrderSummary.Terms.privacyPolicy.text" | translate }}
+            <a href="#" class="heading-color">
+              {{
+                "BillingAndOrderSummary.Terms.privacyPolicy.linkText"
+                  | translate
+              }}</a
+            >
           </p>
 
           <div
@@ -280,7 +406,7 @@
               inputId="terms-conditions"
             />
             <label for="terms-conditions">
-              I have read and agree to the website terms and conditions
+              {{ "BillingAndOrderSummary.Terms.acceptTerms.text" | translate }}
               <span class="text-danger">*</span>
             </label>
           </div>
@@ -289,7 +415,7 @@
             class="main-btn py-3 px-4 rounded-5 w-100 text-uppercase fw-bold"
             routerLink="/order-details"
           >
-            PROCEED TO CHECKOUT
+            {{ "BillingAndOrderSummary.CheckoutButton.label" | translate }}
           </button>
         </div>
       </div>

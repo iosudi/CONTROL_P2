@@ -4,15 +4,20 @@
   [menuOpened]="filtersOpened"
   (menuStatusChange)="onMenuStatusChange($event)"
 ></app-mobile-filter-container>
+
+<!-- Categories Section -->
 <section class="categories">
   <div class="container">
     <swiper-container
+      dir="ltr"
+      *ngIf="direction === 'ltr'; else rightSwiper"
       slides-per-view="3"
       [spaceBetween]="20"
       [breakpoints]="categoriesBreakpoints"
     >
-      <swiper-slide *ngFor="let item of [1, 2, 3]">
+      <swiper-slide *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]">
         <div
+          [dir]="'dir' | translate"
           class="category rounded-3 d-flex justify-content-start align-items-center gap-3 overflow-hidden p-3 pointer"
         >
           <img
@@ -23,29 +28,69 @@
 
           <div class="category-title">
             <h3 class="h5">Abstract and Plastic art</h3>
-            <p class="mb-0">150 Project</p>
+            <p class="mb-0">
+              150 {{ "ShopPage.Categories.projectsCount" | translate }}
+            </p>
           </div>
         </div>
       </swiper-slide>
     </swiper-container>
+
+    <!-- Right side swiper -->
+    <ng-template #rightSwiper>
+      <swiper-container
+        dir="rtl"
+        slides-per-view="3"
+        [spaceBetween]="20"
+        [breakpoints]="categoriesBreakpoints"
+      >
+        <swiper-slide *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]">
+          <div
+            [dir]="'dir' | translate"
+            class="category rounded-3 d-flex justify-content-start align-items-center gap-3 overflow-hidden p-3 pointer"
+          >
+            <img
+              src="./assets/images/shop/categories/1.png"
+              class="rounded-3"
+              alt="category image"
+            />
+
+            <div class="category-title">
+              <h3 class="h5">Abstract and Plastic art</h3>
+              <p class="mb-0">
+                150 {{ "ShopPage.Categories.projectsCount" | translate }}
+              </p>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </ng-template>
   </div>
 </section>
 
-<section class="shop py-5">
+<section class="shop py-5" [dir]="'dir' | translate">
   <div class="container">
     <div class="row g-4">
       <div class="col-lg-3 filters">
         <div class="filtering-container py-5 px-4 rounded-3">
           <div class="price-filter">
-            <h4 class="mb-4">Price</h4>
+            <h4 class="mb-4">
+              {{ "ShopPage.filters.priceFilter.title" | translate }}
+            </h4>
 
-            <p-slider [(ngModel)]="rangeValues" [range]="true" />
+            <p-slider
+              [(ngModel)]="rangeValues"
+              [range]="true"
+              [dir]="'dir' | translate"
+            />
 
             <div
               class="price-filter-controls d-flex align-items-center justify-content-between gap-2 mt-3 border-bottom py-4"
             >
               <p class="mb-0">
-                <span class="price-filter-label">Price: </span>
+                <span class="price-filter-label"
+                  >{{ "ShopPage.filters.priceFilter.title" | translate }}:
+                </span>
                 <span>{{
                   rangeValues[0] | currency : "£" : "symbol" : "1.0-0"
                 }}</span>
@@ -55,33 +100,42 @@
                 }}</span>
               </p>
 
-              <button class="main-btn rounded-5 px-4 py-1 fs-6">filter</button>
+              <button
+                class="main-btn rounded-5 px-4 py-1 fs-6"
+                (click)="updatePriceRangeFilter()"
+              >
+                {{ "ShopPage.filters.priceFilter.button" | translate }}
+              </button>
             </div>
           </div>
 
-          <div class="filter-box py-4">
+          <div
+            class="filter-box py-4"
+            *ngFor="let filter of filterOptions; let boxIndex = index"
+          >
             <div
               class="filter-title d-flex align-items-center justify-content-between mb-4"
             >
-              <h4 class="mb-0">Size</h4>
+              <h4 class="mb-0">{{ filter.title }}</h4>
 
               <i class="fa-solid fa-angle-down"></i>
             </div>
 
             <div class="filter-options">
               <div
+                *ngFor="let option of filter.options; let optionIndex = index"
                 class="filter-option d-flex justify-content-between align-items-center mb-3"
-                *ngFor="let option of filterOptions; let i = index"
               >
                 <div class="d-flex align-items-center gap-2">
                   <p-checkbox
                     [(ngModel)]="option.isChecked"
                     [binary]="true"
-                    value="True"
-                    inputId="filterOption{{ i }}"
+                    [value]="option.isChecked ? 'true' : 'false'"
+                    [inputId]="'filterOption' + boxIndex + '_' + optionIndex"
+                    (onChange)="updateSelectedFiltersAndQueryParams()"
                   />
                   <label
-                    for="filterOption{{ i }}"
+                    [for]="'filterOption' + boxIndex + '_' + optionIndex"
                     [ngClass]="{ 'checked': option.isChecked, }"
                     >{{ option.label }}
                   </label>
@@ -104,15 +158,37 @@
             class="filter-preview-controls d-flex align-items-center justify-content-between"
           >
             <h2 class="fs-4 shop-category-title">
-              Abstract and plastic art <span>(150 result)</span>
+              Abstract and plastic art
+              <span
+                >(150
+                {{ "ShopPage.Shop.products.resultsCount" | translate }})</span
+              >
             </h2>
 
             <div class="controls">
               <div class="desktop-controls d-flex align-items-center gap-3">
                 <div class="preview-options">
-                  <i class="bx bx-grid-horizontal pointer"></i>
-                  <i class="bx bx-grid-small active pointer"></i>
-                  <i class="bx bxs-grid pointer"></i>
+                  <i
+                    class="bx bx-grid-horizontal pointer"
+                    [ngClass]="{ active: isHorizontal }"
+                    (click)="setViewMode('horizontal')"
+                  ></i>
+                  <i
+                    class="bx bx-grid-small active pointer"
+                    [ngClass]="{
+                      active:
+                        !isHorizontal && activeGridStyle === 'vertical-small'
+                    }"
+                    (click)="setViewMode('vertical', 'vertical-small')"
+                  ></i>
+                  <i
+                    class="bx bxs-grid pointer"
+                    [ngClass]="{
+                      active:
+                        !isHorizontal && activeGridStyle === 'vertical-large'
+                    }"
+                    (click)="setViewMode('vertical', 'vertical-large')"
+                  ></i>
                 </div>
 
                 <p-dropdown
@@ -131,7 +207,9 @@
                   (click)="openFiltersMenu()"
                 >
                   <i class="fa-solid fa-bars"></i>
-                  <span>Show sidebar</span>
+                  <span>{{
+                    "ShopPage.filters.mobile.showSidebar" | translate
+                  }}</span>
                 </button>
 
                 <img src="./assets/images/icons/sort.svg" alt="sort icon" />
@@ -139,20 +217,29 @@
             </div>
           </div>
 
-          <div class="selected-filter-chips d-flex align-items-center gap-2">
+          <div
+            class="selected-filter-chips d-flex flex-wrap align-items-center gap-2"
+          >
             <span
               class="chip d-flex align-items-center px-3 py-1 rounded-2 gap-2"
-              >30x40 <i class="fa-solid fa-xmark pointer"></i
+              *ngFor="let item of selectedFilters; let i = index"
+              >{{ item.label }}
+              <i class="fa-solid fa-xmark pointer" (click)="removeFilter(i)"></i
             ></span>
 
-            <button class="btn clear-btn text-decoration-underline">
-              Clear all
+            <button
+              class="btn clear-btn text-decoration-underline"
+              *ngIf="selectedFilters.length > 0"
+              (click)="clearAllFilters()"
+            >
+              {{ "ShopPage.Shop.products.filters.clearAll" | translate }}
             </button>
           </div>
 
           <div class="row g-4 mt-lg-3 mt-1">
             <div
-              class="col-lg-4 col-md-6"
+              class="product-card"
+              [ngClass]="getGridClasses()"
               *ngFor="
                 let item of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
                   | paginate
@@ -166,6 +253,7 @@
             >
               <div
                 class="product px-2 py-3 rounded-4 pointer"
+                [class.horizontal]="isHorizontal"
                 routerLink="/product-details"
               >
                 <div class="product-image mb-3 position-relative">
@@ -195,6 +283,17 @@
                         <i class="fa-solid fa-star star-color"></i>
                       </p>
                     </div>
+                    <div
+                      class="rating d-flex align-items-center justify-content-center gap-2"
+                    >
+                      <div class="stars my-2">
+                        <i
+                          class="fa-solid fa-star star-color"
+                          *ngFor="let item of [1, 2, 3, 4, 5]; let num = index"
+                        ></i>
+                      </div>
+                      <span>  (2 customer reviews) </span>
+                    </div>
                   </div>
 
                   <div class="price heading-color">
@@ -207,7 +306,10 @@
                   >
                     <button class="main-btn px-4 py-2 rounded-5 fw-semibold">
                       <i class="fa-solid fa-cart-shopping"></i>
-                      Add to cart
+                      {{
+                        "ShopPage.Shop.productDetails.actions.addToCart"
+                          | translate
+                      }}
                     </button>
                     <button
                       class="quick-view-btn d-flex align-items-center justify-content-center"

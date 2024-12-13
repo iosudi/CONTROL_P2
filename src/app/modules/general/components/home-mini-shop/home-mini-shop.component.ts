@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home-mini-shop',
@@ -6,6 +7,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./home-mini-shop.component.scss'],
 })
 export class HomeMiniShopComponent {
+  constructor(private translate: TranslateService) {}
+
   cities: any[] | undefined;
   selectedCity: any | undefined;
 

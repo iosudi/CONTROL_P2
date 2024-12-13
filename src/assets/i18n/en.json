@@ -54,7 +54,8 @@
       "title": " Ctrl + P <br /> <span class='heading-color fw-bold'>Popular service</span>"
     },
     "mini_shop": {
-      "title": " Shop Our <span class='fw-bold'>Painting</span>"
+      "title": " Shop Our <span class='fw-bold'>Painting</span>",
+      "sortPlaceholder": "Sort by"
     },
     "testimonials": {
       "title": " What Our <br /> <span class='heading-color fw-bold'>Clients Say</span>",
@@ -234,6 +235,100 @@
     "btn_read_more": "Read More"
   },
 
+  "ShopPage": {
+    "filters": {
+      "mobile": {
+        "showSidebar": "Show sidebar"
+      },
+      "priceFilter": {
+        "title": "Price",
+        "button": "Filter"
+      }
+    },
+
+    "Categories": {
+      "projectsCount": "Project"
+    },
+
+    "Shop": {
+      "products": {
+        "resultsCount": "result",
+
+        "filters": {
+          "clearAll": "Clear all"
+        }
+      },
+      "productDetails": {
+        "actions": {
+          "addToCart": "Add to cart"
+        }
+      }
+    }
+  },
+
+  "productDetails": {
+    "product": {
+      "rating": {
+        "reviews": " customer reviews"
+      },
+
+      "specifications": {
+        "material": {
+          "title": "Material"
+        },
+        "frame": {
+          "title": "Frame"
+        },
+        "size": {
+          "title": "Size"
+        }
+      },
+      "actions": {
+        "addToCart": "Add to cart",
+        "orderByWhatsapp": "Order by"
+      },
+      "productDetails": {
+        "sku": "SKU",
+        "categories": "Categories",
+        "share": "share"
+      }
+    },
+    "productInformationSection": {
+      "tabs": {
+        "additionalInfo": "Additional Information",
+        "reviews": "Reviews",
+        "shipping": "Shipping & Delivery"
+      },
+      "additionalInfo": {
+        "title": "Additional Information"
+      },
+      "reviews": {
+        "yourReviewIsAwaitingApproval": "Your review is awaiting approval",
+        "addReview": "Add a review",
+        "emailNote": "Your email address will not be published. Required fields are marked",
+        "requiredField": "*",
+        "yourRating": "Your rating",
+        "yourReview": "Your review",
+        "name": "Name",
+        "email": "Email",
+        "submitReview": "Submit review",
+        "writeYourReview": "Write your review ..",
+        "namePlaceholder": "Name",
+        "emailPlaceholder": "example@email.com"
+      },
+      "shippingAndDelivery": {
+        "title": "SHIPPING & DELIVERY",
+        "description": "We offer free delivery across all regions of the Kingdom of Saudi Arabia. Each order is carefully packed to ensure it arrives in perfect condition.",
+        "details": {
+          "deliveryTime": "Delivery Time: 3-7 business days",
+          "shippingFee": "Shipping Fee: Free",
+          "tax": "Tax: Included in the price",
+          "customizationDelivery": "Customization Delivery: Custom sizes or framed paintings may take an additional 2-3 business days to process."
+        }
+      }
+    }
+  },
+
   "PartnersPage": {
     "Hero": {
       "title": "Our <span class='heading-color'>Partners</span>",
@@ -367,6 +462,191 @@
         "subject": "Subject",
         "orderDetails": "Order Details"
       }
+    }
+  },
+
+  "Account": {
+    "AccountLinks": {
+      "Title": "My Account",
+      "dashboard": {
+        "title": "Dashboard"
+      },
+      "accountDetails": {
+        "title": "Account details"
+      },
+      "orders": {
+        "title": "Orders"
+      },
+      "addresses": {
+        "title": "Addresses"
+      },
+      "wishlist": {
+        "title": "Wishlist"
+      },
+      "logout": {
+        "title": "Logout"
+      }
+    },
+
+    "AccountDashboard": {
+      "greeting": "👋🏻 Hello, adelsaudii !",
+      "paragraph": "From your account dashboard you can view your <a routerLink='/profile/orders'>recent orders</a>, manage your <a routerLink='/profile/addresses'>shipping and billing addresses</a>, and <a routerLink='/profile/account-details'>edit your password and account details.</a>"
+    },
+
+    "AccountDetails": {
+      "form": {
+        "firstName": {
+          "label": "First Name",
+          "placeholder": "First"
+        },
+        "lastName": {
+          "label": "Last Name",
+          "placeholder": "Last"
+        },
+        "displayName": {
+          "label": "Display name",
+          "placeholder": "Enter display name",
+          "info": "This will be how your name will be displayed in the account section and in reviews"
+        },
+        "email": {
+          "label": "Email address"
+        },
+        "passwordChange": {
+          "title": "Password change",
+          "currentPassword": {
+            "placeholder": "Current password"
+          },
+          "newPassword": {
+            "placeholder": "Confirm password"
+          },
+          "confirmPassword": {
+            "placeholder": "Confirm new password"
+          }
+        },
+        "saveButton": {
+          "text": "Save changes"
+        }
+      }
+    },
+
+    "Orders": {
+      "table": {
+        "order": "Order",
+        "date": "Date",
+        "status": "Status",
+        "total": "Total",
+        "actions": "Actions",
+        "viewButton": "View"
+      }
+    },
+
+    "Addresses": {
+      "addNewAddressButton": "+ add New address",
+      "editAddress": "edit"
+    },
+
+    "Wishlist": {
+      "heading": "Your products wishlist",
+      "shareTitle": "share",
+
+      "controls": {
+        "clearWishlistButton": "Clear wish list",
+        "sortByPlaceholder": "Sort by"
+      },
+      "product": {
+        "actions": {
+          "addToCart": "Add to cart"
+        }
+      }
+    }
+  },
+
+  "BillingAndOrderSummary": {
+    "BillingDetails": {
+      "title": "Billing Details",
+      "fields": {
+        "firstName": {
+          "label": "First Name",
+          "placeholder": "First Name"
+        },
+        "lastName": {
+          "label": "Last Name",
+          "placeholder": "Last Name"
+        },
+        "companyName": {
+          "label": "Company Name (Optional)",
+          "placeholder": "Company Name"
+        },
+        "countryRegion": {
+          "label": "Country / Region",
+          "placeholder": "Select a Country / Region"
+        },
+        "streetAddress": {
+          "label": "Street Address",
+          "placeholder1": "House Number and Street Name",
+          "placeholder2": "Apartment, suite, unit, etc. (Optional)"
+        },
+        "city": {
+          "label": "City / Town",
+          "placeholder": "Cairo"
+        },
+        "state": {
+          "label": "State / Province",
+          "placeholder": "Select an Option"
+        },
+        "postcode": {
+          "label": "Postcode / ZIP",
+          "placeholder": "City Postal Code"
+        },
+        "phone": {
+          "label": "Phone",
+          "placeholder": "Phone Number"
+        },
+        "orderNotes": {
+          "label": "Order Notes (Optional)",
+          "placeholder": "Notes about your order ..."
+        }
+      },
+      "differentAddress": {
+        "label": "Ship to a different address?"
+      }
+    },
+    "OrderSummary": {
+      "title": "Your Order",
+      "header": {
+        "product": "Product",
+        "subtotal": "Subtotal"
+      },
+      "subtotal": {
+        "title": "Subtotal"
+      },
+      "shipping": {
+        "title": "Shipping"
+      },
+      "total": {
+        "title": "Total"
+      }
+    },
+    "PaymentMethod": {
+      "title": "Payment Method",
+      "methods": {
+        "cash": "Cash on Delivery",
+        "bankTransfer": "Direct Bank Transfer",
+        "paypal": "PayPal",
+        "paypalOptions": "(Visa, MasterCard)"
+      }
+    },
+    "Terms": {
+      "privacyPolicy": {
+        "text": "Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our ",
+        "linkText": "Privacy Policy."
+      },
+      "acceptTerms": {
+        "text": "I have read and agree to the website's terms and conditions"
+      }
+    },
+    "CheckoutButton": {
+      "label": "Proceed to Payment"
     }
   },
 

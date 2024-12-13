@@ -546,6 +546,7 @@ app-home-navbar ::ng-deep {
       width: var(--width);
       min-width: var(--width);
       height: var(--height);
+      overflow: hidden;
       position: absolute;
       left: 100%;
       top: 0;
@@ -564,8 +565,7 @@ app-home-navbar ::ng-deep {
       }
 
       img {
-        width: 60%;
-        height: auto;
+        width: auto;
       }
     }
     &:hover .partner-link {

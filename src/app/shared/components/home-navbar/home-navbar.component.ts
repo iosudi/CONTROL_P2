@@ -17,7 +17,7 @@ export class HomeNavbarComponent implements OnInit {
     private _LanguageService: LanguageServiceService
   ) {}
 
-  direction: string = 'ltr'; // Default direction
+  direction: string = 'ltr';
 
   private modalService = inject(NgbModal);
 
@@ -32,7 +32,13 @@ export class HomeNavbarComponent implements OnInit {
 
     const savedLang = this._LanguageService.getLanguage();
     this.currentLanguage = savedLang;
-    this.translate.use(savedLang); // Set the language in the translation service
+    this.translate.use(savedLang);
+
+    if (savedLang == 'ar') {
+      this.direction = 'rtl';
+    } else {
+      this.direction = 'ltr';
+    }
   }
 
   openLoginDialog() {
@@ -48,8 +54,6 @@ export class HomeNavbarComponent implements OnInit {
     const newLanguage = this.currentLanguage === 'ar' ? 'en' : 'ar';
     this._LanguageService.setLanguage(newLanguage); // Update the language
     this.currentLanguage = newLanguage;
-
-    // Reload the page to fetch new data with the updated language
 
     window.location.reload(); // Reload the page
   }
