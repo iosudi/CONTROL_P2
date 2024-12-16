@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { QuickViewComponent } from '../../components/quick-view/quick-view.component';
+import { ShopService } from './../../../../shared/services/shop.service';
 
 @Component({
   selector: 'app-shop',
@@ -15,7 +16,8 @@ export class ShopComponent implements OnInit {
   constructor(
     private translate: TranslateService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _ShopService: ShopService
   ) {}
 
   rangeValues: number[] = [0, 100];
@@ -24,6 +26,11 @@ export class ShopComponent implements OnInit {
   currentPage = 1;
   filtersOpened: boolean = false;
   selectedFilters: any[] = [];
+
+  filteredProducts: any[] = []; // List of products to display
+  selectedCategory: string = 'all'; // Default category selection
+  categories: any[] = [];
+
   filterOptions = [
     {
       title: 'Size',
@@ -47,6 +54,7 @@ export class ShopComponent implements OnInit {
   selectedCity: any | undefined;
   isHorizontal: boolean = false;
   activeGridStyle: string = 'vertical-small';
+  products: any = [];
 
   categoriesBreakpoints = {
     0: {
@@ -69,6 +77,7 @@ export class ShopComponent implements OnInit {
 
   initialize(): void {
     this.initializeFiltersFromQueryParams();
+    this.fetchData();
 
     this.cities = [
       { name: 'New York', code: 'NY' },
@@ -84,6 +93,28 @@ export class ShopComponent implements OnInit {
 
     this.translate.onLangChange.subscribe((event) => {
       this.direction = event.lang === 'ar' ? 'rtl' : 'ltr';
+    });
+  }
+
+  fetchData(): void {
+    this._ShopService.getCategories().subscribe({
+      next: (categories) => {
+        this.categories = categories;
+        console.log(categories);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+
+    this._ShopService.getProducts().subscribe({
+      next: (products) => {
+        this.products = products;
+        console.log(products);
+      },
+      error: (error) => {
+        console.error('Error fetching products:', error);
+      },
     });
   }
 
@@ -116,6 +147,20 @@ export class ShopComponent implements OnInit {
     });
     this.updateSelectedFiltersAndQueryParams();
   }
+
+  // filterByCategory(category: string): void {
+  //   this.selectedCategory = category;
+
+  //   if (category === 'all') {
+  //     // Show all products
+  //     this.filteredProducts = [...this.products];
+  //   } else {
+  //     // Filter products locally
+  //     this.filteredProducts = this.products.filter(
+  //       (product:any) => product.category[0] === category
+  //     );
+  //   }
+  // }
 
   setDirection(): void {
     this.direction = this.translate.instant('dir') === 'rtl' ? 'rtl' : 'ltr';
@@ -246,7 +291,7 @@ export class ShopComponent implements OnInit {
     this.filtersOpened = true;
   }
 
-  onMenuStatusChange(status: boolean) {
+  onMenuStatusChange(status: any) {
     this.filtersOpened = status;
     this.toggleBodyScroll();
   }

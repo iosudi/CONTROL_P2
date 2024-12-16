@@ -2,14 +2,14 @@
   <i class="fa-solid fa-xmark close-icon" (click)="close()"></i>
 
   <h2 class="h3 mb-4 mt-3">Welcome Back</h2>
-  <form (ngSubmit)="onSubmit()">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="inputs-container mb-3">
       <div class="input-box my-3">
         <div class="input-field d-flex gap-2 align-items-center px-4">
           <input
-            formControlName="email"
+            formControlName="userName"
             class="py-3"
-            type="email"
+            type="text"
             placeholder="Name"
           />
         </div>

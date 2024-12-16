@@ -1,3 +1,3 @@
 export const environment = {
-  baseURL: 'https://ctrlplusp.com/dashboard/api/',
+  baseURL: 'https://ctrl-p.runasp.net/api/',
 };

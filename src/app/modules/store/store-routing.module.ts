@@ -10,7 +10,7 @@ const routes: Routes = [
     title: 'Shop - Ctrl+P for advertising and modern marketing',
   },
   {
-    path: 'product-details',
+    path: 'product-details/:id',
     component: ProductDetailsComponent,
     title: 'Product - Ctrl+P for advertising and modern marketing',
   },

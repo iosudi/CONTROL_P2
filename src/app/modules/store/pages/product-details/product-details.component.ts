@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuItem } from 'primeng/api';
+import { ShopService } from 'src/app/shared/services/shop.service';
 
 @Component({
   selector: 'app-product-details',
@@ -21,7 +24,14 @@ export class ProductDetailsComponent {
     './assets/images/portfolio/10.jpg',
   ];
 
-  constructor(public translate: TranslateService) {}
+  product: any = {};
+
+  constructor(
+    public translate: TranslateService,
+    private ActivatedRoute: ActivatedRoute,
+    private _ShopService: ShopService,
+    private fb: FormBuilder
+  ) {}
 
   activeSection: string = 'product-description';
   direction: string = 'ltr'; // Default direction
@@ -43,6 +53,18 @@ export class ProductDetailsComponent {
       { label: 'Modern Canvas Painting' },
     ];
 
+    this.ActivatedRoute.paramMap.subscribe({
+      next: (params) => {
+        if (params.get('id')) {
+          const productId = Number(params.get('id'));
+          this.fetchData(productId);
+        }
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+
     this.home = { label: 'Home Page', routerLink: '/home' };
 
     const currentLang =
@@ -51,6 +73,18 @@ export class ProductDetailsComponent {
 
     this.translate.onLangChange.subscribe((event) => {
       this.direction = event.lang === 'ar' ? 'rtl' : 'ltr';
+    });
+  }
+
+  fetchData(productId: number): void {
+    this._ShopService.getProductById(productId).subscribe({
+      next: (product) => {
+        console.log(product);
+        this.product = product;
+      },
+      error: (error) => {
+        console.log(error);
+      },
     });
   }
 

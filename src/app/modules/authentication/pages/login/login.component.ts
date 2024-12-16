@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { RegisterComponent } from '../register/register.component';
 
@@ -15,7 +16,8 @@ export class LoginComponent {
   constructor(
     private _FormBuilder: FormBuilder,
     @Optional() public activeModal: NgbActiveModal,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) {}
   private modalService = inject(NgbModal);
 
@@ -41,12 +43,21 @@ export class LoginComponent {
   }
 
   loginForm: FormGroup = this._FormBuilder.group({
-    email: [''],
+    userName: [''],
     password: [''],
   });
 
   onSubmit(): void {
     if (this.loginForm.status === 'VALID') {
+      this.auth.login(this.loginForm.value).subscribe({
+        next: (data) => {
+          console.log(data);
+          this.router.navigate(['/dashboard']);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
     }
   }
 

@@ -69,7 +69,7 @@
             }}<span class="text-danger">*</span> :
           </h6>
           <ngb-rating
-            formControlName="rating"
+            formGroupName="rating"
             [max]="maxRate"
             (rateChange)="updateRating($event)"
           >
@@ -116,7 +116,7 @@
               'productDetails.productInformationSection.reviews.namePlaceholder'
                 | translate
             "
-            formControlName="name"
+            formControlName="reviewerName"
           />
         </div>
 
@@ -132,7 +132,7 @@
             class="d-block px-3 py-2 w-100"
             type="email"
             placeholder="exmaple@email.com"
-            formControlName="email"
+            formControlName="reviewerEmail"
           />
         </div>
 

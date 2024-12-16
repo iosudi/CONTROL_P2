@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ShopService } from 'src/app/shared/services/shop.service';
 
 @Component({
   selector: 'app-product-reviews',
@@ -7,26 +8,37 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./product-reviews.component.scss'],
 })
 export class ProductReviewsComponent {
-  constructor(private _FormBuilder: FormBuilder) {}
+  constructor(private fb: FormBuilder, private _ShopService: ShopService) {}
 
-  reviewForm = this._FormBuilder.group({
-    name: ['', Validators.required],
-    email: ['', Validators.required],
-    review: ['', Validators.required],
-    rating: [0, Validators.required],
+  @Input() productId!: number;
+
+  reviewForm: FormGroup = this.fb.group({
+    rating: ['', [Validators.required]],
+    review: ['', [Validators.required]],
+    reviewerName: ['', [Validators.required]],
+    reviewerEmail: ['', [Validators.required, Validators.email]],
+    productId: [''],
   });
 
   currentRate: number = 0;
   maxRate: number = 5;
 
   onSubmit(): void {
+    this.reviewForm.get('productId')?.setValue(this.productId);
     if (this.reviewForm.status == 'VALID') {
-      console.log(this.reviewForm.value);
+      this._ShopService.addProductReview(this.reviewForm.value).subscribe({
+        next: (response) => {
+          console.log(response);
+        },
+        error: (error) => {
+          console.error(error);
+        },
+      });
       this.reviewForm.reset();
     }
   }
 
-  updateRating(newRate: number): void {
-    this.currentRate = newRate;
+  updateRating(newRating: number): void {
+    this.reviewForm.get('rating')?.setValue(newRating);
   }
 }

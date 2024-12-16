@@ -26,8 +26,8 @@
               space-between="10"
               dir="ltr"
             >
-              <swiper-slide *ngFor="let image of images">
-                <img [src]="image" />
+              <swiper-slide *ngFor="let image of product.url">
+                <img [src]="'https://ctrl-p.runasp.net/' + image" />
               </swiper-slide>
             </swiper-container>
           </div>
@@ -41,8 +41,8 @@
               watch-slides-progress="true"
               dir="ltr"
             >
-              <swiper-slide *ngFor="let image of images">
-                <img [src]="image" />
+              <swiper-slide *ngFor="let image of product.url">
+                <img [src]="'https://ctrl-p.runasp.net/' + image" />
               </swiper-slide>
             </swiper-container>
           </div>
@@ -51,7 +51,7 @@
       <div class="col-lg-6">
         <div class="product-information">
           <div class="product-title">
-            <h2>Modern Canvas Painting</h2>
+            <h2>{{ product.name }}</h2>
             <div class="product-rating d-flex align-items-end">
               <span class="stars mx-2 fs-4 d-flex align-items-center gap-1">
                 <i class="fa-solid fa-star star-color"></i>
@@ -68,27 +68,47 @@
 
           <p class="product-price my-4 fs-5">
             <span class="text-decoration-line-through pre-offer-price mx-1">{{
-              435 | currency : " "
+              product.oldPrice | currency : " "
             }}</span>
             <span class="heading-color fs-4">{{
-              350 | currency : "SAR "
+              product.price | currency : "SAR "
             }}</span>
           </p>
 
           <p class="product-description">
-            Lorem ipsum dolor sit amet consectetur. Arcu ridiculus faucibus in
-            vitae risus malesuada convallis nulla. Pulvinar justo risus viverra
-            tincidunt. Risus amet in ac ornare gravida quis pellentesque
-            rhoncus. Et faucibus varius at tellus ac fames ut molestie.
+            {{ product.description }}
           </p>
 
           <div class="product-specifications">
             <div class="specifications">
-              <div class="item my-3" *ngFor="let item of [1, 2, 3]">
-                <h6>Material :<span class="fw-light">Canvas Printing</span></h6>
+              <div class="item my-3">
+                <h6>Frame :<span class="fw-light">No Frame</span></h6>
                 <ul class="p-0 m-0 d-flex align-items-center gap-2">
-                  <li class="rounded-1 active">Canvas Printing</li>
-                  <li class="rounded-1">Vinyl Printing</li>
+                  <li
+                    class="rounded-1"
+                    *ngFor="let frame of product.framesNames"
+                  >
+                    {{ frame }}
+                  </li>
+                </ul>
+              </div>
+              <div class="item my-3">
+                <h6>Material :<span class="fw-light">No Material</span></h6>
+                <ul class="p-0 m-0 d-flex align-items-center gap-2">
+                  <li
+                    class="rounded-1"
+                    *ngFor="let material of product.materialsNames"
+                  >
+                    {{ material }}
+                  </li>
+                </ul>
+              </div>
+              <div class="item my-3">
+                <h6>Size :<span class="fw-light">No Size</span></h6>
+                <ul class="p-0 m-0 d-flex align-items-center gap-2">
+                  <li class="rounded-1" *ngFor="let size of product.sizesNames">
+                    {{ size }}
+                  </li>
                 </ul>
               </div>
             </div>
@@ -125,12 +145,12 @@
           <div class="mb-2 product-details mt-4">
             <p class="mb-2 product-id">
               {{ "productDetails.product.productDetails.sku" | translate }}:
-              <span>B2003</span>
+              <span>{{ product.id }}</span>
             </p>
             <p class="mb-2 product-categories">
               {{
                 "productDetails.product.productDetails.categories" | translate
-              }}: <span>Abstract, flowers, art ...</span>
+              }}: <span>{{ product.categoryNames }}</span>
             </p>
             <p>
               {{ "productDetails.product.productDetails.share" | translate }}:
@@ -216,6 +236,7 @@
       </div>
       <app-product-reviews
         *ngIf="activeSection === 'product-reviews'"
+        [productId]="product.id"
       ></app-product-reviews>
     </div>
 
