@@ -1,3 +1,5 @@
+<p-toast />
+
 <app-home-navbar></app-home-navbar>
 <app-mobile-filter-container
   *ngIf="filtersOpened"
@@ -266,6 +268,7 @@
 
                   <div
                     class="heart-icon position-absolute d-flex align-items-center justify-content-center"
+                    (click)="addToWishlist(product.id, $event)"
                   >
                     <i class="fa-solid fa-heart"></i>
                   </div>
@@ -307,7 +310,10 @@
                   <div
                     class="product-actions d-flex align-items-center gap-2 mt-3"
                   >
-                    <button class="main-btn px-4 py-2 rounded-5 fw-semibold">
+                    <button
+                      class="main-btn px-4 py-2 rounded-5 fw-semibold"
+                      (click)="addToCart(product.id, $event)"
+                    >
                       <i class="fa-solid fa-cart-shopping"></i>
                       {{
                         "ShopPage.Shop.productDetails.actions.addToCart"

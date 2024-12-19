@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { MessageService } from 'primeng/api';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { DeferModule } from 'primeng/defer';
 import { DropdownModule } from 'primeng/dropdown';
@@ -54,6 +53,5 @@ registerSwiperElements();
     DeferModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [MessageService],
 })
 export class GeneralModule {}

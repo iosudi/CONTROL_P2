@@ -52,7 +52,7 @@ export class LoginComponent {
       this.auth.login(this.loginForm.value).subscribe({
         next: (data) => {
           console.log(data);
-          this.router.navigate(['/dashboard']);
+          localStorage.setItem('token', data.token);
         },
         error: (error) => {
           console.log(error);

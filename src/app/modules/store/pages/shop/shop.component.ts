@@ -2,8 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { MessageService } from 'primeng/api';
+import { CartService } from 'src/app/shared/services/cart.service';
 import { QuickViewComponent } from '../../components/quick-view/quick-view.component';
 import { ShopService } from './../../../../shared/services/shop.service';
+import { WishlistService } from './../../../../shared/services/wishlist.service';
 
 @Component({
   selector: 'app-shop',
@@ -12,13 +15,20 @@ import { ShopService } from './../../../../shared/services/shop.service';
 })
 export class ShopComponent implements OnInit {
   private modalService = inject(NgbModal);
+  private audio = new Audio();
 
   constructor(
     private translate: TranslateService,
     private router: Router,
     private route: ActivatedRoute,
-    private _ShopService: ShopService
-  ) {}
+    private _ShopService: ShopService,
+    private _CartService: CartService,
+    private messageService: MessageService,
+    private _WishlistService: WishlistService
+  ) {
+    this.audio.src = '../../../../../assets/easter eggs/sabqwla7q.mp3'; // Path to your audio file
+    this.audio.load();
+  }
 
   rangeValues: number[] = [0, 100];
   direction: string = 'ltr'; // Default direction
@@ -100,7 +110,6 @@ export class ShopComponent implements OnInit {
     this._ShopService.getCategories().subscribe({
       next: (categories) => {
         this.categories = categories;
-        console.log(categories);
       },
       error: (error) => {
         console.log(error);
@@ -110,7 +119,6 @@ export class ShopComponent implements OnInit {
     this._ShopService.getProducts().subscribe({
       next: (products) => {
         this.products = products;
-        console.log(products);
       },
       error: (error) => {
         console.error('Error fetching products:', error);
@@ -146,6 +154,35 @@ export class ShopComponent implements OnInit {
       this.rangeValues = [priceMin, priceMax];
     });
     this.updateSelectedFiltersAndQueryParams();
+  }
+
+  addToCart(productId: number, e: MouseEvent): void {
+    e.stopPropagation();
+    const product = {
+      productId: productId,
+      quantity: 1,
+    };
+
+    this._CartService.AddToCart(product).subscribe((success) => {
+      if (success) {
+        if (productId == 28) {
+          this.playSong();
+        }
+        this.messageService.add({
+          severity: 'success',
+          summary: 'success',
+          detail: 'Product added to cart successfully',
+          life: 3000,
+        });
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'error',
+          detail: 'Failed to add product to cart',
+          life: 3000,
+        });
+      }
+    });
   }
 
   // filterByCategory(category: string): void {
@@ -304,5 +341,36 @@ export class ShopComponent implements OnInit {
 
   toggleBodyScroll(): void {
     document.body.style.overflow = this.filtersOpened ? 'hidden' : 'auto';
+  }
+
+  playSong() {
+    this.audio.play();
+  }
+
+  addToWishlist(productId: number, e: MouseEvent): void {
+    e.stopPropagation();
+
+    this._WishlistService.addToWishlist(productId).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'success',
+          detail: 'Product added to wishlist successfully',
+          life: 3000,
+        });
+      },
+      error: (error) => {
+        console.log(
+          '🚀 ~ ShopComponent ~ this._WishlistService.addToWishlist ~ error:',
+          error
+        );
+        this.messageService.add({
+          severity: 'error',
+          summary: 'error',
+          detail: 'Failed to add product to wishlist',
+          life: 3000,
+        });
+      },
+    });
   }
 }

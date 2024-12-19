@@ -9,6 +9,7 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
 import { SliderModule } from 'primeng/slider';
+import { ToastModule } from 'primeng/toast';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { register as registerSwiperElements } from 'swiper/element/bundle';
 import { MobileFilterContainerComponent } from './components/mobile-filter-container/mobile-filter-container.component';
@@ -44,6 +45,7 @@ registerSwiperElements();
     ReactiveFormsModule,
     SharedModule,
     TranslateModule,
+    ToastModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
