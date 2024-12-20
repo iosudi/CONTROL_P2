@@ -33,7 +33,7 @@ export class CartService {
   // Methods to Request to add product to cart
   public AddToCart(product: any): Observable<boolean> {
     return this.AddToCartRequest(product).pipe(
-      map((data) => data.success === true), // Map the response to a boolean value
+      map((data) => data.success === true),
       catchError((error) => {
         console.error('Error adding product to cart:', error);
         return of(false);

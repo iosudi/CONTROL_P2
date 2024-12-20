@@ -314,7 +314,11 @@
         "submitReview": "Submit review",
         "writeYourReview": "Write your review ..",
         "namePlaceholder": "Name",
-        "emailPlaceholder": "example@email.com"
+        "emailPlaceholder": "example@email.com",
+        "noReview": {
+          "title": "This product doesn't have reviews yet.",
+          "paragraph": "Be the first one to write Review"
+        }
       },
       "shippingAndDelivery": {
         "title": "SHIPPING & DELIVERY",

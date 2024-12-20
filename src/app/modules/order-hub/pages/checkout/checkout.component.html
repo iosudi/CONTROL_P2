@@ -15,7 +15,11 @@
             {{ "BillingAndOrderSummary.BillingDetails.title" | translate }}
           </h3>
 
-          <form class="checkout-form">
+          <form
+            class="checkout-form"
+            [formGroup]="billingAddressForm"
+            (ngSubmit)="onSubmit()"
+          >
             <div
               class="form-group d-flex align-items-center justify-content-center gap-3 mb-3"
             >
@@ -35,6 +39,8 @@
                       | translate
                   "
                   id="fname"
+                  [(ngModel)]="fname"
+                  [ngModelOptions]="{ standalone: true }"
                   required
                 />
               </div>
@@ -55,6 +61,8 @@
                       | translate
                   "
                   id="lname"
+                  [(ngModel)]="lname"
+                  [ngModelOptions]="{ standalone: true }"
                   required
                 />
               </div>
@@ -67,7 +75,12 @@
                     | translate
                 }}
               </label>
-              <input type="text" class="form-control" id="company" />
+              <input
+                type="text"
+                class="form-control"
+                id="company"
+                formControlName="companyName"
+              />
             </div>
 
             <div class="form-group mb-3">
@@ -83,6 +96,7 @@
                 id="region"
                 class="w-100 form-select success"
                 required
+                formControlName="country"
               >
                 <option value="" disabled selected>
                   {{
@@ -90,9 +104,9 @@
                       | translate
                   }}
                 </option>
-                <option value="1">Country 1</option>
-                <option value="2">Country 2</option>
-                <option value="3">Country 3</option>
+                <option value="Country 1">Country 1</option>
+                <option value="Country 2">Country 2</option>
+                <option value="Country 3">Country 3</option>
               </select>
             </div>
 
@@ -108,6 +122,7 @@
                 type="text"
                 class="form-control mb-3"
                 id="street"
+                formControlName="streetAddress"
                 [placeholder]="
                   'BillingAndOrderSummary.BillingDetails.fields.streetAddress.placeholder1'
                     | translate
@@ -118,6 +133,7 @@
                 type="text"
                 class="form-control"
                 id="apartment"
+                formControlName="addressText"
                 [placeholder]="
                   'BillingAndOrderSummary.BillingDetails.fields.streetAddress.placeholder2'
                     | translate
@@ -137,6 +153,7 @@
                 type="text"
                 class="form-control"
                 id="city"
+                formControlName="city"
                 [placeholder]="
                   'BillingAndOrderSummary.BillingDetails.fields.city.label'
                     | translate
@@ -157,6 +174,7 @@
                 name="state"
                 id="state"
                 class="w-100 form-select"
+                formControlName="state"
                 required
               >
                 <option value="" disabled selected>
@@ -165,9 +183,9 @@
                       | translate
                   }}
                 </option>
-                <option value="1">State 1</option>
-                <option value="2">State 2</option>
-                <option value="3">State 3</option>
+                <option value="State 1">State 1</option>
+                <option value="State 2">State 2</option>
+                <option value="State 3">State 3</option>
               </select>
             </div>
 
@@ -183,6 +201,7 @@
                 type="text"
                 class="form-control"
                 id="postcode"
+                formControlName="zipCode"
                 [placeholder]="
                   'BillingAndOrderSummary.BillingDetails.fields.postcode.placeholder'
                     | translate
@@ -203,6 +222,7 @@
                 type="text"
                 class="form-control"
                 id="phone"
+                formControlName="phone"
                 [placeholder]="
                   'BillingAndOrderSummary.BillingDetails.fields.phone.placeholder'
                     | translate
@@ -237,6 +257,7 @@
               <textarea
                 class="form-control"
                 id="order-notes"
+                formControlName="note"
                 [placeholder]="
                   'BillingAndOrderSummary.BillingDetails.fields.orderNotes.placeholder'
                     | translate
@@ -413,7 +434,8 @@
 
           <button
             class="main-btn py-3 px-4 rounded-5 w-100 text-uppercase fw-bold"
-            routerLink="/order-details"
+            (click)="onSubmit()"
+            type="submit"
           >
             {{ "BillingAndOrderSummary.CheckoutButton.label" | translate }}
           </button>

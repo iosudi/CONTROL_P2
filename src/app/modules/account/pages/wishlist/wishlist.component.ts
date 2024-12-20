@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { WishlistService } from 'src/app/shared/services/wishlist.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -7,17 +8,16 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./wishlist.component.scss'],
 })
 export class WishlistComponent implements OnInit {
-  constructor(private translateService: TranslateService) {
-    this.translateService
-      .get('HomePage.mini_shop.sortPlaceholder')
-      .subscribe((translation) => {
-        console.log(translation); // Debug to check if the translation loads correctly
-      });
-  }
+  constructor(
+    private translateService: TranslateService,
+    private _WishlistService: WishlistService
+  ) {}
 
   cities: any[] | undefined;
 
   selectedCity: any | undefined;
+
+  wishlistItems: any[] = [];
 
   ngOnInit() {
     this.cities = [
@@ -27,5 +27,18 @@ export class WishlistComponent implements OnInit {
       { name: 'Istanbul', code: 'IST' },
       { name: 'Paris', code: 'PRS' },
     ];
+
+    this.fetchData();
+  }
+
+  fetchData(): void {
+    this._WishlistService.getWishlistItems().subscribe({
+      next: (items) => {
+        this.wishlistItems = items;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 }

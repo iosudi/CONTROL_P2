@@ -175,7 +175,7 @@
       <ul
         class="m-0 p-0 d-flex justify-content-center align-items-center gap-5"
       >
-        <li
+        <!-- <li
           class="text-uppercase pointer py-5 fs-5"
           (click)="changeActiveSection('product-description')"
           [class.activeSection]="activeSection === 'product-description'"
@@ -184,7 +184,7 @@
             "productDetails.productInformationSection.tabs.additionalInfo"
               | translate
           }}
-        </li>
+        </li> -->
         <li
           class="text-uppercase pointer py-5 fs-5"
           (click)="changeActiveSection('product-reviews')"
@@ -193,7 +193,7 @@
           {{
             "productDetails.productInformationSection.tabs.reviews" | translate
           }}
-          (1)
+          ({{ product.reviews.length }})
         </li>
         <li
           class="text-uppercase pointer py-5 fs-5"

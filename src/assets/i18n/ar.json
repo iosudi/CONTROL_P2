@@ -321,7 +321,11 @@
         "submitReview": "إرسال المراجعة",
         "writeYourReview": "اكتب مراجعتك ..",
         "namePlaceholder": "الاسم",
-        "emailPlaceholder": "example@email.com"
+        "emailPlaceholder": "example@email.com",
+        "noReview": {
+          "title": "هذا المنتج ليس لديه أي تقييمات بعد.",
+          "paragraph": "كن أول من يكتب مراجعة !"
+        }
       },
 
       "reviewForm": {

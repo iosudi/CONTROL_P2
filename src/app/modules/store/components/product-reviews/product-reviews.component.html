@@ -1,7 +1,7 @@
 <div class="row g-5">
   <div class="col-lg-6">
-    <div class="reviews">
-      <div class="review d-flex align-items-start justify-content-between mb-4">
+    <div class="reviews" *ngIf="reviews.length > 0; else noReviews">
+      <!-- <div class="review d-flex align-items-start justify-content-between mb-4">
         <div class="review-details d-flex gap-2 align-items-center">
           <img src="./assets/images/pfp.jpg" alt="profile photo" />
           <div class="content">
@@ -21,27 +21,48 @@
             class="fa-solid fa-star star-color"
           ></i>
         </div>
-      </div>
+      </div> -->
 
-      <div class="review d-flex align-items-start justify-content-between">
+      <div
+        class="review d-flex align-items-start justify-content-between mb-3"
+        *ngFor="let review of reviews"
+      >
         <div class="review-details d-flex gap-2 align-items-center">
-          <img src="./assets/images/pfp.jpg" alt="profile photo" />
+          <!-- <img src="./assets/images/pfp.jpg" alt="profile photo" /> -->
           <div class="content">
             <p class="mb-1">
-              Adel Saudi
-              <span class="d-block"> 29-9-2024 </span>
+              {{ review.reviewerName }}
+              <span class="d-block">
+                {{ review.reviewDate | date : "dd-MM-yyyy" }}
+              </span>
             </p>
-            <p class="mb-0">Very Good ❤️</p>
+            <p class="mb-0">{{ review.review }}</p>
           </div>
         </div>
         <div class="stars">
           <i
+            [class.star-color]="review.rating >= num"
             *ngFor="let num of [1, 2, 3, 4, 5]"
-            class="fa-solid fa-star star-color"
+            class="fa-solid fa-star"
           ></i>
         </div>
       </div>
     </div>
+
+    <ng-template #noReviews>
+      <h2 class="h4 fw-bold heading-color">
+        {{
+          "productDetails.productInformationSection.reviews.noReview.title"
+            | translate
+        }}
+      </h2>
+      <p>
+        {{
+          "productDetails.productInformationSection.reviews.noReview.paragraph"
+            | translate
+        }}
+      </p>
+    </ng-template>
   </div>
 
   <div class="col-lg-6">

@@ -269,9 +269,18 @@
                   <div
                     class="heart-icon position-absolute d-flex align-items-center justify-content-center"
                     (click)="addToWishlist(product.id, $event)"
+                    *ngIf="!product.isInWishlist"
+                  >
+                    <i class="fa-regular fa-heart"></i>
+                  </div>
+                  <div
+                    class="heart-icon position-absolute d-flex align-items-center justify-content-center"
+                    (click)="addToWishlist(product.id, $event)"
+                    *ngIf="product.isInWishlist"
                   >
                     <i class="fa-solid fa-heart"></i>
                   </div>
+
                   <img
                     [src]="'https://ctrl-p.runasp.net/' + product.url[0]"
                     alt="painting"

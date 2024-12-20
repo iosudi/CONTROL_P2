@@ -33,7 +33,7 @@ export class ProductDetailsComponent {
     private fb: FormBuilder
   ) {}
 
-  activeSection: string = 'product-description';
+  activeSection: string = 'product-reviews';
   direction: string = 'ltr'; // Default direction
 
   items: MenuItem[] | undefined;

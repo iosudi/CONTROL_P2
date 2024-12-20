@@ -107,6 +107,11 @@ export class ShopComponent implements OnInit {
   }
 
   fetchData(): void {
+    this.fetchCategories();
+    this.fetchProducts();
+  }
+
+  fetchCategories(): void {
     this._ShopService.getCategories().subscribe({
       next: (categories) => {
         this.categories = categories;
@@ -115,7 +120,9 @@ export class ShopComponent implements OnInit {
         console.log(error);
       },
     });
+  }
 
+  fetchProducts(): void {
     this._ShopService.getProducts().subscribe({
       next: (products) => {
         this.products = products;
@@ -165,6 +172,7 @@ export class ShopComponent implements OnInit {
 
     this._CartService.AddToCart(product).subscribe((success) => {
       if (success) {
+        // Easter Egg on product 28
         if (productId == 28) {
           this.playSong();
         }
@@ -352,6 +360,7 @@ export class ShopComponent implements OnInit {
 
     this._WishlistService.addToWishlist(productId).subscribe({
       next: () => {
+        this.fetchProducts();
         this.messageService.add({
           severity: 'success',
           summary: 'success',
@@ -360,10 +369,6 @@ export class ShopComponent implements OnInit {
         });
       },
       error: (error) => {
-        console.log(
-          '🚀 ~ ShopComponent ~ this._WishlistService.addToWishlist ~ error:',
-          error
-        );
         this.messageService.add({
           severity: 'error',
           summary: 'error',
