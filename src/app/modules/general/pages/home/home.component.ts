@@ -165,7 +165,7 @@ export class HomeComponent implements OnInit {
 
     this._OurServicesService.getServices().subscribe({
       next: (data) => {
-        this.services = data.data;
+        this.services = data;
         setTimeout(() => {
           this.dotsCount =
             this.serviceSwiper?.nativeElement.swiper.pagination.bullets;

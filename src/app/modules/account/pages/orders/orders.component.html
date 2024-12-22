@@ -19,28 +19,29 @@
     </thead>
 
     <tbody>
-      <tr class="border-bottom">
+      <tr class="border-bottom" *ngFor="let order of orders">
         <td class="px-4 py-2">
-          <p class="text-decoration-underline mb-0 fw-semibold">#12345</p>
+          <p class="text-decoration-underline mb-0 fw-semibold">
+            #{{ order.id }}
+          </p>
         </td>
         <td class="px-4 py-2">
-          <p class="date mb-0">September 30, 2024</p>
+          <p class="date mb-0">{{ order.orderDate | date : "MMMM d, y" }}</p>
         </td>
         <td class="px-4 py-2">
           <div class="d-flex align-items-center gap-2 order-status fw-bold">
-            <img
-              src="./assets/images/icons/mdi_package-variant.png"
-              alt="icon"
-            />
-            On hold
+            {{ order.orderStatus }}
           </div>
         </td>
         <td class="px-4 py-2 fw-bold">
-          {{ 123 | currency : "RSA " }}
+          {{ order.totalPrice | currency : "RSA " }}
         </td>
 
         <td class="px-4 py-2">
-          <button class="main-btn px-4 py-1 rounded-5 fw-bold mx-auto">
+          <button
+            class="main-btn px-4 py-1 rounded-5 fw-bold mx-auto"
+            [routerLink]="['/order-details', order.id]"
+          >
             {{ "Account.Orders.table.viewButton" | translate }}
           </button>
         </td>

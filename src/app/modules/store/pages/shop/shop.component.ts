@@ -378,4 +378,28 @@ export class ShopComponent implements OnInit {
       },
     });
   }
+
+  removeFromWishlist(productId: number, e: MouseEvent): void {
+    e.stopPropagation();
+
+    this._WishlistService.removeFromWishlist(productId).subscribe({
+      next: () => {
+        this.fetchProducts();
+        this.messageService.add({
+          severity: 'success',
+          summary: 'success',
+          detail: 'Product removed from wishlist successfully',
+          life: 3000,
+        });
+      },
+      error: (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'error',
+          detail: 'Failed to remove product from wishlist',
+          life: 3000,
+        });
+      },
+    });
+  }
 }

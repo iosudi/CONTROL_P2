@@ -68,6 +68,11 @@
         }
       }
 
+      .products {
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
       .order-details {
         background: #ffffff0d;
 

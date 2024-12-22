@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { DropdownModule } from 'primeng/dropdown';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -31,6 +31,7 @@ import { WishlistComponent } from './pages/wishlist/wishlist.component';
     FormsModule,
     SharedModule,
     TranslateModule,
+    ReactiveFormsModule,
   ],
 })
 export class AccountModule {}

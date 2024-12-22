@@ -12,8 +12,12 @@
       <div class="row gx-4 gy-3">
         <div class="col-lg-8">
           <div class="cart-details">
-            <app-desktop-cart-table></app-desktop-cart-table>
-            <app-mobile-cart-table></app-mobile-cart-table>
+            <app-desktop-cart-table
+              (cartItemsChanged)="onCartItemsChanged($event)"
+            ></app-desktop-cart-table>
+            <app-mobile-cart-table
+              (cartItemsChanged)="onCartItemsChanged($event)"
+            ></app-mobile-cart-table>
           </div>
         </div>
 
@@ -25,7 +29,9 @@
               class="subtotal border-bottom d-flex justify-content-between align-items-center py-2 mb-4"
             >
               <h4 class="mb-0">Subtotal:</h4>
-              <p class="mb-0">{{ 825 | currency : "RSA " }}</p>
+              <p class="mb-0">
+                {{ cartDetails.totalPrice | currency : "RSA " }}
+              </p>
             </div>
 
             <div
@@ -34,10 +40,10 @@
               <h4 class="mb-0">Shipping</h4>
               <div>
                 <p class="text-end fs-5 mb-2">Free shipping</p>
-                <p class="text-end mb-2">Shipping to Riyadh</p>
+                <!-- <p class="text-end mb-2">Shipping to Riyadh</p>
                 <p class="text-end mb-0 text-decoration-underline pointer">
                   Change address
-                </p>
+                </p> -->
               </div>
             </div>
 
@@ -46,11 +52,12 @@
             >
               <h4 class="fw-bold mb-0">Total</h4>
               <p class="mb-0 fw-bold fs-4 total-price">
-                {{ 825 | currency : "RSA " }}
+                {{ cartDetails.totalPrice | currency : "RSA " }}
               </p>
             </div>
             <button
               class="main-btn py-3 px-4 rounded-5 w-100 text-uppercase fw-bold"
+              routerLink="/checkout"
             >
               PROCEED TO CHECKOUT
             </button>

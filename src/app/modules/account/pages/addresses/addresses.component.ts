@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CheckoutService } from 'src/app/shared/services/checkout.service';
 
 @Component({
   selector: 'app-addresses',
@@ -9,7 +10,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AddressesComponent {
   isChildRouteActive = false;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  addresses: any[] = [];
+
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private _CheckoutService: CheckoutService
+  ) {
     // Listen to route changes
     this.router.events.subscribe(() => {
       const currentRoute = this.router.url;
@@ -17,6 +24,18 @@ export class AddressesComponent {
       this.isChildRouteActive =
         currentRoute.includes('edit-address') ||
         currentRoute.includes('add-address');
+    });
+  }
+
+  ngOnInit(): void {
+    this._CheckoutService.getAddresses().subscribe({
+      next: (addresses) => {
+        this.addresses = addresses;
+        console.log(this.addresses);
+      },
+      error: (error) => {
+        // Handle the error
+      },
     });
   }
 }

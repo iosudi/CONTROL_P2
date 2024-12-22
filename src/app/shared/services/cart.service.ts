@@ -42,10 +42,6 @@ export class CartService {
   }
 
   private AddToCartRequest(product: any): Observable<any> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.token}`,
-    });
-
     return this.http.post(environment.baseURL + 'Cart/AddItemToCart', product, {
       headers: this.headers,
     });
@@ -56,7 +52,7 @@ export class CartService {
     return this.RequestCartItems().pipe(
       map((response: any) => {
         return {
-          cartItems: response.cartItems || [], // Ensure `cartItems` is always an array
+          cartItems: response.cartItems || [],
           totalPrice: response.totalPrice || 0,
           cartId: response.cartId || 0,
           userId: response.userId || 0,

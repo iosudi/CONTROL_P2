@@ -7,16 +7,21 @@
   </button>
 
   <div class="row g-4">
-    <div class="col-lg-6" *ngFor="let item of [1, 2]">
+    <div class="col-lg-6" *ngFor="let address of addresses">
       <div class="address p-3">
         <div
           class="address-type mb-4 d-flex justify-content-between align-items-center"
         >
-          <h6 class="mb-0">Billing address</h6>
+          <h6 class="mb-0">
+            {{
+              (address.billingAddress ?? address.billingAddress) ||
+                "Billing Address"
+            }}
+          </h6>
 
           <p
             class="mb-0 d-flex align-items-center gap-1 pointer"
-            routerLink="edit-address"
+            [routerLink]="['edit-address', address.id]"
           >
             <img src="./assets/images/icons/pencil.png" alt="edit icon" />
             {{ "Account.Addresses.editAddress" | translate }}
@@ -24,14 +29,15 @@
         </div>
 
         <div class="address-details">
-          <p class="mb-2 name">adel saudi</p>
-          <p class="mb-2 company">my company</p>
-          <p class="mb-2 street-number">33 khlal ibriam</p>
-          <p class="mb-2 street-details">ainshams, alf maskan, flastin</p>
-          <p class="mb-2 state">cairo</p>
-          <p class="mb-2 city">Cairo</p>
-          <p class="mb-2 postal-code">123456</p>
-          <p class="mb-2 county">Egpyt</p>
+          <p class="mb-2 name">{{ address.fullName }}</p>
+          <p class="mb-2 company">{{ address.companyName }}</p>
+          <p class="mb-2 street-number">{{ address.streetAddress }}</p>
+          <p class="mb-2 street-details">{{ address.addressText }}</p>
+          <p class="mb-2 state">{{ address.state }}</p>
+          <p class="mb-2 city">{{ address.city }}</p>
+          <p class="mb-2 postal-code">{{ address.zipCode }}</p>
+          <p class="mb-2 county">{{ address.country }}</p>
+          <p class="mb-2 county">{{ address.phone }}</p>
         </div>
       </div>
     </div>

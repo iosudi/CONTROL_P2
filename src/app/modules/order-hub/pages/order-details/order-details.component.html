@@ -32,7 +32,7 @@
                   "OrderDetails.Overview.details.orderNumber.title" | translate
                 }}
               </h3>
-              <p class="mb-0">66637</p>
+              <p class="mb-0">{{ orderDetails.id }}</p>
             </div>
             <div
               class="col-lg-2"
@@ -44,7 +44,9 @@
               <h3 class="h5 fw-bold">
                 {{ "OrderDetails.Overview.details.date.title" | translate }}
               </h3>
-              <p class="mb-0">September 29, 2024</p>
+              <p class="mb-0">
+                {{ orderDetails.orderDate | date : "MMMM d, y" }}
+              </p>
             </div>
             <div
               class="col-lg-2"
@@ -56,7 +58,7 @@
               <h3 class="h5 fw-bold">
                 {{ "OrderDetails.Overview.details.email.title" | translate }}
               </h3>
-              <p class="mb-0">saudi&#64;gmail.com</p>
+              <p class="mb-0">{{ userInfo.email }}</p>
             </div>
             <div
               class="col-lg-2"
@@ -69,7 +71,7 @@
                 {{ "OrderDetails.Overview.details.total.title" | translate }}
               </h3>
               <p class="mb-0">
-                {{ 646 | currency }}
+                {{ orderDetails.totalPrice | currency : "SAR" }}
               </p>
             </div>
             <div class="col-lg-3">
@@ -79,7 +81,7 @@
                     | translate
                 }}
               </h3>
-              <p class="mb-0">Cash on delivery</p>
+              <p class="mb-0">{{ orderDetails.paymentMethod }}</p>
             </div>
           </div>
         </div>
@@ -97,14 +99,17 @@
                   {{ "OrderDetails.OrderStatus.title" | translate }}
                 </h2>
 
-                <p class="mb-0 text-danger fs-5 pointer">
+                <!-- <p class="mb-0 text-danger fs-5 pointer">
                   <i class="fa-solid fa-xmark"></i>
                   {{ "OrderDetails.OrderStatus.cancelOrder" | translate }}
-                </p>
+                </p> -->
               </div>
 
               <div class="stepper d-flex align-items-start gap-2 px-2">
-                <div class="step active">
+                <div
+                  class="step"
+                  [ngClass]="{ active: isStepActive('Created') }"
+                >
                   <div
                     class="icon d-flex align-items-center justify-content-center mx-auto mb-3"
                   >
@@ -117,13 +122,15 @@
                     <h5 class="mb-1">
                       {{ "OrderDetails.OrderStatus.steps.created" | translate }}
                     </h5>
-                    <p class="date">29-9-2024</p>
                   </div>
                 </div>
 
                 <div class="separator"></div>
 
-                <div class="step active">
+                <div
+                  class="step"
+                  [ngClass]="{ active: isStepActive('Packed') }"
+                >
                   <div
                     class="icon d-flex align-items-center justify-content-center mx-auto mb-3"
                   >
@@ -136,13 +143,15 @@
                     <h5 class="mb-1">
                       {{ "OrderDetails.OrderStatus.steps.packed" | translate }}
                     </h5>
-                    <p class="date">30-9-2024</p>
                   </div>
                 </div>
 
                 <div class="separator"></div>
 
-                <div class="step">
+                <div
+                  class="step"
+                  [ngClass]="{ active: isStepActive('Shipped') }"
+                >
                   <div
                     class="icon d-flex align-items-center justify-content-center mx-auto mb-3"
                   >
@@ -160,7 +169,10 @@
 
                 <div class="separator"></div>
 
-                <div class="step">
+                <div
+                  class="step"
+                  [ngClass]="{ active: isStepActive('Delivered') }"
+                >
                   <div
                     class="icon d-flex align-items-center justify-content-center mx-auto mb-3"
                   >
@@ -180,7 +192,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-6">
+          <!-- <div class="col-sm-6">
             <div class="billing-address addresses p-4 h-100">
               <h2 class="h3 fw-bold">
                 {{ "OrderDetails.Addresses.billingAddress.title" | translate }}
@@ -211,7 +223,7 @@
                 <li class="pb-2">saudi&#64;gmail.com</li>
               </ul>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -239,12 +251,19 @@
             >
               <div
                 class="product d-flex align-items-center justify-content-between pt-2 border-bottom"
+                *ngFor="let item of orderDetails.orderItems"
               >
                 <div
                   class="info d-flex align-items-center justify-content-center gap-2"
                 >
                   <div class="image overflow-hidden">
-                    <img src="./assets/images/shop/1.png" alt="product image" />
+                    <img
+                      [src]="
+                        'https://ctrl-p.runasp.net/' +
+                        item.productDetails.url[0]
+                      "
+                      alt="product image"
+                    />
                   </div>
                   <div class="details d-flex flex-column gap-1">
                     <p class="mb-0 heading-color text-decoration-underline">
@@ -256,7 +275,8 @@
                 </div>
 
                 <p class="mb-0 text-success">
-                  <span class="quantity">1X </span> {{ 825 | currency : "RSA" }}
+                  <span class="quantity">{{ item.quantity }}X </span>
+                  {{ item.productDetails.price | currency : "RSA" }}
                 </p>
               </div>
             </div>
@@ -267,7 +287,9 @@
               <h4 class="mb-0 fw-normal h5">
                 {{ "OrderDetails.OrderDetails.subtotal.title" | translate }}
               </h4>
-              <p class="mb-0 text-success">{{ 825 | currency : "RSA " }}</p>
+              <p class="mb-0 text-success">
+                {{ orderDetails.totalPrice | currency : "RSA " }}
+              </p>
             </div>
             <div
               class="shipping d-flex align-items-center justify-content-between pb-1 pt-3 border-bottom"
@@ -284,12 +306,12 @@
                 {{ "OrderDetails.OrderDetails.total.title" | translate }}
               </h4>
               <p class="mb-0 fw-bold text-success fs-5">
-                {{ 825 | currency : "RSA " }}
+                {{ orderDetails.totalPrice | currency : "RSA " }}
               </p>
             </div>
           </div>
 
-          <div class="px-3 mt-4 button-group">
+          <!-- <div class="px-3 mt-4 button-group">
             <button
               class="px-2 py-3 w-100 rounded-2 fs-5 mb-3 main-btn outlined"
             >
@@ -314,7 +336,7 @@
                   | translate
               }}
             </button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

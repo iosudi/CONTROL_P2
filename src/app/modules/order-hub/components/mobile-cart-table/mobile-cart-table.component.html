@@ -1,10 +1,13 @@
 <div
   class="item d-flex align-items-start gap-3 p-3 rounded-3 mb-3"
-  *ngFor="let item of [1, 2]"
+  *ngFor="let item of cartDetails.cartItems"
 >
   <!-- Product Image -->
   <div class="product-image rounded-2 overflow-hidden">
-    <img src="./assets/images/shop/1.png" alt="product image" />
+    <img
+      [src]="'https://ctrl-p.runasp.net/' + item.productDetails.url[0]"
+      alt="product image"
+    />
   </div>
 
   <!-- Product Details -->
@@ -14,9 +17,12 @@
       class="title d-flex align-items-center justify-content-between w-100 mb-3"
     >
       <h4 class="mb-0 text-decoration-underline fw-semibold h5">
-        Product name
+        {{ item.productDetails.name }}
       </h4>
-      <i class="fa-solid fa-xmark fs-4 pointer"></i>
+      <i
+        class="fa-solid fa-xmark fs-4 pointer"
+        (click)="removeCartItem(item.productId)"
+      ></i>
     </div>
 
     <!-- Product Size -->
@@ -44,7 +50,7 @@
     <p
       class="d-flex align-items-center justify-content-between gap-2 w-100 mb-3 pb-1 border-bottom"
     >
-      Price: <span>{{ 825 | currency : "RSA " }}</span>
+      Price: <span> {{ item.productDetails.price | currency : "RSA " }}</span>
     </p>
 
     <!-- Product Quantity Control -->
@@ -55,9 +61,19 @@
       <div
         class="quantity-input d-flex gap-1 align-items-center justify-content-between rounded-5 px-2"
       >
-        <button class="btn p-0">-</button>
-        <input type="text" class="text-center" value="1" />
-        <button class="btn p-0">+</button>
+        <button
+          class="btn p-0"
+          (click)="changeProductQuantity(item.productId, -1)"
+        >
+          -
+        </button>
+        <input type="text" class="text-center" [value]="item.quantity" />
+        <button
+          class="btn p-0"
+          (click)="changeProductQuantity(item.productId, 1)"
+        >
+          +
+        </button>
       </div>
     </div>
 
@@ -65,7 +81,12 @@
     <p
       class="d-flex align-items-center justify-content-between gap-2 w-100 mb-3 pb-1"
     >
-      Subtotal: <span class="white">{{ 825 | currency : "RSA " }}</span>
+      Subtotal:
+      <span class="white">
+        {{
+          item.productDetails.price * item.quantity | currency : "RSA "
+        }}</span
+      >
     </p>
   </div>
 </div>

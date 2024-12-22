@@ -8,13 +8,19 @@
     <th class="px-4 py-3 text-center fw-medium">Subtotal</th>
   </tr>
 
-  <tr class="border-bottom" *ngFor="let item of [1, 2, 3, 4]">
+  <tr class="border-bottom" *ngFor="let item of cartDetails.cartItems">
     <td class="pt-5 pb-4 px-3">
-      <i class="fa-solid fa-xmark fs-2 pointer"></i>
+      <i
+        class="fa-solid fa-xmark fs-2 pointer"
+        (click)="removeCartItem(item.productId)"
+      ></i>
     </td>
     <td class="pt-5 pb-4 px-3">
       <div class="product-image rounded-3 overflow-hidden">
-        <img src="./assets/images/home/events/4.jpg" alt="product image" />
+        <img
+          [src]="'https://ctrl-p.runasp.net/' + item.productDetails.url[0]"
+          alt="product image"
+        />
       </div>
     </td>
     <td class="pt-5 pb-4 px-3">
@@ -28,20 +34,34 @@
       </div>
     </td>
     <td class="pt-5 pb-4 px-3">
-      <p class="mb-0 price">{{ 825 | currency : "RSA " }}</p>
+      <p class="mb-0 price">
+        {{ item.productDetails.price | currency : "RSA " }}
+      </p>
     </td>
     <td class="pt-5 pb-4 px-3">
       <div
         class="quantity-input d-flex gap-2 align-items-center justify-content-between rounded-5 px-3 py-1"
       >
-        <button class="btn p-0">-</button>
-        <input type="text" class="text-center" value="1" />
-        <button class="btn p-0">+</button>
+        <button
+          class="btn p-0"
+          (click)="changeProductQuantity(item.productId, -1)"
+        >
+          -
+        </button>
+        <input type="text" class="text-center" [value]="item.quantity" />
+        <button
+          class="btn p-0"
+          (click)="changeProductQuantity(item.productId, 1)"
+        >
+          +
+        </button>
       </div>
     </td>
 
     <td class="pt-5 pb-4 px-3">
-      <p class="mb-0 Subtotal">{{ 825 | currency : "RSA " }}</p>
+      <p class="mb-0 Subtotal">
+        {{ item.productDetails.price * item.quantity | currency : "RSA " }}
+      </p>
     </td>
   </tr>
 </table>

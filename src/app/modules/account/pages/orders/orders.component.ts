@@ -1,5 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
+import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
   selector: 'app-orders',
@@ -9,22 +10,12 @@ import { Component } from '@angular/core';
 export class OrdersComponent {
   isMobileView: boolean = false;
 
-  orders = [
-    {
-      id: 12345,
-      date: 'September 30, 2024',
-      status: 'On hold',
-      total: 123,
-    },
-    {
-      id: 12346,
-      date: 'October 1, 2024',
-      status: 'Completed',
-      total: 250,
-    },
-  ];
+  orders: any[] = [];
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private _OrderService: OrderService
+  ) {}
 
   ngOnInit(): void {
     this.breakpointObserver
@@ -32,5 +23,18 @@ export class OrdersComponent {
       .subscribe((result) => {
         this.isMobileView = result.matches;
       });
+
+    this._OrderService.getPastOrders().subscribe({
+      next: (orders) => {
+        this.orders = orders;
+        console.log(
+          '🚀 ~ OrdersComponent ~ this._OrderService.getPastOrders ~ orders:',
+          orders
+        );
+      },
+      error: (error) => {
+        console.error('Error retrieving past orders:', error);
+      },
+    });
   }
 }

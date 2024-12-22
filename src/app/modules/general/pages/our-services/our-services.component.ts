@@ -18,23 +18,12 @@ export class OurServicesComponent implements OnInit {
   phoneNumber: string = '966547223203';
   message: string = 'مرحبًا، أود الاستفسار عن خدماتكم.';
 
-  solutions_images = [
-    './assets/images/our-services/1.png',
-    './assets/images/our-services/2.png',
-    './assets/images/our-services/3.png',
-    './assets/images/our-services/4.png',
-    './assets/images/our-services/5.png',
-    './assets/images/our-services/6.png',
-    './assets/images/our-services/7.png',
-    './assets/images/our-services/8.png',
-  ];
-
   services: any[] = [];
 
   ngOnInit(): void {
     this._OurServicesService.getServices().subscribe({
       next: (services) => {
-        this.services = services.data;
+        this.services = services;
       },
       error: (error) => {
         console.error('Error fetching services:', error);

@@ -28,10 +28,12 @@ export class WishlistService {
     });
   }
 
-  // TODO: Delete can not get more than 2 parameters so modify the backend
-  // public removeFromWishlist(productId: number): Observable<any> {
-  //   return this.http.delete(`${environment.baseURL}Wishlist/${productId}`, {
-  //     headers: this.headers,
-  //   });
-  // }
+  public removeFromWishlist(productId: number): Observable<any> {
+    return this.http.delete(
+      `${environment.baseURL}Wishlist/RemoveItemFromWishlist/${productId}`,
+      {
+        headers: this.headers,
+      }
+    );
+  }
 }

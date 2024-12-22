@@ -10,26 +10,28 @@ export class SiteContentService {
   constructor(private http: HttpClient) {}
 
   getOurWorks(): Observable<any> {
-    return this.http.get(environment.baseURL + 'project-categories');
+    return this.http.get(environment.secondaryURL + 'project-categories');
   }
 
   getHomeProductsCategories(): Observable<any> {
-    return this.http.get(environment.baseURL + 'home-product-Categories');
+    return this.http.get(environment.secondaryURL + 'home-product-Categories');
   }
 
   getSpecialReviews(): Observable<any> {
-    return this.http.get(environment.baseURL + 'reviews');
+    return this.http.get(environment.secondaryURL + 'reviews');
   }
 
   getProjects(): Observable<any> {
-    return this.http.get(environment.baseURL + 'projects');
+    return this.http.get(environment.secondaryURL + 'projects');
   }
 
   getProjectDetails(projectId: number): Observable<any> {
-    return this.http.get(environment.baseURL + `projectDetails/${projectId}`);
+    return this.http.get(
+      environment.secondaryURL + `projectDetails/${projectId}`
+    );
   }
 
   getPartners(): Observable<any> {
-    return this.http.get(environment.baseURL + 'partners');
+    return this.http.get(environment.secondaryURL + 'partners');
   }
 }

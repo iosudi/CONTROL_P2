@@ -43,22 +43,25 @@
     <div class="row g-4">
       <div class="col-lg-4 col-md-6" *ngFor="let solution of services">
         <div class="solution h-100">
-          <img [src]="solution.image" alt="image" />
+          <img
+            [src]="'https://ctrl-p.runasp.net/' + solution.imageUrl"
+            alt="image"
+          />
           <div
             class="content-overlay d-flex flex-column justify-content-end p-4"
           >
-            <button
+            <!-- <button
               class="d-flex align-items-center justify-content-center pointer mb-3"
             >
               <i class="fa-solid fa-plus"></i>
-            </button>
+            </button> -->
             <h3 class="h4 fw-bold">{{ solution.name }}</h3>
-            <p
+            <!-- <p
               class="mb-0 fs-5 heading-color text-uppercase pointer"
               (click)="openServiceDetails(solution.id)"
             >
               {{ "Services.btn_read_more" | translate }}
-            </p>
+            </p> -->
           </div>
         </div>
       </div>

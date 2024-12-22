@@ -1,5 +1,9 @@
 <div class="account-details">
-  <form class="account-details-form">
+  <form
+    class="account-details-form"
+    [formGroup]="userInfo"
+    (ngSubmit)="onSubmit()"
+  >
     <div
       class="form-group d-flex align-items-center justify-content-center gap-3 mb-3"
     >
@@ -10,10 +14,11 @@
         >
         <input
           type="text"
-          class="form-control error"
+          class="form-control"
           [placeholder]="
             'Account.AccountDetails.form.firstName.placeholder' | translate
           "
+          formControlName="firstName"
           id="fname"
           required
         />
@@ -26,11 +31,12 @@
         >
         <input
           type="text"
-          class="form-control error"
+          class="form-control"
           [placeholder]="
             'Account.AccountDetails.form.lastName.placeholder' | translate
           "
           id="lname"
+          formControlName="lastName"
           required
         />
       </div>
@@ -40,7 +46,12 @@
       <label for="username" class="form-label fw-bold"
         >{{ "Account.AccountDetails.form.displayName.label" | translate }}
       </label>
-      <input type="text" class="form-control mb-2" id="username" />
+      <input
+        type="text"
+        class="form-control mb-2"
+        id="username"
+        formControlName="displayName"
+      />
       <p class="mb-0">
         {{ "Account.AccountDetails.form.displayName.info" | translate }}
       </p>
@@ -54,7 +65,7 @@
         type="email"
         class="form-control mb-3"
         id="street"
-        value="saudi33gg@gmail.com"
+        [value]="email"
         disabled
       />
     </div>
@@ -70,6 +81,7 @@
           type="password"
           [type]="currentPasswordVisibility ? 'text' : 'password'"
           class="password-input w-100"
+          formControlName="oldPassword"
           [placeholder]="
             'Account.AccountDetails.form.passwordChange.currentPassword.placeholder'
               | translate
@@ -94,6 +106,7 @@
           type="password"
           [type]="newPasswordVisibility ? 'text' : 'password'"
           class="password-input w-100"
+          formControlName="newPassword"
           [placeholder]="
             'Account.AccountDetails.form.passwordChange.newPassword.placeholder'
               | translate
@@ -118,6 +131,7 @@
           type="password"
           [type]="confirmPasswordVisibility ? 'text' : 'password'"
           class="password-input w-100"
+          formControlName="confirmPassword"
           [placeholder]="
             'Account.AccountDetails.form.passwordChange.confirmPassword.placeholder'
               | translate

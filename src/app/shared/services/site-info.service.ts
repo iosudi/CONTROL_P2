@@ -10,14 +10,14 @@ export class SiteInfoService {
   constructor(private http: HttpClient) {}
 
   getTeamMembers(): Observable<any> {
-    return this.http.get(environment.baseURL + 'ourTeam');
+    return this.http.get(environment.secondaryURL + 'ourTeam');
   }
 
   getFaqs(): Observable<any> {
-    return this.http.get(environment.baseURL + 'Faqs');
+    return this.http.get(environment.secondaryURL + 'Faqs');
   }
 
   contact(form: object): Observable<any> {
-    return this.http.post(environment.baseURL + 'contact', form);
+    return this.http.post(environment.secondaryURL + 'contact', form);
   }
 }

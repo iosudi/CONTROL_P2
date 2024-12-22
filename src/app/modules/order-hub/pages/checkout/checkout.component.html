@@ -33,7 +33,7 @@
                 >
                 <input
                   type="text"
-                  class="form-control error"
+                  class="form-control"
                   [placeholder]="
                     'BillingAndOrderSummary.BillingDetails.fields.firstName.placeholder'
                       | translate
@@ -55,7 +55,7 @@
                 >
                 <input
                   type="text"
-                  class="form-control error"
+                  class="form-control"
                   [placeholder]="
                     'BillingAndOrderSummary.BillingDetails.fields.lastName.placeholder'
                       | translate
@@ -94,7 +94,7 @@
               <select
                 name="region"
                 id="region"
-                class="w-100 form-select success"
+                class="w-100 form-select"
                 required
                 formControlName="country"
               >
@@ -293,29 +293,35 @@
               </p>
             </div>
 
-            <div
-              class="product border-bottom d-flex justify-content-between align-items-center py-2 mb-4"
-            >
-              <div class="product-details d-flex align-items-center gap-1">
-                <img
-                  src="./assets/images/home/events/4.jpg"
-                  alt="product image"
-                  class="rounded-2"
-                />
-                <div class="details text-center">
-                  <p
-                    class="mb-1 fs-6 product-id heading-color text-decoration-underline"
-                  >
-                    B2003
-                  </p>
-                  <p class="mb-1">60x80</p>
-                  <p class="mb-0">+ frame</p>
+            <div class="products border-bottom py-2">
+              <div
+                class="product border-bottom d-flex justify-content-between align-items-center py-2 mb-4"
+                *ngFor="let item of cartDetails.cartItems"
+              >
+                <div class="product-details d-flex align-items-center gap-1">
+                  <img
+                    [src]="
+                      'https://ctrl-p.runasp.net/' + item.productDetails.url[0]
+                    "
+                    alt="product image"
+                    class="rounded-2"
+                  />
+                  <div class="details text-center">
+                    <p
+                      class="mb-1 fs-6 product-id heading-color text-decoration-underline"
+                    >
+                      B2003
+                    </p>
+                    <p class="mb-1">60x80</p>
+                    <p class="mb-0">+ frame</p>
+                  </div>
                 </div>
-              </div>
 
-              <p class="product-total-price fs-5">
-                1X {{ 825 | currency : "RSA " }}
-              </p>
+                <p class="product-total-price fs-5">
+                  {{ item.quantity }}X
+                  {{ item.productDetails.price | currency : "RSA " }}
+                </p>
+              </div>
             </div>
 
             <div
@@ -328,7 +334,7 @@
                 }}
               </h4>
               <p class="mb-0 fs-5">
-                {{ 825 | currency : "RSA " }}
+                {{ cartDetails.totalPrice | currency : "RSA " }}
               </p>
             </div>
 
@@ -353,18 +359,14 @@
                 }}
               </h4>
               <p class="mb-0 fw-bold fs-4 total-price">
-                {{ 825 | currency : "RSA " }}
+                {{ cartDetails.totalPrice | currency : "RSA " }}
               </p>
             </div>
           </div>
 
           <div class="payment-method border-bottom py-2">
             <div class="method d-flex align-items-center mb-2">
-              <p-radioButton
-                value="cash"
-                [(ngModel)]="ingredient"
-                inputId="cash"
-              />
+              <p-radioButton value="cash" [(ngModel)]="method" inputId="cash" />
               <label for="cash" class="mx-2">
                 {{
                   "BillingAndOrderSummary.PaymentMethod.methods.cash"
@@ -374,11 +376,7 @@
             </div>
 
             <div class="method d-flex align-items-center mb-2">
-              <p-radioButton
-                value="card"
-                [(ngModel)]="ingredient"
-                inputId="card"
-              />
+              <p-radioButton value="card" [(ngModel)]="method" inputId="card" />
               <label for="card" class="mx-2">
                 {{
                   "BillingAndOrderSummary.PaymentMethod.methods.bankTransfer"
@@ -387,7 +385,7 @@
               </label>
             </div>
 
-            <div class="method d-flex align-items-center mb-2">
+            <!-- <div class="method d-flex align-items-center mb-2">
               <p-radioButton
                 value="paypal"
                 [(ngModel)]="ingredient"
@@ -405,7 +403,8 @@
                   }}</span
                 >
               </label>
-            </div>
+            </div> -->
+            <p class="text-danger text-center mb-1">{{ this.errMsg }}</p>
           </div>
 
           <p class="py-3 border-bottom">

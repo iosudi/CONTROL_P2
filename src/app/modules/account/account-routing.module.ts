@@ -36,7 +36,7 @@ const routes: Routes = [
         component: AddressesComponent,
         children: [
           {
-            path: 'edit-address',
+            path: 'edit-address/:id',
             component: EditAddAddressComponent,
           },
           {
