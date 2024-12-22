@@ -57,8 +57,8 @@ export class CheckoutService {
   public CheckoutCard(orderId: number): Observable<any> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`,
-      SuccessURL: `http://localhost:4200/order-details/${orderId}`,
-      FailedURL: `http://localhost:4200/`,
+      SuccessURL: `https://control-p2.vercel.app/order-details/${orderId}`,
+      FailedURL: `https://control-p2.vercel.app/`,
     });
 
     return this.http.post(
