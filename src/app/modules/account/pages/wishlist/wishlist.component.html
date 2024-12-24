@@ -1,9 +1,10 @@
-<div class="wishlist">
-  <div class="heading mb-3 d-flex align-items-center justify-content-between">
-    <h1 class="mb-0 fw-normal h2">
-      {{ "Account.Wishlist.heading" | translate }}
-    </h1>
-    <div class="socials">
+<div *ngIf="wishlistItems.length > 0; else emptyWishlist">
+  <div class="wishlist">
+    <div class="heading mb-3 d-flex align-items-center justify-content-between">
+      <h1 class="mb-0 fw-normal h2">
+        {{ "Account.Wishlist.heading" | translate }}
+      </h1>
+      <!-- <div class="socials">
       <button class="btn">
         {{ "Account.Wishlist.shareTitle" | translate }}
       </button>
@@ -16,84 +17,88 @@
         ><i class="fa-brands fa-facebook-messenger"></i
       ></a>
       <a href="#" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+    </div> -->
     </div>
-  </div>
 
-  <div
-    class="wishlist-controls d-flex align-items-end justify-content-end gap-3"
-  >
-    <button class="btn p-0 text-decoration-underline fs-5">
+    <div
+      class="wishlist-controls d-flex align-items-end justify-content-end gap-3"
+    >
+      <!-- <button class="btn p-0 text-decoration-underline fs-5">
       {{ "Account.Wishlist.controls.clearWishlistButton" | translate }}
-    </button>
-    <p-dropdown
+    </button> -->
+      <!-- <p-dropdown
       [options]="cities"
       [(ngModel)]="selectedCity"
       optionLabel="name"
       [placeholder]="
         ('Account.Wishlist.controls.sortByPlaceholder' | translate) || 'Sort by'
       "
-    />
-  </div>
+    /> -->
+    </div>
 
-  <div class="wishlist-products mt-4">
-    <div class="row gy-3 gx-2 g-lg-4">
-      <div class="col-lg-4 col-6" *ngFor="let item of wishlistItems">
-        <div class="product px-2 py-3 rounded-4 pointer">
-          <div class="product-image mb-3 position-relative">
-            <div
-              class="overlays px-2 position-absolute d-flex align-items-center justify-content-between"
-            >
+    <div class="wishlist-products mt-4">
+      <div class="row gy-3 gx-2 g-lg-4">
+        <div class="col-lg-4 col-6" *ngFor="let item of wishlistItems">
+          <div class="product px-2 py-3 rounded-4 pointer">
+            <div class="product-image mb-3 position-relative">
               <div
-                class="dimensions rounded-5 d-flex gap-2 align-items-center px-2 py-1 fw-semibold"
+                class="overlays px-2 position-absolute d-flex align-items-center justify-content-between"
               >
-                <img src="./assets/images/icons/dimension.png" alt="icon" />
-                80x50 cm
+                <div
+                  class="dimensions rounded-5 d-flex gap-2 align-items-center px-2 py-1 fw-semibold"
+                >
+                  <img src="./assets/images/icons/dimension.png" alt="icon" />
+                  80x50 cm
+                </div>
+
+                <div
+                  class="heart-icon d-flex align-items-center justify-content-center"
+                >
+                  <i class="fa-solid fa-heart"></i>
+                </div>
               </div>
 
-              <div
-                class="heart-icon d-flex align-items-center justify-content-center"
-              >
-                <i class="fa-solid fa-heart"></i>
+              <img
+                [src]="'https://ctrl-p.runasp.net/' + item.url[0]"
+                alt="painting"
+              />
+            </div>
+
+            <div class="product-body">
+              <div>
+                <div
+                  class="product-title d-flex justify-content-between align-items-center"
+                >
+                  <h4 class="h5 mb-0 fw-normal">{{ item.name }}</h4>
+                  <p class="mb-0">
+                    4.1
+                    <i class="fa-solid fa-star star-color"></i>
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <img
-              [src]="'https://ctrl-p.runasp.net/' + item.url[0]"
-              alt="painting"
-            />
-          </div>
-
-          <div class="product-body">
-            <div>
-              <div
-                class="product-title d-flex justify-content-between align-items-center"
-              >
-                <h4 class="h5 mb-0 fw-normal">{{ item.name }}</h4>
-                <p class="mb-0">
-                  4.1
-                  <i class="fa-solid fa-star star-color"></i>
-                </p>
+              <div class="price heading-color">
+                <span class="discount"> 435.00 </span>
+                {{ item.price | currency : " " }} SAR
               </div>
-            </div>
 
-            <div class="price heading-color">
-              <span class="discount"> 435.00 </span>
-              {{ item.price | currency : " " }} SAR
-            </div>
-
-            <div class="product-actions d-flex align-items-center gap-2 mt-3">
-              <button class="main-btn px-4 py-2 rounded-5 fw-semibold">
-                <i class="fa-solid fa-cart-shopping"></i>
-                {{ "Account.Wishlist.product.actions.addToCart" | translate }}
-              </button>
-              <button
-                class="quick-view-btn d-flex align-items-center justify-content-center"
-              >
-                <img
-                  src="./assets/images/icons/quick view eye.png"
-                  alt="quick view"
-                />
-              </button>
+              <div class="product-actions d-flex align-items-center gap-2 mt-3">
+                <button
+                  class="main-btn px-4 py-2 rounded-5 fw-semibold"
+                  (click)="addToCart(item.id, $event)"
+                >
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  {{ "Account.Wishlist.product.actions.addToCart" | translate }}
+                </button>
+                <!-- <button
+                  class="quick-view-btn d-flex align-items-center justify-content-center"
+                >
+                  <img
+                    src="./assets/images/icons/quick view eye.png"
+                    alt="quick view"
+                  />
+                </button> -->
+              </div>
             </div>
           </div>
         </div>
@@ -101,3 +106,22 @@
     </div>
   </div>
 </div>
+
+<ng-template #emptyWishlist>
+  <div
+    class="empty d-flex flex-column align-items-center justify-content-center gap-3"
+  >
+    <img class="mx-auto" src="./assets/images/emptyWishlist.svg" alt="image" />
+    <h3 class="text-center">This wishlist is empty.</h3>
+    <p class="text-center mb-0">
+      You don't have any products in the wishlist yet. You will find a lot of
+      interesting products on our "Shop" page.
+    </p>
+    <button
+      class="main-btn mx-auto fs-5 rounded-5 px-5 py-2"
+      routerLink="/shop"
+    >
+      Return To shop
+    </button>
+  </div>
+</ng-template>

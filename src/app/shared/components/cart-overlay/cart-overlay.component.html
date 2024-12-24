@@ -13,85 +13,106 @@
       </button>
     </div>
 
-    <div class="products">
-      <div class="row gy-3 px-2">
-        <div class="col-12" *ngFor="let item of cartDetails.cartItems">
-          <div class="product d-flex align-items-center gap-2 p-3 rounded-3">
-            <div class="product-image rounded-2 overflow-hidden">
-              <img
-                [src]="
-                  'https://ctrl-p.runasp.net/' + item.productDetails.url[0]
-                "
-                alt="product image"
-              />
-            </div>
-            <div class="product-description w-100">
-              <button
-                class="remove-product-btn d-flex align-items-center justify-content-center"
-                (click)="RemoveFromCart(item.productId, item.quantity)"
-              >
-                <i class="fa-solid fa-xmark"></i>
-              </button>
-              <h3>{{ item.productDetails.name }}</h3>
-              <p class="mb-2" [innerHTML]="item.productDetails.description"></p>
-              <div
-                class="product-quantity d-flex align-items-center justify-content-between mt-2 gap-1"
-              >
-                <div
-                  class="quantity-control d-flex align-items-center justify-content-center gap-1"
+    <div *ngIf="cartDetails.cartItems.length > 0; else emptyCart">
+      <div class="products">
+        <div class="row gy-3 px-2">
+          <div class="col-12" *ngFor="let item of cartDetails.cartItems">
+            <div class="product d-flex align-items-center gap-2 p-3 rounded-3">
+              <div class="product-image rounded-2 overflow-hidden">
+                <img
+                  [src]="
+                    'https://ctrl-p.runasp.net/' + item.productDetails.url[0]
+                  "
+                  alt="product image"
+                />
+              </div>
+              <div class="product-description w-100">
+                <button
+                  class="remove-product-btn d-flex align-items-center justify-content-center"
+                  (click)="RemoveFromCart(item.productId, item.quantity)"
                 >
-                  <button
-                    class="d-flex align-items-center justify-content-center btn p-0"
-                    (click)="changeProductQuantity(item.productId, -1)"
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+                <h3>{{ item.productDetails.name }}</h3>
+                <p
+                  class="mb-2"
+                  [innerHTML]="item.productDetails.description"
+                ></p>
+                <div
+                  class="product-quantity d-flex align-items-center justify-content-between mt-2 gap-1"
+                >
+                  <div
+                    class="quantity-control d-flex align-items-center justify-content-center gap-1"
                   >
-                    <i class="fa-solid fa-minus"></i>
-                  </button>
-                  <input
-                    type="number"
-                    class="text-center"
-                    [value]="item.quantity"
-                  />
-                  <button
-                    class="d-flex align-items-center justify-content-center btn p-0"
-                    (click)="changeProductQuantity(item.productId, 1)"
-                  >
-                    <i class="fa-solid fa-plus"></i>
-                  </button>
-                </div>
+                    <button
+                      class="d-flex align-items-center justify-content-center btn p-0"
+                      (click)="changeProductQuantity(item.productId, -1)"
+                    >
+                      <i class="fa-solid fa-minus"></i>
+                    </button>
+                    <input
+                      type="number"
+                      class="text-center"
+                      [value]="item.quantity"
+                    />
+                    <button
+                      class="d-flex align-items-center justify-content-center btn p-0"
+                      (click)="changeProductQuantity(item.productId, 1)"
+                    >
+                      <i class="fa-solid fa-plus"></i>
+                    </button>
+                  </div>
 
-                <p class="mb-0 fw-semibold">
-                  <span class="quantity fw-light">{{ item.quantity }}X</span>
-                  {{ item.productDetails.price | currency : "RSA" }}
-                </p>
+                  <p class="mb-0 fw-semibold">
+                    <span class="quantity fw-light">{{ item.quantity }}X</span>
+                    {{ item.productDetails.price | currency : "RSA" }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="cart-controls px-3 mt-3">
-      <div
-        class="cart-price d-flex align-items-center justify-content-between py-3 border-top"
-      >
-        <h5 class="mb-0 fs-4">Subtotal:</h5>
-        <p class="mb-0 heading-color fw-semibold fs-4">
-          {{ cartDetails.totalPrice | currency : "SAR " }}
-        </p>
+      <div class="cart-controls px-3 mt-3">
+        <div
+          class="cart-price d-flex align-items-center justify-content-between py-3 border-top"
+        >
+          <h5 class="mb-0 fs-4">Subtotal:</h5>
+          <p class="mb-0 heading-color fw-semibold fs-4">
+            {{ cartDetails.totalPrice | currency : "SAR " }}
+          </p>
+        </div>
+
+        <button
+          class="main-btn white w-100 p-2 p-md-3 mb-2 mb-md-3 rounded-5"
+          routerLink="/cart"
+        >
+          View Cart
+        </button>
+        <button
+          class="main-btn w-100 p-2 p-md-3 rounded-5"
+          routerLink="/checkout"
+        >
+          Check Out
+        </button>
       </div>
-
-      <button
-        class="main-btn white w-100 p-2 p-md-3 mb-2 mb-md-3 rounded-5"
-        routerLink="/cart"
-      >
-        View Cart
-      </button>
-      <button
-        class="main-btn w-100 p-2 p-md-3 rounded-5"
-        routerLink="/checkout"
-      >
-        Check Out
-      </button>
     </div>
+
+    <ng-template #emptyCart>
+      <div
+        class="empty d-flex flex-column align-items-center justify-content-center gap-3"
+      >
+        <img class="mx-auto" src="./assets/images/emptyCart.svg" alt="image" />
+        <h3 class="text-center">No products in the cart.</h3>
+
+        <button
+          class="main-btn mx-auto fs-6 rounded-5 px-5 py-2"
+          routerLink="/shop"
+        >
+          Return To shop
+        </button>
+      </div>
+    </ng-template>
   </div>
 </div>

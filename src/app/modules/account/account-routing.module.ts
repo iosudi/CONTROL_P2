@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { profileGuard } from 'src/app/core/guards/profile.guard';
 import { EditAddAddressComponent } from './components/edit-add-address/edit-add-address.component';
 import { AccountDashboardComponent } from './pages/account-dashboard/account-dashboard.component';
 import { AccountDetailsComponent } from './pages/account-details/account-details.component';
@@ -13,6 +14,8 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     title: 'My account - Ctrl+P for advertising and modern marketing',
+    canActivate: [profileGuard],
+
     children: [
       {
         path: '',

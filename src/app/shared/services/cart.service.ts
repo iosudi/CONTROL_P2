@@ -74,12 +74,21 @@ export class CartService {
   public GetCartItemsWithDetails(): Observable<any> {
     return this.GetCartItems().pipe(
       mergeMap((cartData: any) => {
-        const cartItems = cartData.cartItems || []; // Extract `cartItems` from the response
+        const cartItems = cartData.cartItems || [];
 
         if (!Array.isArray(cartItems)) {
           throw new TypeError('cartItems is not an array');
         }
 
+        // If cartItems is empty, return the original cart data as is
+        if (cartItems.length === 0) {
+          return of({
+            ...cartData,
+            cartItems: [], // Ensure cartItems is explicitly set to an empty array
+          });
+        }
+
+        // Proceed to fetch product details if cartItems is not empty
         const productDetailsRequests = cartItems.map((item) =>
           this._ShopService.getProductById(item.productId).pipe(
             map((productDetails) => ({

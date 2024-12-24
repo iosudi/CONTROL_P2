@@ -15,3 +15,10 @@ table {
     color: var(--white-text);
   }
 }
+
+.empty {
+  img {
+    max-width: 300px;
+    height: auto;
+  }
+}

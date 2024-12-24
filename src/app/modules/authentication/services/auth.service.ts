@@ -19,4 +19,12 @@ export class AuthService {
   login(loginForm: any): Observable<any> {
     return this.http.post(environment.baseURL + 'Auth/Login', loginForm);
   }
+
+  register(registerForm: any): Observable<any> {
+    return this.http.post(environment.baseURL + 'Auth/RegisterUser', {
+      userName: registerForm.userName,
+      email: registerForm.email,
+      password: registerForm.password,
+    });
+  }
 }

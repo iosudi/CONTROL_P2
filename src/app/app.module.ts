@@ -11,11 +11,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LanguageInterceptorInterceptor } from './core/interceptor/language-interceptor.interceptor';
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -24,6 +25,8 @@ import { LanguageInterceptorInterceptor } from './core/interceptor/language-inte
     NgbModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ToastModule,
+    NgxSpinnerModule,
     ReactiveFormsModule,
     TranslateModule.forRoot({
       defaultLanguage: 'ar',

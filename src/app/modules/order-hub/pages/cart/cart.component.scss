@@ -109,6 +109,13 @@
   }
 }
 
+.empty {
+  img {
+    max-width: 300px;
+    height: auto;
+  }
+}
+
 @media (max-width: 991px) {
   .cart {
     .bread-crumb {

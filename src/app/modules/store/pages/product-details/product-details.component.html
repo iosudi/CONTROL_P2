@@ -54,13 +54,14 @@
             <h2>{{ product.name }}</h2>
             <div class="product-rating d-flex align-items-end">
               <span class="stars mx-2 fs-4 d-flex align-items-center gap-1">
-                <i class="fa-solid fa-star star-color"></i>
-                <i class="fa-solid fa-star star-color"></i>
-                <i class="fa-solid fa-star star-color"></i>
-                <i class="fa-solid fa-star star-color"></i>
+                <i
+                  [class.star-color]="product.rating >= num"
+                  *ngFor="let num of [1, 2, 3, 4, 5]"
+                  class="fa-solid fa-star"
+                ></i>
               </span>
               <span class="total-reviews"
-                >(2
+                >({{ product.reviews.length }}
                 {{ "productDetails.product.rating.reviews" | translate }})</span
               >
             </div>
@@ -82,31 +83,46 @@
           <div class="product-specifications">
             <div class="specifications">
               <div class="item my-3">
-                <h6>Frame :<span class="fw-light">No Frame</span></h6>
+                <h6>
+                  Frame :<span class="fw-light">{{ selectedFrame }}</span>
+                </h6>
                 <ul class="p-0 m-0 d-flex align-items-center gap-2">
                   <li
                     class="rounded-1"
                     *ngFor="let frame of product.framesNames"
+                    (click)="setProductSpecifications('', frame, '')"
+                    [class.active]="selectedFrame === frame"
                   >
                     {{ frame }}
                   </li>
                 </ul>
               </div>
               <div class="item my-3">
-                <h6>Material :<span class="fw-light">No Material</span></h6>
+                <h6>
+                  Material :<span class="fw-light">{{ selectedMaterial }}</span>
+                </h6>
                 <ul class="p-0 m-0 d-flex align-items-center gap-2">
                   <li
                     class="rounded-1"
                     *ngFor="let material of product.materialsNames"
+                    (click)="setProductSpecifications(material, '', '')"
+                    [class.active]="selectedMaterial === material"
                   >
                     {{ material }}
                   </li>
                 </ul>
               </div>
               <div class="item my-3">
-                <h6>Size :<span class="fw-light">No Size</span></h6>
+                <h6>
+                  Size :<span class="fw-light">{{ selectedSize }}</span>
+                </h6>
                 <ul class="p-0 m-0 d-flex align-items-center gap-2">
-                  <li class="rounded-1" *ngFor="let size of product.sizesNames">
+                  <li
+                    class="rounded-1"
+                    *ngFor="let size of product.sizesNames"
+                    (click)="setProductSpecifications('', '', size)"
+                    [class.active]="selectedSize === size"
+                  >
                     {{ size }}
                   </li>
                 </ul>
@@ -120,23 +136,38 @@
             <div
               class="quantity rounded-5 d-flex align-items-center justify-content-between gap-2 px-2"
             >
-              <span class="fw-semibold fs-6 pointer">-</span>
+              <button
+                class="fw-semibold fs-6 pointer"
+                (click)="updateQuantity(-1)"
+                [disabled]="productQuantity === 1"
+              >
+                -
+              </button>
               <input
                 class="py-2 text-center fs-5 fw-bold"
                 type="number"
-                value="1"
+                [value]="productQuantity"
                 min="1"
                 max="10"
               />
-              <span class="fw-semibold fs-6 pointer">+</span>
+              <button
+                class="fw-semibold fs-6 pointer"
+                (click)="updateQuantity(1)"
+                [disabled]="productQuantity === 10"
+              >
+                +
+              </button>
             </div>
 
-            <button class="main-btn px-4 py-2 rounded-5 fw-semibold">
+            <button
+              class="main-btn px-4 py-2 rounded-5 fw-semibold"
+              (click)="addToCart(product.id)"
+            >
               <i class="fa-solid fa-cart-shopping"></i>
               {{ "productDetails.product.actions.addToCart" | translate }}
             </button>
 
-            <div class="btn whatsapp-order">
+            <div class="btn whatsapp-order" (click)="openWhatsApp()">
               {{ "productDetails.product.actions.orderByWhatsapp" | translate }}
               <i class="fa-brands fa-whatsapp ms-3"></i>
             </div>

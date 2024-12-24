@@ -56,9 +56,9 @@
           'ps-3': direction == 'rtl'
         }"
       >
-        <button class="btn p-0 d-flex align-items-center gap-3">
+        <!-- <button class="btn p-0 d-flex align-items-center gap-3">
           <img src="./assets/images/icons/search.svg" alt="icon" />
-        </button>
+        </button> -->
         <button
           class="btn p-0 d-flex align-items-center gap-3 language-btn"
           (click)="changeLanguage()"
@@ -77,28 +77,64 @@
           'pe-3': direction == 'rtl'
         }"
       >
-        <button
-          class="btn p-0 d-flex align-items-center"
-          (click)="openLoginDialog()"
-        >
-          <img src="./assets/images/icons/user.svg" alt="icon" />
-        </button>
+        <div class="position-relative dropdown-btn">
+          <button
+            class="btn p-0 d-flex align-items-center"
+            (click)="toggleMenu()"
+          >
+            <img src="./assets/images/icons/user.svg" alt="icon" />
+          </button>
+          <div
+            class="dropdown_menu rounded-3"
+            *ngIf="!userLoggedIn; else userLogged"
+            [ngClass]="{ 'd-block': !collapsed, 'd-none': collapsed }"
+          >
+            <ul class="mb-0 p-3">
+              <li class="mb-2 pointer" (click)="openLoginDialog()">Login</li>
+              <li class="pointer" (click)="openRegisterDialog()">Register</li>
+            </ul>
+          </div>
+
+          <ng-template #userLogged>
+            <div
+              class="dropdown_menu rounded-3"
+              [ngClass]="{ 'd-block': !collapsed, 'd-none': collapsed }"
+            >
+              <ul class="mb-0 p-3">
+                <li class="mb-2 pointer" routerLink="/profile">Dashboard</li>
+                <li class="pointer mb-2" routerLink="/profile/account-details">
+                  Account details
+                </li>
+                <li class="pointer mb-2" routerLink="/profile/orders">
+                  Orders
+                </li>
+                <li class="pointer mb-2" routerLink="/profile/addresses">
+                  Addresses
+                </li>
+                <li class="pointer" routerLink="/profile/wishlist">Wishlist</li>
+
+                <li
+                  class="pointer text-danger pt-1 mt-2 fw-semibold border-top"
+                  (click)="logout()"
+                >
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                  Logout
+                </li>
+              </ul>
+            </div>
+          </ng-template>
+        </div>
         <button
           class="btn p-0 d-flex align-items-center gap-1"
           routerLink="/profile/wishlist"
         >
           <img src="./assets/images/icons/heart.svg" alt="icon" />
-          1
         </button>
         <button
           class="btn p-0 d-flex align-items-center gap-lg-2 gap-1"
           (click)="openCartOverlay()"
         >
           <img src="./assets/images/icons/cart.svg" alt="icon" />
-          <span class="d-flex gap-1">
-            <span class="cart-count">1 </span> /
-            <span class="cart-price"> 0</span>
-          </span>
         </button>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { Component, HostListener, inject, Optional } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MessageService } from 'primeng/api';
 import { filter } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
@@ -17,7 +18,8 @@ export class LoginComponent {
     private _FormBuilder: FormBuilder,
     @Optional() public activeModal: NgbActiveModal,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private messageService: MessageService
   ) {}
   private modalService = inject(NgbModal);
 
@@ -51,11 +53,23 @@ export class LoginComponent {
     if (this.loginForm.status === 'VALID') {
       this.auth.login(this.loginForm.value).subscribe({
         next: (data) => {
-          console.log(data);
           localStorage.setItem('token', data.token);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'success',
+            detail: 'successfully logged in',
+            life: 2000,
+          });
+          window.location.reload();
         },
         error: (error) => {
           console.log(error);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'error',
+            detail: 'Failed to login to your account',
+            life: 2000,
+          });
         },
       });
     }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { MessageService } from 'primeng/api';
+import { CartService } from 'src/app/shared/services/cart.service';
 import { WishlistService } from 'src/app/shared/services/wishlist.service';
 
 @Component({
@@ -10,7 +12,9 @@ import { WishlistService } from 'src/app/shared/services/wishlist.service';
 export class WishlistComponent implements OnInit {
   constructor(
     private translateService: TranslateService,
-    private _WishlistService: WishlistService
+    private _WishlistService: WishlistService,
+    private _CartService: CartService,
+    private messageService: MessageService
   ) {}
 
   cities: any[] | undefined;
@@ -39,6 +43,32 @@ export class WishlistComponent implements OnInit {
       error: (error) => {
         console.log(error);
       },
+    });
+  }
+
+  addToCart(productId: number, e: MouseEvent): void {
+    e.stopPropagation();
+    const product = {
+      productId: productId,
+      quantity: 1,
+    };
+
+    this._CartService.AddToCart(product).subscribe((success) => {
+      if (success) {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'success',
+          detail: 'Product added to cart successfully',
+          life: 3000,
+        });
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'error',
+          detail: 'Failed to add product to cart',
+          life: 3000,
+        });
+      }
     });
   }
 }

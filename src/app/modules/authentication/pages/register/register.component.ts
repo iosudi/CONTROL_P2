@@ -7,7 +7,9 @@ import {
 } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MessageService } from 'primeng/api';
 import { filter } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 import { LoginComponent } from '../login/login.component';
 
 @Component({
@@ -22,14 +24,16 @@ export class RegisterComponent {
   constructor(
     private _FormBuilder: FormBuilder,
     @Optional() public activeModal: NgbActiveModal,
-    private router: Router
+    private router: Router,
+    private auth: AuthService,
+    private messageService: MessageService
   ) {}
 
   private modalService = inject(NgbModal);
 
   registerForm: FormGroup = this._FormBuilder.group(
     {
-      name: [
+      userName: [
         '',
         [
           Validators.required,
@@ -73,6 +77,26 @@ export class RegisterComponent {
 
   onSubmit(): void {
     if (this.registerForm.status === 'VALID') {
+      this.auth.signUp(this.registerForm.value).subscribe({
+        next: (data) => {
+          this.openLoginForm();
+          this.messageService.add({
+            severity: 'success',
+            summary: 'success',
+            detail: 'Account created successfully',
+            life: 2000,
+          });
+        },
+        error: (error) => {
+          console.error(error);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'error',
+            detail: 'Failed to register your account',
+            life: 2000,
+          });
+        },
+      });
     }
   }
 

@@ -1,119 +1,138 @@
-<div class="orders" *ngIf="!isMobileView; else mobileViewOrders">
-  <table class="w-100">
-    <thead>
-      <tr class="border-bottom">
-        <th class="px-4 py-2">
-          {{ "Account.Orders.table.order" | translate }}
-        </th>
-        <th class="px-4 py-2">{{ "Account.Orders.table.date" | translate }}</th>
-        <th class="px-4 py-2">
-          {{ "Account.Orders.table.status" | translate }}
-        </th>
-        <th class="px-4 py-2">
-          {{ "Account.Orders.table.total" | translate }}
-        </th>
-        <th class="px-4 py-2 text-center">
-          {{ "Account.Orders.table.actions" | translate }}
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr class="border-bottom" *ngFor="let order of orders">
-        <td class="px-4 py-2">
-          <p class="text-decoration-underline mb-0 fw-semibold">
-            #{{ order.id }}
-          </p>
-        </td>
-        <td class="px-4 py-2">
-          <p class="date mb-0">{{ order.orderDate | date : "MMMM d, y" }}</p>
-        </td>
-        <td class="px-4 py-2">
-          <div class="d-flex align-items-center gap-2 order-status fw-bold">
-            {{ order.orderStatus }}
-          </div>
-        </td>
-        <td class="px-4 py-2 fw-bold">
-          {{ order.totalPrice | currency : "RSA " }}
-        </td>
-
-        <td class="px-4 py-2">
-          <button
-            class="main-btn px-4 py-1 rounded-5 fw-bold mx-auto"
-            [routerLink]="['/order-details', order.id]"
-          >
-            {{ "Account.Orders.table.viewButton" | translate }}
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<ng-template #mobileViewOrders>
-  <div class="mobile-view-orders">
-    <table class="w-100 mb-5" *ngFor="let order of orders">
-      <tbody>
-        <!-- Order ID Row -->
+<div *ngIf="orders.length > 0; else emptyOrders">
+  <div class="orders" *ngIf="!isMobileView; else mobileViewOrders">
+    <table class="w-100">
+      <thead>
         <tr class="border-bottom">
-          <td class="row-label">
+          <th class="px-4 py-2">
             {{ "Account.Orders.table.order" | translate }}
-          </td>
-          <td class="px-4 py-3">
+          </th>
+          <th class="px-4 py-2">
+            {{ "Account.Orders.table.date" | translate }}
+          </th>
+          <th class="px-4 py-2">
+            {{ "Account.Orders.table.status" | translate }}
+          </th>
+          <th class="px-4 py-2">
+            {{ "Account.Orders.table.total" | translate }}
+          </th>
+          <th class="px-4 py-2 text-center">
+            {{ "Account.Orders.table.actions" | translate }}
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="border-bottom" *ngFor="let order of orders">
+          <td class="px-4 py-2">
             <p class="text-decoration-underline mb-0 fw-semibold">
               #{{ order.id }}
             </p>
           </td>
-        </tr>
-
-        <!-- Date Row -->
-        <tr class="border-bottom">
-          <td class="row-label">
-            {{ "Account.Orders.table.date" | translate }}
+          <td class="px-4 py-2">
+            <p class="date mb-0">{{ order.orderDate | date : "MMMM d, y" }}</p>
           </td>
-          <td class="px-4 py-3">
-            <p class="date mb-0">{{ order.date }}</p>
-          </td>
-        </tr>
-
-        <!-- Status Row -->
-        <tr class="border-bottom">
-          <td class="row-label">
-            {{ "Account.Orders.table.status" | translate }}
-          </td>
-          <td class="px-4 py-3">
+          <td class="px-4 py-2">
             <div class="d-flex align-items-center gap-2 order-status fw-bold">
-              <img
-                src="./assets/images/icons/mdi_package-variant.png"
-                alt="icon"
-              />
-              {{ order.status }}
+              {{ order.orderStatus }}
             </div>
           </td>
-        </tr>
+          <td class="px-4 py-2 fw-bold">
+            {{ order.totalPrice | currency : "RSA " }}
+          </td>
 
-        <!-- Total Row -->
-        <tr class="border-bottom">
-          <td class="row-label">
-            {{ "Account.Orders.table.total" | translate }}
-          </td>
-          <td class="px-4 py-3 fw-bold">
-            {{ order.total | currency : "USD" }}
-          </td>
-        </tr>
-
-        <!-- Actions Row -->
-        <tr class="border-bottom">
-          <td class="row-label">
-            {{ "Account.Orders.table.actions" | translate }}
-          </td>
-          <td class="px-4 py-3">
-            <button class="main-btn px-4 py-1 rounded-5 fw-bold">
+          <td class="px-4 py-2">
+            <button
+              class="main-btn px-4 py-1 rounded-5 fw-bold mx-auto"
+              [routerLink]="['/order-details', order.id]"
+            >
               {{ "Account.Orders.table.viewButton" | translate }}
             </button>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <ng-template #mobileViewOrders>
+    <div class="mobile-view-orders">
+      <table class="w-100 mb-5" *ngFor="let order of orders">
+        <tbody>
+          <!-- Order ID Row -->
+          <tr class="border-bottom">
+            <td class="row-label">
+              {{ "Account.Orders.table.order" | translate }}
+            </td>
+            <td class="px-4 py-3">
+              <p class="text-decoration-underline mb-0 fw-semibold">
+                #{{ order.id }}
+              </p>
+            </td>
+          </tr>
+
+          <!-- Date Row -->
+          <tr class="border-bottom">
+            <td class="row-label">
+              {{ "Account.Orders.table.date" | translate }}
+            </td>
+            <td class="px-4 py-3">
+              <p class="date mb-0">{{ order.date }}</p>
+            </td>
+          </tr>
+
+          <!-- Status Row -->
+          <tr class="border-bottom">
+            <td class="row-label">
+              {{ "Account.Orders.table.status" | translate }}
+            </td>
+            <td class="px-4 py-3">
+              <div class="d-flex align-items-center gap-2 order-status fw-bold">
+                <img
+                  src="./assets/images/icons/mdi_package-variant.png"
+                  alt="icon"
+                />
+                {{ order.status }}
+              </div>
+            </td>
+          </tr>
+
+          <!-- Total Row -->
+          <tr class="border-bottom">
+            <td class="row-label">
+              {{ "Account.Orders.table.total" | translate }}
+            </td>
+            <td class="px-4 py-3 fw-bold">
+              {{ order.total | currency : "USD" }}
+            </td>
+          </tr>
+
+          <!-- Actions Row -->
+          <tr class="border-bottom">
+            <td class="row-label">
+              {{ "Account.Orders.table.actions" | translate }}
+            </td>
+            <td class="px-4 py-3">
+              <button class="main-btn px-4 py-1 rounded-5 fw-bold">
+                {{ "Account.Orders.table.viewButton" | translate }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #emptyOrders>
+  <div
+    class="empty d-flex flex-column align-items-center justify-content-center gap-3"
+  >
+    <img class="mx-auto" src="./assets/images/emptyOrders.svg" alt="image" />
+    <h3 class="text-center">No order has been made yet.</h3>
+    <button
+      class="main-btn mx-auto fs-4 rounded-5 px-5 py-2"
+      routerLink="/shop"
+    >
+      Browse products
+    </button>
   </div>
 </ng-template>

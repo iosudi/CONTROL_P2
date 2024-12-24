@@ -1,6 +1,9 @@
 <app-home-navbar></app-home-navbar>
 
-<section class="cart my-lg-5 my-3">
+<section
+  class="cart my-lg-5 my-3"
+  *ngIf="cartDetails.cartItems.length > 0; else emptyCart"
+>
   <div class="container">
     <div
       class="bread-crumb d-flex justify-content-start align-items-center mb-4"
@@ -68,7 +71,10 @@
   </div>
 </section>
 
-<section class="partners-slider overflow-hidden my-5 py-5">
+<section
+  class="partners-slider overflow-hidden my-5 py-5"
+  *ngIf="cartDetails.cartItems.length > 0"
+>
   <ul
     class="list m-0 p-0 d-flex mb-4"
     [ngStyle]="{
@@ -103,5 +109,21 @@
     </li>
   </ul>
 </section>
+
+<ng-template #emptyCart>
+  <div
+    class="empty d-flex flex-column align-items-center justify-content-center gap-3 my-5"
+  >
+    <img class="mx-auto" src="./assets/images/emptyCart.svg" alt="image" />
+    <h3 class="text-center">No products in the cart.</h3>
+
+    <button
+      class="main-btn mx-auto fs-6 rounded-5 px-5 py-2"
+      routerLink="/shop"
+    >
+      Return To shop
+    </button>
+  </div>
+</ng-template>
 
 <app-footer></app-footer>

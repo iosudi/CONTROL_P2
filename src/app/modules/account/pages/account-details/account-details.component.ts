@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -15,7 +16,11 @@ export class AccountDetailsComponent implements OnInit {
   email: string = '';
   userInfo: FormGroup;
 
-  constructor(private _UserService: UserService, private fb: FormBuilder) {
+  constructor(
+    private _UserService: UserService,
+    private fb: FormBuilder,
+    private messageService: MessageService
+  ) {
     this.userInfo = this.fb.group({
       firstName: [''],
       lastName: [''],
@@ -52,7 +57,6 @@ export class AccountDetailsComponent implements OnInit {
       error: (error) => {
         console.error(error);
       },
-      complete: () => {},
     });
   }
 
@@ -65,9 +69,7 @@ export class AccountDetailsComponent implements OnInit {
         this._UserService
           .changePassword({ oldPassword, newPassword, passwordConfirmation })
           .subscribe({
-            next: () => {
-              console.log('Password changed successfully');
-            },
+            next: () => {},
             error: (error) => {
               console.error('Error changing password:', error);
             },
@@ -84,14 +86,22 @@ export class AccountDetailsComponent implements OnInit {
   updateUserInfo(): void {
     this._UserService.updateUserInfo(this.userInfo.value).subscribe({
       next: () => {
-        console.log('User details updated successfully');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'success',
+          detail: 'User data updated successfully',
+          life: 2000,
+        });
         this.fetchUserInfo();
       },
       error: (error) => {
         console.error('Error updating user details:', error);
-      },
-      complete: () => {
-        // Additional logic on completion if necessary
+        this.messageService.add({
+          severity: 'error',
+          summary: 'error',
+          detail: 'Error updating user data',
+          life: 2000,
+        });
       },
     });
   }
