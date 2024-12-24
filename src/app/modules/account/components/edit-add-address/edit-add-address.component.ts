@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { CheckoutService } from 'src/app/shared/services/checkout.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class EditAddAddressComponent {
     private _CheckoutService: CheckoutService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {}
 
   fname: string = '';
@@ -79,20 +81,44 @@ export class EditAddAddressComponent {
           next: () => {
             this.fetchAddress(this.addressId);
             this.addressForm.reset();
+            this.messageService.add({
+              severity: 'success',
+              summary: 'success',
+              detail: 'successfully updated your address',
+              life: 2000,
+            });
           },
           error: (error) => {
             console.error(error);
+            this.messageService.add({
+              severity: 'error',
+              summary: 'error',
+              detail: 'Failed to update the address',
+              life: 2000,
+            });
           },
         });
       } else {
         this._CheckoutService.addAddress(this.addressForm.value).subscribe({
           next: () => {
-            this.addressForm.reset();
             this.router.navigate(['/profile/addresses']);
+            this.addressForm.reset();
             window.location.reload();
+            this.messageService.add({
+              severity: 'success',
+              summary: 'success',
+              detail: 'successfully added new address',
+              life: 2000,
+            });
           },
           error: (error) => {
             console.error(error);
+            this.messageService.add({
+              severity: 'error',
+              summary: 'error',
+              detail: 'Failed to add new address',
+              life: 2000,
+            });
           },
         });
       }

@@ -195,6 +195,8 @@ export class CheckoutComponent {
       this.getLastOrderId().subscribe((lastOrderId) => {
         this._CheckoutService.CheckoutCard(lastOrderId + 1).subscribe({
           next: (response) => {
+            console.log(response);
+            console.log(lastOrderId);
             window.location.href = response.url;
           },
           error: (error) => {
