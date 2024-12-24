@@ -16,12 +16,13 @@
       p {
         color: var(--paragraph-text-color);
       }
-    }
-    &:first-child .category {
-      background: var(--white-text);
-      color: var(--dark-text);
-      p {
-        color: #2f2f2f;
+
+      &.active_category {
+        background: var(--white-text);
+        color: var(--dark-text);
+        p {
+          color: #2f2f2f;
+        }
       }
     }
   }

@@ -16,6 +16,9 @@ export class UserService {
     this.decoded[
       'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
     ];
+
+  userName =
+    this.decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
   // API Headers
   headers = new HttpHeaders({
     Authorization: `Bearer ${this.token}`,

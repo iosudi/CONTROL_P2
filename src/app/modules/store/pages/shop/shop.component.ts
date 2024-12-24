@@ -65,6 +65,7 @@ export class ShopComponent implements OnInit {
   isHorizontal: boolean = false;
   activeGridStyle: string = 'vertical-small';
   products: any = [];
+  activeCategoryId: number = 0;
 
   categoriesBreakpoints = {
     0: {
@@ -118,6 +119,18 @@ export class ShopComponent implements OnInit {
       },
       error: (error) => {
         console.log(error);
+      },
+    });
+  }
+
+  fetchProductsByCategoryId(categoryId: number) {
+    this._ShopService.getProductsByCategoryId(categoryId).subscribe({
+      next: (products) => {
+        this.products = products;
+        this.activeCategoryId = categoryId;
+      },
+      error: (error) => {
+        console.error('Error fetching products:', error);
       },
     });
   }

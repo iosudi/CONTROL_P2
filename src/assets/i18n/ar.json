@@ -515,7 +515,7 @@
       }
     },
     "AccountDashboard": {
-      "greeting": "👋🏻 مرحبا، adelsaudii !",
+      "greeting": "👋🏻 مرحبا، {{ currentUser }} !",
       "paragraph": "من خلال لوحة التحكم الخاصة بحسابك يمكنك عرض <a routerLink='/profile/orders'>الطلبات الأخيرة</a>، إدارة <a routerLink='/profile/addresses'>عناوين الشحن والفوترة</a>، و <a routerLink='/profile/account-details'>تعديل كلمة المرور وتفاصيل الحساب.</a>"
     },
 

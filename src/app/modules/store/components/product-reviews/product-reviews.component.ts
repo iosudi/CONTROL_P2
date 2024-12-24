@@ -63,12 +63,19 @@ export class ProductReviewsComponent {
           this.messageService.add({
             severity: 'error',
             summary: 'error',
-            detail: 'Something went wrong, try again latera',
+            detail: 'Something went wrong, try again later',
             life: 2000,
           });
         },
       });
       this.reviewForm.reset();
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'error',
+        detail: 'Fill the required fields',
+        life: 2000,
+      });
     }
   }
 

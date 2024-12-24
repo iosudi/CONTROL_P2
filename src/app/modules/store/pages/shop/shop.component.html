@@ -19,6 +19,8 @@
         <div
           [dir]="'dir' | translate"
           class="category rounded-3 d-flex justify-content-start align-items-center gap-3 overflow-hidden p-3 pointer"
+          (click)="fetchProductsByCategoryId(category.id)"
+          [ngClass]="{ active_category: category.id == activeCategoryId }"
         >
           <img
             [src]="'https://ctrl-p.runasp.net/' + category.imageUrl"
