@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { OurServicesService } from 'src/app/shared/services/our-services.service';
@@ -12,7 +12,8 @@ export class OurServicesComponent implements OnInit {
   constructor(
     private route: Router,
     private _OurServicesService: OurServicesService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private cd: ChangeDetectorRef
   ) {}
   direction: string = 'ltr'; // Default direction
   phoneNumber: string = '966547223203';
@@ -24,6 +25,7 @@ export class OurServicesComponent implements OnInit {
     this._OurServicesService.getServices().subscribe({
       next: (services) => {
         this.services = services;
+        this.cd.detectChanges();
       },
       error: (error) => {
         console.error('Error fetching services:', error);
