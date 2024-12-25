@@ -409,7 +409,7 @@
           <div class="categories d-flex flex-column gap-4">
             <div
               class="category pointer overflow-hidden"
-              *ngFor="let category of productCategories"
+              *ngFor="let category of productCategories.slice(0, 3)"
               (click)="setActiveCategory(category.id, category.name)"
               [class.activeCategory]="category.id == activeCategoryId"
             >
