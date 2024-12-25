@@ -1,4 +1,9 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { CartService } from 'src/app/shared/services/cart.service';
 
@@ -10,7 +15,8 @@ import { CartService } from 'src/app/shared/services/cart.service';
 export class DesktopCartTableComponent {
   constructor(
     private _CartService: CartService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private cd: ChangeDetectorRef
   ) {}
 
   cartDetails: any = {};
@@ -25,6 +31,7 @@ export class DesktopCartTableComponent {
       next: (items) => {
         console.log(items);
         this.cartDetails = items;
+        this.cd.detectChanges();
         this.cartItemsChanged.emit(this.cartDetails);
       },
       error: (error) => {

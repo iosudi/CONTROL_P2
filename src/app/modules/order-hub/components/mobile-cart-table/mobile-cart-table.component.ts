@@ -1,4 +1,9 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
@@ -7,7 +12,10 @@ import { CartService } from 'src/app/shared/services/cart.service';
   styleUrls: ['./mobile-cart-table.component.scss'],
 })
 export class MobileCartTableComponent {
-  constructor(private _CartService: CartService) {}
+  constructor(
+    private _CartService: CartService,
+    private cd: ChangeDetectorRef
+  ) {}
 
   cartDetails: any = {};
 
@@ -22,6 +30,7 @@ export class MobileCartTableComponent {
         console.log(items);
         this.cartDetails = items;
         this.cartItemsChanged.emit(this.cartDetails);
+        this.cd.detectChanges();
       },
       error: (error) => {
         console.log(error);

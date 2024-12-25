@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CheckoutService } from 'src/app/shared/services/checkout.service';
 
@@ -15,7 +15,8 @@ export class AddressesComponent {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private _CheckoutService: CheckoutService
+    private _CheckoutService: CheckoutService,
+    private cd: ChangeDetectorRef
   ) {
     // Listen to route changes
     this.router.events.subscribe(() => {
@@ -31,7 +32,7 @@ export class AddressesComponent {
     this._CheckoutService.getAddresses().subscribe({
       next: (addresses) => {
         this.addresses = addresses;
-        console.log(this.addresses);
+        this.cd.detectChanges();
       },
       error: (error) => {
         // Handle the error

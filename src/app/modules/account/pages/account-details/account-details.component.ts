@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -19,7 +19,8 @@ export class AccountDetailsComponent implements OnInit {
   constructor(
     private _UserService: UserService,
     private fb: FormBuilder,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private cd: ChangeDetectorRef
   ) {
     this.userInfo = this.fb.group({
       firstName: [''],
@@ -53,6 +54,7 @@ export class AccountDetailsComponent implements OnInit {
         });
 
         this.email = user.email;
+        this.cd.detectChanges();
       },
       error: (error) => {
         console.error(error);

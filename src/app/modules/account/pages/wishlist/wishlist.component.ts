@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { CartService } from 'src/app/shared/services/cart.service';
@@ -14,7 +14,8 @@ export class WishlistComponent implements OnInit {
     private translateService: TranslateService,
     private _WishlistService: WishlistService,
     private _CartService: CartService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private cd: ChangeDetectorRef
   ) {}
 
   cities: any[] | undefined;
@@ -39,10 +40,7 @@ export class WishlistComponent implements OnInit {
     this._WishlistService.getWishlistItems().subscribe({
       next: (items) => {
         this.wishlistItems = items;
-        console.log(
-          '🚀 ~ WishlistComponent ~ this._WishlistService.getWishlistItems ~ items:',
-          items
-        );
+        this.cd.detectChanges();
       },
       error: (error) => {
         console.log(error);

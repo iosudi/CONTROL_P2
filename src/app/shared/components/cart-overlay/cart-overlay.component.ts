@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { CartService } from '../../services/cart.service';
@@ -12,7 +12,8 @@ export class CartOverlayComponent implements OnInit {
   constructor(
     private _CartService: CartService,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private cd: ChangeDetectorRef
   ) {}
 
   cartDetails: any = {};
@@ -31,7 +32,7 @@ export class CartOverlayComponent implements OnInit {
     this._CartService.GetCartItemsWithDetails().subscribe({
       next: (data) => {
         this.cartDetails = data;
-        console.log('Cart details fetched successfully:', this.cartDetails);
+        this.cd.detectChanges();
       },
       error: (error) => {
         console.log(error);

@@ -1,5 +1,5 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
@@ -14,7 +14,8 @@ export class OrdersComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private _OrderService: OrderService
+    private _OrderService: OrderService,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -27,10 +28,7 @@ export class OrdersComponent {
     this._OrderService.getPastOrders().subscribe({
       next: (orders) => {
         this.orders = orders;
-        console.log(
-          '🚀 ~ OrdersComponent ~ this._OrderService.getPastOrders ~ orders:',
-          orders
-        );
+        this.cd.detectChanges();
       },
       error: (error) => {
         console.error('Error retrieving past orders:', error);
