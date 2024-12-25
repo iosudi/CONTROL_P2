@@ -303,7 +303,9 @@
                   </div>
 
                   <div class="price heading-color">
-                    <span class="discount"> {{ product.oldPrice }} </span>
+                    <span class="discount">
+                      {{ product.oldPrice | currency : " " }}
+                    </span>
                     {{ product.price | currency : " SAR " }}
                   </div>
 

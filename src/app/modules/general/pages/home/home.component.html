@@ -409,18 +409,15 @@
           <div class="categories d-flex flex-column gap-4">
             <div
               class="category pointer overflow-hidden"
-              *ngFor="let category of productsCategories"
-              (click)="
-                setActiveCategory(
-                  category.category.id,
-                  category.products,
-                  category.category.name
-                )
-              "
-              [class.activeCategory]="category.category.id == activeCategory"
+              *ngFor="let category of productCategories"
+              (click)="setActiveCategory(category.id, category.name)"
+              [class.activeCategory]="category.id == activeCategoryId"
             >
-              <p class="mb-3 fw-semibold">{{ category.category.name }}</p>
-              <img [src]="category.category.image" alt="category image" />
+              <p class="mb-3 fw-semibold">{{ category.name }}</p>
+              <img
+                [src]="'https://ctrl-p.runasp.net' + category.imageUrl"
+                alt="category image"
+              />
             </div>
           </div>
         </div>
@@ -428,8 +425,8 @@
 
       <div class="col-lg-9">
         <app-home-mini-shop
-          [activeCategory]="activeCategory"
-          [products]="activeCategoryProducts"
+          [activeCategory]="activeCategoryId"
+          [products]="products"
           [categoryName]="activeCategoryName"
         ></app-home-mini-shop>
       </div>

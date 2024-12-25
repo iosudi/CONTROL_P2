@@ -8,15 +8,25 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root',
 })
 export class ShopService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    if (this.token) {
+      try {
+        const decodedToken = jwtDecode(this.token);
+        this.decoded = decodedToken;
+        this.userId =
+          this.decoded[
+            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+          ];
+      } catch (error) {
+        console.error('Error decoding token:', error);
+      }
+    }
+  }
 
   token: string = localStorage.getItem('token') || '';
 
-  decoded: any = jwtDecode(this.token);
-  userId =
-    this.decoded[
-      'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
-    ];
+  decoded!: any;
+  userId!: string;
 
   // API Headers
   headers = new HttpHeaders({

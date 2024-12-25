@@ -11,8 +11,8 @@
   <tr class="border-bottom" *ngFor="let item of cartDetails.cartItems">
     <td class="pt-5 pb-4 px-3">
       <i
-        class="fa-solid fa-xmark fs-2 pointer"
-        (click)="removeCartItem(item.productId)"
+        class="fa-solid fa-xmark fs-2 pointer text-danger"
+        (click)="RemoveFromCart(item.productId, item.quantity)"
       ></i>
     </td>
     <td class="pt-5 pb-4 px-3">

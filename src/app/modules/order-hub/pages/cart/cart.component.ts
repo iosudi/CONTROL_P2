@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { SiteContentService } from 'src/app/shared/services/site-content.service';
 
@@ -11,7 +11,8 @@ import { SiteContentService } from 'src/app/shared/services/site-content.service
 export class CartComponent {
   constructor(
     private _SiteContentService: SiteContentService,
-    private _CartService: CartService
+    private _CartService: CartService,
+    private messageService: MessageService
   ) {}
 
   items: MenuItem[] | undefined;
@@ -48,6 +49,45 @@ export class CartComponent {
       },
       error: (error) => {
         console.log(error);
+      },
+    });
+  }
+
+  RemoveFromCart(productId: number, quantity: number): void {
+    const product = {
+      productId: productId,
+      quantity: quantity,
+    };
+
+    this._CartService.RemoveFromCart(product).subscribe({
+      next: (success) => {
+        if (success) {
+          this.fetchCartItems(); // Ensure this gets called
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Product removed from cart successfully',
+            life: 3000,
+          });
+        } else {
+          console.log('Failed to remove product:', productId);
+          this.fetchCartItems();
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to remove product from cart',
+            life: 3000,
+          });
+        }
+      },
+      error: (error) => {
+        console.error('RemoveFromCart error:', error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'An error occurred while removing the product',
+          life: 3000,
+        });
       },
     });
   }

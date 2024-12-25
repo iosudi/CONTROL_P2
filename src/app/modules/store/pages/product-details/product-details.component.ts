@@ -80,7 +80,6 @@ export class ProductDetailsComponent {
   fetchCartItems(): void {
     this._CartService.GetCartItemsWithDetails().subscribe({
       next: (items) => {
-        console.log(items);
         this.cartDetails = items;
       },
       error: (error) => {
@@ -92,8 +91,10 @@ export class ProductDetailsComponent {
   fetchData(productId: number): void {
     this._ShopService.getProductById(productId).subscribe({
       next: (product) => {
-        console.log(product);
         this.product = product;
+        if (this.items?.length) {
+          this.items[this.items.length - 1].label = product.name;
+        }
       },
       error: (error) => {
         console.log(error);

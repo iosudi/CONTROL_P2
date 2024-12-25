@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { OurServicesService } from 'src/app/shared/services/our-services.service';
+import { ShopService } from 'src/app/shared/services/shop.service';
 import { SiteContentService } from 'src/app/shared/services/site-content.service';
 
 @Component({
@@ -19,8 +20,11 @@ export class HomeComponent implements OnInit {
     private _SiteContentService: SiteContentService,
     private _OurServicesService: OurServicesService,
     private renderer: Renderer2,
-    public translate: TranslateService
-  ) {}
+    public translate: TranslateService,
+    private _ShopService: ShopService
+  ) {
+    this.fetchCategories();
+  }
   direction: string = 'ltr'; // Default direction
   phoneNumber: string = '966547223203';
   message: string = 'مرحبًا، أود الاستفسار عن خدماتكم.';
@@ -34,9 +38,10 @@ export class HomeComponent implements OnInit {
   services: any[] = [];
   reviews: any[] = [];
   partners: any[] = [];
-  productsCategories: any[] = [];
+  products: any[] = [];
+  productCategories: any[] = [];
 
-  activeCategory: number = 1;
+  activeCategoryId!: number;
   activeCategoryProducts: any[] = [];
   activeCategoryName: string | undefined;
 
@@ -176,17 +181,17 @@ export class HomeComponent implements OnInit {
       },
     });
 
-    this._SiteContentService.getHomeProductsCategories().subscribe({
-      next: (response) => {
-        this.productsCategories = response.data;
-        this.activeCategory = response.data[0].category.id;
-        this.activeCategoryProducts = response.data[0].products;
-        this.activeCategoryName = response.data[0].category.name;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    // this._SiteContentService.getHomeProductsCategories().subscribe({
+    //   next: (response) => {
+    //     this.productsCategories = response;
+    //     this.activeCategory = response.data[0].category.id;
+    //     this.activeCategoryProducts = response.data[0].products;
+    //     this.activeCategoryName = response.data[0].category.name;
+    //   },
+    //   error: (error) => {
+    //     console.log(error);
+    //   },
+    // });
 
     this._SiteContentService.getSpecialReviews().subscribe({
       next: (reviews) => {
@@ -203,6 +208,33 @@ export class HomeComponent implements OnInit {
       },
       error: (error) => {
         console.log(error);
+      },
+    });
+
+    this.fetchCategories();
+  }
+
+  fetchCategories(): void {
+    this._ShopService.getCategories().subscribe({
+      next: (categories) => {
+        this.productCategories = categories;
+        this.activeCategoryId = categories[0].id;
+        this.fetchProductsByCategoryId(this.activeCategoryId);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
+  fetchProductsByCategoryId(categoryId: number) {
+    this._ShopService.getProductsByCategoryId(categoryId).subscribe({
+      next: (products) => {
+        this.products = products;
+        this.activeCategoryId = categoryId;
+      },
+      error: (error) => {
+        console.error('Error fetching products:', error);
       },
     });
   }
@@ -275,13 +307,12 @@ export class HomeComponent implements OnInit {
 
   setActiveCategory(
     categoryId: number,
-    products: any,
+
     categoryName: string
   ): void {
-    console.log(categoryId);
-    this.activeCategory = categoryId;
-    this.activeCategoryProducts = products;
+    this.activeCategoryId = categoryId;
     this.activeCategoryName = categoryName;
+    this.fetchProductsByCategoryId(categoryId);
   }
 
   setProjectImagesByCategoryId(id: number): void {

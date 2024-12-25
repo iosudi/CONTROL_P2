@@ -61,15 +61,29 @@ export class LoginComponent {
             life: 2000,
           });
           window.location.reload();
+          console.log(data);
         },
         error: (error) => {
           console.log(error);
-          this.messageService.add({
-            severity: 'error',
-            summary: 'error',
-            detail: 'Failed to login to your account',
-            life: 2000,
-          });
+          const audio = new Audio(
+            '../../../../../assets/easter eggs/among-us-sound-157106.mp3'
+          ); // Replace 'assets/song.mp3' with the path to your audio file
+          if (error.error.error == 'Suspended Account!') {
+            audio.play();
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Suspended Account',
+              detail: 'Your account has been suspended',
+              life: 2000,
+            });
+          } else {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'error',
+              detail: 'Failed to login to your account',
+              life: 2000,
+            });
+          }
         },
       });
     }

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { ShopService } from 'src/app/shared/services/shop.service';
 
 @Component({
   selector: 'app-home-mini-shop',
@@ -7,22 +8,16 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./home-mini-shop.component.scss'],
 })
 export class HomeMiniShopComponent {
-  constructor(private translate: TranslateService) {}
+  constructor(
+    private translate: TranslateService,
+    private _ShopService: ShopService
+  ) {}
 
   cities: any[] | undefined;
   selectedCity: any | undefined;
-
-  @Input() activeCategory: number = 1;
-  @Input() products: any[] | undefined;
+  @Input() products: any[] = [];
+  @Input() activeCategory!: number;
   @Input() categoryName: string | undefined;
 
-  ngOnInit() {
-    this.cities = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' },
-    ];
-  }
+  ngOnInit() {}
 }

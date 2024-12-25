@@ -22,10 +22,10 @@ export class ContactComponent implements OnInit {
 
   contactForm: FormGroup = this.fb.group({
     full_name: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
+    contactEmail: ['', [Validators.required, Validators.email]],
     phone: ['', [Validators.required, Validators.maxLength(15)]],
     subject: ['', Validators.required],
-    message: ['', Validators.required],
+    content: ['', Validators.required],
   });
 
   ngOnInit(): void {

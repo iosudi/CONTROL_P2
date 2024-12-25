@@ -14,7 +14,7 @@ export class SiteContentService {
   }
 
   getHomeProductsCategories(): Observable<any> {
-    return this.http.get(environment.secondaryURL + 'home-product-Categories');
+    return this.http.get(environment.baseURL + 'Product/filter');
   }
 
   getSpecialReviews(): Observable<any> {

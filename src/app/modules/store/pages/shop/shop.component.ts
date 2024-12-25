@@ -139,6 +139,10 @@ export class ShopComponent implements OnInit {
     this._ShopService.getProducts().subscribe({
       next: (products) => {
         this.products = products;
+        console.log(
+          '🚀 ~ ShopComponent ~ this._ShopService.getProducts ~ products:',
+          products
+        );
       },
       error: (error) => {
         console.error('Error fetching products:', error);

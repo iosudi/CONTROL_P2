@@ -39,6 +39,10 @@ export class WishlistComponent implements OnInit {
     this._WishlistService.getWishlistItems().subscribe({
       next: (items) => {
         this.wishlistItems = items;
+        console.log(
+          '🚀 ~ WishlistComponent ~ this._WishlistService.getWishlistItems ~ items:',
+          items
+        );
       },
       error: (error) => {
         console.log(error);
@@ -69,6 +73,30 @@ export class WishlistComponent implements OnInit {
           life: 3000,
         });
       }
+    });
+  }
+
+  removeFromWishlist(productId: number, e: MouseEvent): void {
+    e.stopPropagation();
+
+    this._WishlistService.removeFromWishlist(productId).subscribe({
+      next: () => {
+        this.fetchData();
+        this.messageService.add({
+          severity: 'success',
+          summary: 'success',
+          detail: 'Product removed from wishlist successfully',
+          life: 3000,
+        });
+      },
+      error: (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'error',
+          detail: 'Failed to remove product from wishlist',
+          life: 3000,
+        });
+      },
     });
   }
 }
