@@ -42,6 +42,7 @@
     <div class="col-lg-4">
       <div
         class="account-link h-100 pointer fs-5 px-5 py-4 rounded-3 d-flex flex-column justify-content-center align-items-center"
+        (click)="logout()"
       >
         <img src="./assets/images/icons/logout.png" class="mb-3" alt="icon" />
         {{ "Account.AccountLinks.logout.title" | translate }}

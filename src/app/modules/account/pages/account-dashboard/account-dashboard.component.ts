@@ -14,4 +14,9 @@ export class AccountDashboardComponent {
   currentUser: string = '';
 
   ngOnInit(): void {}
+
+  logout(): void {
+    localStorage.removeItem('token');
+    window.location.reload(); // Reload the page
+  }
 }
