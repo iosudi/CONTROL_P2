@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { SiteContentService } from 'src/app/shared/services/site-content.service';
 
 @Component({
@@ -7,7 +7,10 @@ import { SiteContentService } from 'src/app/shared/services/site-content.service
   styleUrls: ['./partners.component.scss'],
 })
 export class PartnersComponent implements OnInit {
-  constructor(private _SiteContentService: SiteContentService) {}
+  constructor(
+    private _SiteContentService: SiteContentService,
+    private cd: ChangeDetectorRef
+  ) {}
 
   partners: any[] = [];
 
@@ -18,6 +21,7 @@ export class PartnersComponent implements OnInit {
   initialize(): void {
     this._SiteContentService.getPartners().subscribe((data) => {
       this.partners = data.data;
+      this.cd.detectChanges();
     });
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -20,7 +20,8 @@ export class CheckoutComponent {
     private _CheckoutService: CheckoutService,
     private _CartService: CartService,
     private _OrderService: OrderService,
-    private router: Router
+    private router: Router,
+    private cd: ChangeDetectorRef
   ) {}
 
   cartDetails: any = {};
@@ -85,6 +86,8 @@ export class CheckoutComponent {
         } else {
           this.userHasAddresses = false;
         }
+
+        this.cd.detectChanges();
       },
       error: (error) => {
         console.error('Error fetching addresses:', error);
@@ -96,6 +99,7 @@ export class CheckoutComponent {
     this._CartService.GetCartItemsWithDetails().subscribe({
       next: (items) => {
         this.cartDetails = items;
+        this.cd.detectChanges();
       },
       error: (error) => {
         console.log(error);
